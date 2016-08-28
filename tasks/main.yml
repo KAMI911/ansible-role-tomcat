@@ -1,0 +1,6 @@
+#
+# Installs Tomcat
+#
+---
+- name: Tomcat | Install Tomcat
+  include: install-tomcat.yml

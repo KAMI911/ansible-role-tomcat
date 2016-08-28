@@ -1,0 +1,19 @@
+#
+# Default variables for the Tomcat role
+#
+
+tomcat_download_mirror: https://archive.apache.org
+
+tomcat_majorversion: 8
+tomcat_minorversion: 5
+tomcat_patchversion: 4
+
+tomcat_download_path: /tmp
+tomcat_remove_archive: true
+
+tomcat_system_user: tomcat
+tomcat_system_group: tomcat
+tomcat_system_home: "/opt/{{ tomcat_system_user }}"
+
+tomcat_catalina_home: "/opt/{{ tomcat_system_user }}/tomcat"
+tomcat_catalina_base: "{{ tomcat_catalina_home }}"
