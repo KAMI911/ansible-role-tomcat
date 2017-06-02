@@ -42,4 +42,4 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2016 by Kálmán Szalai
+This role was created in 2016-2017 by Kálmán Szalai - KAMI
