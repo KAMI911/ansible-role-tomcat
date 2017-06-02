@@ -5,4 +5,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - hugepages
+    - ansible-role-tomcat
