@@ -1,0 +1,8 @@
+#
+# Testing Tomcat 7-8-9 installation Ansible role
+#
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - hugepages
