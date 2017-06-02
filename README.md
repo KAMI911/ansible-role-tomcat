@@ -2,6 +2,10 @@
 
 Installs Apache Tomcat Java Application server
 
+Travis status:   [![Build Status](https://travis-ci.org/KAMI911/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/KAMI911/ansible-role-tomcat)
+Code Climate status: [![Code Climate](https://codeclimate.com/github/KAMI911/ansible-role-tomcat/badges/gpa.svg)](https://codeclimate.com/github/KAMI911/ansible-role-tomcat)
+Test Coverage status: [![Test Coverage](https://codeclimate.com/github/KAMI911/ansible-role-tomcat/badges/coverage.svg)](https://codeclimate.com/github/KAMI911/ansible-role-tomcat/coverage)
+
 ## Requirements
 
 None.
