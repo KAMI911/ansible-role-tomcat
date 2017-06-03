@@ -6,7 +6,7 @@ tomcat_download_mirror: https://archive.apache.org
 
 tomcat_majorversion: 8
 tomcat_minorversion: 5
-tomcat_patchversion: 4
+tomcat_patchversion: 15
 
 tomcat_download_path: /tmp
 tomcat_remove_archive: true
