@@ -1,0 +1,123 @@
+#
+# Prepare Catalina base directory
+#
+
+#- name: create CATALINA_BASE directory
+#  file:
+#      path: "{{ tomcat_catalina_base }}"
+#      state: directory
+#      owner: "{{ tomcat_system_user }}"
+#      group: "{{ tomcat_system_group }}"
+
+- name: create "heapdumps directory
+  file:
+    path: "{{ tomcat_catalina_home }}/heapdumps"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+- name: create CATALINA_BASE/bin directory
+  file:
+    path: "{{ tomcat_catalina_base }}/bin"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: create CATALINA_BASE/conf directory
+  file:
+    path: "{{ tomcat_catalina_base }}/conf"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: create CATALINA_BASE/logs directory
+  file:
+    path: "{{ tomcat_catalina_base }}/logs"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+- name: create CATALINA_BASE/lib directory
+  file:
+    path: "{{ tomcat_catalina_base }}/lib/ext"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: create CATALINA_BASE/lib/ext directory
+  file:
+    path: "{{ tomcat_catalina_base }}/lib/ext"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: create CATALINA_BASE/shared/lib directory
+  file:
+    path: "{{ tomcat_catalina_base }}/shared/lib"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: create CATALINA_BASE/temp directory
+  file:
+    path: "{{ tomcat_catalina_base }}/temp"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+- name: create CATALINA_BASE/webapps directory
+  file:
+    path: "{{ tomcat_catalina_base }}/webapps"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+- name: create CATALINA_BASE/work directory
+  file:
+    path: "{{ tomcat_catalina_base }}/work"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+#- name: symlink catalina script
+#  file:
+#    src: "{{ tomcat_catalina_home }}/bin/catalina.sh"
+#    dest: "{{ tomcat_catalina_base }}/bin/catalina.sh"
+#    state: link
+
+#- name: symlink startup script
+#  file:
+#    src: "{{ tomcat_catalina_home }}/bin/startup.sh"
+#    dest: "{{ tomcat_catalina_base }}/bin/startup.sh"
+#    state: link
+
+#- name: symlink shutdown script
+#  file:
+#    src: "{{ tomcat_catalina_home }}/bin/shutdown.sh"
+#    dest: "{{ tomcat_catalina_base }}/bin/shutdown.sh"
+#    state: link
+
+#- name: copy "server.xml", using the default recommended settings
+#  copy:
+#    src: server.xml
+#    dest: "{{ tomcat_catalina_base }}/conf/server.xml"
+
+#- name: copy a "web.xml", using the default recommended settings
+#  copy:
+#    src: web.xml
+#    dest: "{{ tomcat_catalina_base }}/conf/web.xml"
+
+- name: generate "tomcat-users.xml" from template, using the default recommended settings
+  template:
+    src: tomcat-users.xml.j2
+    dest: "{{ tomcat_catalina_base }}/conf/tomcat-users.xml"

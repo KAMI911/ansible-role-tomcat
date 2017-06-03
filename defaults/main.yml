@@ -2,18 +2,47 @@
 # Default variables for the Tomcat role
 #
 
-tomcat_download_mirror: https://archive.apache.org
-
+# Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
 tomcat_patchversion: 15
 
+# Locations
+tomcat_base_folder: /opt
 tomcat_download_path: /tmp
+
+tomcat_force_update: false
 tomcat_remove_archive: true
 
+# Tomcat will use this use and group
 tomcat_system_user: tomcat
 tomcat_system_group: tomcat
-tomcat_system_home: "/opt/{{ tomcat_system_user }}"
 
-tomcat_catalina_home: "/opt/{{ tomcat_system_user }}/tomcat"
-tomcat_catalina_base: "{{ tomcat_catalina_home }}"
+# Planned feature
+tomcat_http_port: 8080
+tomcat_ejb_port: 8009
+tomcat_https_port: 8443
+
+# Username and password for manager interface
+tomcat_manager_user: admin
+tomcat_manager_pass: TO47admin
+tomcat_manager_roles: admin-gui,manager-gui
+
+java_home: /usr/java/jdk1.8.0_131
+java_version: 8
+
+# Memory sizes in megabytes (m)
+tomcat_java_heap_min: 4096
+tomcat_java_heap_max: 4096
+
+## Only for Java 7 or older
+tomcat_java_permsize_min: 384
+tomcat_java_permsize_max: 384
+
+# JMX configuration
+tomcat_jmx_host: localhost
+tomcat_jmx_port: 48080
+tomcat_jmx_user:
+jomcat_jmx_pass:
+
+tomcat_catalina_parameters:

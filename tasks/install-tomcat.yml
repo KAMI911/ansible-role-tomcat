@@ -13,12 +13,15 @@
   get_url:
     url: "{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
     dest: "{{ tomcat_download_path }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
+  when: tomcat_force_update
 
 - name: make installation directory for Tomcat
   file:
     path: "{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}"
     state: directory
-    mode: "u=rwx,go=rx"
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
 
 - name: extract Tomcat archive into installation directory
   unarchive:
@@ -26,6 +29,7 @@
     dest: "{{ tomcat_system_home }}"
     mode: "u=rwx,go=rx"
     copy: no
+  when: tomcat_force_update
 
 - name: create symlink for "tomcat" to the installation directory
   file:

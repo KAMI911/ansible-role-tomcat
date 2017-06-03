@@ -2,5 +2,17 @@
 # Installs Tomcat
 #
 ---
-- name: Tomcat | Install Tomcat
+- name: install Tomcat
   include: install-tomcat.yml
+
+- name: remove bat files on non-Windows systems
+  include: removebat-nonwindows.yml
+  static: no
+  when: "ansible_os_family != 'Windows'"
+
+- name: prepare Catalina base
+  include: prepare-catalina-base.yml
+
+- name: configure Tomcat for customisation on start-up
+  include: configure-tomcat.yml
+
