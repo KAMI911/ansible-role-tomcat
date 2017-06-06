@@ -12,11 +12,14 @@
   template:
     src: jmxremote.password.j2
     dest: "{{ java_home }}/jre/lib/management/jmxremote.password"
-    mode: 0600
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: 0640
 
 - name: "generate a custom 'jmxremote.access' from template in {{ java_home }}/jre/lib/management/ folder, to use pasword protected JMX ports"
   template:
     src: jmxremote.access.j2
     dest: "{{ java_home }}/jre/lib/management/jmxremote.access"
-    mode: 0600
-
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: 0640
