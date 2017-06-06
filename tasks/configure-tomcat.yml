@@ -11,11 +11,11 @@
 - name: generate a custom "jmxremote.password" from template, to use pasword protected JMX ports
   template:
     src: jmxremote.password.j2
-    dest: "{{ tomcat_catalina_base }}/comf/jmxremote.password"
+    dest: "{{ tomcat_catalina_base }}/conf/jmxremote.password"
     mode: 0600
 
 - name: generate a custom "jmxremote.access" from template, to use pasword protected JMX ports
   template:
     src: jmxremote.access.j2
-    dest: "{{ tomcat_catalina_base }}/comf/jmxremote.access"
+    dest: "{{ tomcat_catalina_base }}/conf/jmxremote.access"
     mode: 0600
