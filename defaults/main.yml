@@ -47,7 +47,13 @@ tomcat_java_permsize_max: 384
 # JMX configuration
 tomcat_jmx_host: localhost
 tomcat_jmx_port: 48080
-tomcat_jmx_user:
-jomcat_jmx_pass:
+
+tomcat_jmx_users:
+- user: monitoring
+  pass: IAGeqqIFpLEiSxWpIhnASaDI31ds
+  type: readonly
+- user: administrator
+  pass: fYHKXKa68MKQcaq9S8BUEFP8dSN7
+  type: readwrite
 
 tomcat_catalina_parameters:
