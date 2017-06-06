@@ -8,18 +8,18 @@
     dest: "{{ tomcat_catalina_base }}/bin/setenv.sh"
     mode: ug+x
 
-- name: "generate a custom 'jmxremote.password' from template in {{ java_home }}/jre/lib/management/ folder, to use pasword protected JMX ports"
+- name: "generate a custom '{{ tomcat_process_name }}.jmxremote.password' from template, to use pasword protected JMX ports"
   template:
     src: jmxremote.password.j2
-    dest: "{{ java_home }}/jre/lib/management/{{ tomcat_process_name }}.jmxremote.password"
+    dest: "{{ tomcat_catalina_base }}/conf/{{ tomcat_process_name }}.jmxremote.password"
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0600
 
-- name: "generate a custom 'jmxremote.access' from template in {{ java_home }}/jre/lib/management/ folder, to use pasword protected JMX ports"
+- name: "generate a custom '{{ tomcat_process_name }}.jmxremote.access' from template, to use pasword protected JMX ports"
   template:
     src: jmxremote.access.j2
-    dest: "{{ java_home }}/jre/lib/management/{{ tomcat_process_name }}.jmxremote.access"
+    dest: "{{ tomcat_catalina_base }}/conf/{{ tomcat_process_name }}.jmxremote.access"
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0640
