@@ -37,7 +37,7 @@
 {% for item in tomcat_manager_roles %}
   <role rolename="{{ item }}"/>
 {% endfor %}
-{% for item in tomcat_manager_user %}
+{% for item in tomcat_manager_users %}
   <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}"/>
 {% endfor %}
 </tomcat-users>
