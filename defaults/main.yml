@@ -24,9 +24,14 @@ tomcat_ejb_port: 8009
 tomcat_https_port: 8443
 
 # Username and password for manager interface
-tomcat_manager_user: admin
-tomcat_manager_pass: TO47admin
-tomcat_manager_roles: admin-gui,manager-gui
+tomcat_manager_users:
+- user: admin
+  pass: TO47admin
+  roles: admin-gui,manager-gui
+
+tomcat_manager_roles:
+- admin-gui
+- manager-gui
 
 java_home: /usr/java/jdk1.8.0_131
 java_version: 8

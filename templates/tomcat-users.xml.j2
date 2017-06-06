@@ -34,7 +34,10 @@
   examples web application, do not forget to remove the <!.. ..> that surrounds
   them. You will also need to set the passwords to something appropriate.
 -->
-  <role rolename="admin-gui"/>
-  <role rolename="manager-gui"/>
-  <user username="{{ tomcat_manager_user }}" password="{{ tomcat_manager_pass }}" roles="{{ tomcat_manager_roles }}"/>
+{% for item in tomcat_manager_roles %}
+  <role rolename="{{ item }}"/>
+{% endfor %}
+{% for item in tomcat_manager_user %}
+  <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}"/>
+{% endfor %}
 </tomcat-users>
