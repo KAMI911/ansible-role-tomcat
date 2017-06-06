@@ -11,6 +11,8 @@ tomcat_patchversion: 15
 tomcat_base_folder: /opt
 tomcat_download_path: /tmp
 
+tomcat_process_name: tomcat
+
 tomcat_force_update: false
 tomcat_remove_archive: true
 
