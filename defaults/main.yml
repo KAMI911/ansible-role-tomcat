@@ -26,7 +26,7 @@ tomcat_https_port: 8443
 # Username and password for manager interface
 tomcat_manager_users:
 - user: admin
-  pass: TO47admin
+  pass: BNWXsbsn0drzvChhQNUAq1efHGP0
   roles: admin-gui,manager-gui
 
 tomcat_manager_roles:
