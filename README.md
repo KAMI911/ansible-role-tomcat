@@ -34,7 +34,7 @@ None.
 
     - hosts: all
       roles:
-        - hugepages
+        - tomcat
 
 ## License
 
