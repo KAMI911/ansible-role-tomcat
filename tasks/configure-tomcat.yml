@@ -2,7 +2,7 @@
 # Configure Tomcat
 #
 
-- name: generate a custom "setenv.sh" from template, provides the ability to configure Tomcat at start-up from outside the container
+- name: generate a custom 'setenv.sh' from template, provides the ability to configure Tomcat at start-up from outside the container
   template:
     src: setenv.sh.j2
     dest: "{{ tomcat_catalina_base }}/bin/setenv.sh"

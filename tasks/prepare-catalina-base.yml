@@ -9,7 +9,7 @@
 #      owner: "{{ tomcat_system_user }}"
 #      group: "{{ tomcat_system_group }}"
 
-- name: create "heapdumps directory
+- name: create heapdumps directory
   file:
     path: "{{ tomcat_catalina_home }}/heapdumps"
     state: directory

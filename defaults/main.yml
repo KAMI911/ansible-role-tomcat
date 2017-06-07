@@ -61,3 +61,5 @@ tomcat_jmx_users:
   type: readwrite
 
 tomcat_catalina_parameters:
+
+tomcat_custom_errorpages_url: https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/

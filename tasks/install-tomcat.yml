@@ -31,7 +31,7 @@
     copy: no
   when: tomcat_force_update
 
-- name: create symlink for "tomcat" to the installation directory
+- name: create symlink for 'tomcat' to the installation directory
   file:
     src: "{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}"
     dest: "{{ tomcat_catalina_home }}"
