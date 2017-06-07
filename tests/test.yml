@@ -5,4 +5,5 @@
 - hosts: localhost
   remote_user: root
   roles:
+    - xml
     - ansible-role-tomcat
