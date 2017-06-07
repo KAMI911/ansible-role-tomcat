@@ -49,6 +49,8 @@ tomcat_java_permsize_max: 384
 # JMX configuration
 tomcat_jmx_host: localhost
 tomcat_jmx_port: 48080
+tomcat_shutdown_port: 49080
+tomcat_shutdown_command: "SHUTDOWN-Hr7lA6dgGQ"
 
 tomcat_jmx_users:
 - user: monitoring

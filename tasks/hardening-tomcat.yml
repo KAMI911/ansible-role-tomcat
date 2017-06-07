@@ -18,13 +18,21 @@
     ensure: present
     value: "true"
 
-- name: hardening | disable Tomcat's shutdown port
+- name: hardening | set Tomcat's shutdown port
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server"
+    attribute: "shutdown"
+    ensure: present
+    value: "{{ tomcat_shutdown_port }}"
+
+- name: hardening | set Tomcat's shutdown command
   xml:
     file: "{{ tomcat_catalina_base }}/conf/server.xml"
     xpath: "/Server"
     attribute: "port"
     ensure: present
-    value: "-1"
+    value: "{{ tomcat_shutdown_port }}"
 
 - name: hardening | add usehttponly for contexes
   xml:
