@@ -1,0 +1,35 @@
+#
+# Hardening Tomcat
+#
+
+- name: hardening | add empty Server response header
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server/Service/Connector"
+    attribute: "Server"
+    ensure: present
+    value: " "
+
+- name: hardening | add Secure flag to response header
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server/Service/Connector"
+    attribute: "Secure"
+    ensure: present
+    value: "true"
+
+- name: hardening | disable Tomcat's shutdown port
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server"
+    attribute: "port"
+    ensure: present
+    value: "-1"
+
+- name: hardening | add usehttponly for contexes
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/context.xml"
+    xpath: "/Context"
+    attribute: "useHttpOnly"
+    ensure: present
+    value: "true"

@@ -1,5 +1,5 @@
 #
-# Installs Tomcat
+# Installs Tomcat, following best practices of separating CATALINA_BASE directory from CATALINA_HOME
 #
 ---
 - name: install Tomcat
@@ -16,3 +16,8 @@
 - name: configure Tomcat for customisation on start-up
   include: configure-tomcat.yml
 
+- { include: hardening-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
+- { include: hardening-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
+
+- name: hardening Tomcat
+  include: hardening-tomcat.yml

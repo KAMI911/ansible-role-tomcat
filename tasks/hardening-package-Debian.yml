@@ -1,0 +1,3 @@
+
+- name: install Python XML library
+  deb: name=python-lxml state=present
