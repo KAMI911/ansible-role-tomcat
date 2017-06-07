@@ -23,4 +23,4 @@
   include: hardening-tomcat.yml
 
 - name: add custom error pages
-  include: custom-errorpages-tomcat
+  include: custom-errorpages-tomcat.yml
