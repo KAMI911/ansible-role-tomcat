@@ -4,6 +4,8 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    - tomcat_force_update: true
   roles:
     - cmprescott.xml
     - ansible-role-tomcat
