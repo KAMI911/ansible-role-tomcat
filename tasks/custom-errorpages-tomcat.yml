@@ -1,0 +1,55 @@
+#
+# Custom Error Pages
+#
+
+- name: error pages | create errorpages directory
+  file:
+    path: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: error pages | download custom erropages for Tomcat
+  get_url:
+    url: "{{ tomcat_custom_errorpages_url }}/{{ item }}.html"
+    dest: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/{{ item }}.jsp"
+  with_items:
+  - 400
+  - 401
+  - 402
+  - 403
+  - 404
+  - 405
+  - 406
+  - 408
+  - 413
+  - 414
+  - 417
+  - 500
+  - 502
+  - 503
+  - 504
+
+- name: error pages | configure Tomcat error pages
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/web.xml"
+    xpath: "/web-app/error-page/error-code"
+    value: "{{ item }}"
+    ensure: present
+  with_items:
+  - 400
+  - 401
+  - 402
+  - 403
+  - 404
+  - 405
+  - 406
+  - 408
+  - 413
+  - 414
+  - 417
+  - 500
+  - 502
+  - 503
+  - 504
