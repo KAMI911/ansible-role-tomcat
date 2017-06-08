@@ -77,7 +77,15 @@
   file:
     path: "{{ tomcat_catalina_base }}/webapps"
     state: directory
-    owner: "{{ tomcat_system_user }}"
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rwx,o="
+
+- name: create CATALINA_BASE/webapps-disabled directory
+  file:
+    path: "{{ tomcat_catalina_base }}/webapps-disabled"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rwx,o="
 
