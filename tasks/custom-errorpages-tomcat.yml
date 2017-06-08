@@ -24,4 +24,4 @@
     add_children: "{{ item }}"
     input_type: xml
   with_items:
-  - "{{ tomcat_error_pages_xml }}"
+  - "{{ tomcat_custom_error_pages_xml }}"
