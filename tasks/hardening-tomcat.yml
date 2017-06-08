@@ -22,7 +22,7 @@
   xml:
     file: "{{ tomcat_catalina_base }}/conf/server.xml"
     xpath: "/Server"
-    attribute: "shutdown"
+    attribute: "port"
     ensure: present
     value: "{{ tomcat_shutdown_port }}"
 
@@ -30,7 +30,7 @@
   xml:
     file: "{{ tomcat_catalina_base }}/conf/server.xml"
     xpath: "/Server"
-    attribute: "port"
+    attribute: "command"
     ensure: present
     value: "{{ tomcat_shutdown_command }}"
 
