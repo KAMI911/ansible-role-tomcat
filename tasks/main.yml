@@ -13,11 +13,11 @@
 - name: prepare Catalina base
   include: prepare-catalina-base.yml
 
+- { include: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
+- { include: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
+
 - name: configure Tomcat for customisation on start-up
   include: configure-tomcat.yml
-
-- { include: hardening-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
-- { include: hardening-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
 
 - name: hardening Tomcat
   include: hardening-tomcat.yml
