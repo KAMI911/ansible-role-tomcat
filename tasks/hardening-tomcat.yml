@@ -32,7 +32,7 @@
     xpath: "/Server"
     attribute: "port"
     ensure: present
-    value: "{{ tomcat_shutdown_port }}"
+    value: "{{ tomcat_shutdown_command }}"
 
 - name: hardening | add usehttponly for contexes
   xml:
