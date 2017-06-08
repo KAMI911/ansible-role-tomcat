@@ -26,3 +26,19 @@ tomcat_error_pages:
 - 502
 - 503
 - 504
+
+tomcat_error_pages_xml:
+- <error-page><error-code>400</error-code><location>/errorpages/400.jsp</location></error-page>
+- <error-page><error-code>401</error-code><location>/errorpages/401.jsp</location></error-page>
+- <error-page><error-code>403</error-code><location>/errorpages/403.jsp</location></error-page>
+- <error-page><error-code>404</error-code><location>/errorpages/404.jsp</location></error-page>
+- <error-page><error-code>405</error-code><location>/errorpages/405.jsp</location></error-page>
+- <error-page><error-code>406</error-code><location>/errorpages/406.jsp</location></error-page>
+- <error-page><error-code>408</error-code><location>/errorpages/408.jsp</location></error-page>
+- <error-page><error-code>413</error-code><location>/errorpages/413.jsp</location></error-page>
+- <error-page><error-code>414</error-code><location>/errorpages/414.jsp</location></error-page>
+- <error-page><error-code>417</error-code><location>/errorpages/417.jsp</location></error-page>
+- <error-page><error-code>500</error-code><location>/errorpages/500.jsp</location></error-page>
+- <error-page><error-code>502</error-code><location>/errorpages/502.jsp</location></error-page>
+- <error-page><error-code>503</error-code><location>/errorpages/503.jsp</location></error-page>
+- <error-page><error-code>504</error-code><location>/errorpages/504.jsp</location></error-page>

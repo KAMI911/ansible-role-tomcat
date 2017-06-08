@@ -1,13 +1,7 @@
 
-<web-fragment metadata-complete="true" version="3.0"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd">
-  <name>error-pages</name>
 {% for item in tomcat_error_pages %}
-    <error-page>
-      <error-code>{{ item }}</error-code>
-      <location>/errorpages/{{ item }}.jsp</location>
-    <error-page>
+  <error-page>
+    <error-code>{{ item }}</error-code>
+    <location>/errorpages/{{ item }}.jsp</location>
+  <error-page>
 {% endfor %}
-</web-fragment>

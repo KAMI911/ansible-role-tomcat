@@ -12,15 +12,16 @@
 
 - name: error pages | download custom erropages for Tomcat
   get_url:
-    url: "{{ tomcat_custom_errorpages_url }}/{{ item }}.html"
+    url: "{{ tomcat_custom_error_pages_url }}/{{ item }}.html"
     dest: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/{{ item }}.jsp"
   with_items:
-  - "{{ tomcat_errorpages }}"
+  - "{{ tomcat_custom_error_pages }}"
 
-- name: "generate a custom 'web_error_pages.xml' from template"
-  template:
-    src: web_error_pages.xml.j2
-    dest: "{{ tomcat_catalina_base }}/conf/web_error_pages.xml"
-    owner: "{{ tomcat_root_user }}"
-    group: "{{ tomcat_system_group }}"
-    mode: 0640
+- name: "modify 'web.xml' for custom error pages"
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/web.xml"
+    xpath: /web-app/ 
+    add_children: "{{ item }}"
+    input_type: xml
+  with_items:
+  - "{{ tomcat_error_pages_xml }}"
