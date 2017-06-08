@@ -24,3 +24,4 @@
 
 - name: add custom error pages
   include: custom-errorpages-tomcat.yml
+  when: tomcat_use_custom_error_pages

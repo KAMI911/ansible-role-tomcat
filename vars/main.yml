@@ -10,3 +10,19 @@ tomcat_catalina_home: "/opt/{{ tomcat_system_user }}/tomcat"
 tomcat_catalina_base: "{{ tomcat_catalina_home }}"
 
 tomcat_root_user: root
+
+tomcat_error_pages:
+- 400
+- 401
+- 403
+- 404
+- 405
+- 406
+- 408
+- 413
+- 414
+- 417
+- 500
+- 502
+- 503
+- 504

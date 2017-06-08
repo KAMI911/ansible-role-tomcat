@@ -62,4 +62,5 @@ tomcat_jmx_users:
 
 tomcat_catalina_parameters:
 
+tomcat_use_custom_error_pages: true
 tomcat_custom_errorpages_url: https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/
