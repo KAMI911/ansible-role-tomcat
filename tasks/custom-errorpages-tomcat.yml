@@ -20,7 +20,7 @@
 - name: "modify 'web.xml' for custom error pages"
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: /web-app/ 
+    xpath: "/web-app"
     add_children: "{{ item }}"
     input_type: xml
   with_items:
