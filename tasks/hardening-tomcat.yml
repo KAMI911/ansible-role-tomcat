@@ -41,3 +41,18 @@
     attribute: "useHttpOnly"
     ensure: present
     value: "true"
+
+- name: disable unnecessary default applications
+  command: "mv {{ tomcat_catalina_base }}/webapps/docs {{ tomcat_catalina_base }}/webapps-disabled/docs "
+    creates: "path/to/bar" mv /path/to/foo /path/to/bar
+
+I used to do a 2 task approach using stat like Bruce P suggests. Now I do this as one task with creates. I think this is a lot clearer.
+share
+    
+answered Jun 27 '14 at 17:42
+Tom Ekberg
+1,36786
+    
+36 	 
+    
+Or, even better: command:  creates: {{ tomcat_catalina_base }}/webapps-disabled/docs removes:/path/to/foo – Fonant Apr 7 '15 at 15:49 

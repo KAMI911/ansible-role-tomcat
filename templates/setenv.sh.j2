@@ -22,7 +22,9 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8"
 CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss512k"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85"
+{% if tomcat_use_huge_pages %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages"
+{% endif %}
 CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:"${CATALINA_BASE}/logs/gc_$(date +%Y-%m-%d_%H%M).log" -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=256M -XX:-OmitStackTraceInFastThrow -XX:+PrintTenuringDistribution -XX:+PrintFlagsFinal"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps"
 {% if java_version <= 7 %}
