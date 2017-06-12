@@ -47,5 +47,5 @@
     creates: "{{ tomcat_catalina_base }}/webapps-disabled/{{ item }}"
     removes: "{{ tomcat_catalina_base }}/webapps/{{ item }}"
   with_items:
-  - docs
-  - examples
+  - "docs"
+  - "examples"
