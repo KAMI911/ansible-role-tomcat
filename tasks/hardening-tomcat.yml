@@ -44,6 +44,7 @@
 
 - name: disable unnecessary default applications
   command: "mv {{ tomcat_catalina_base }}/webapps/{{ item }} {{ tomcat_catalina_base }}/webapps-disabled/{{ item }}"
+  args:
     creates: "{{ tomcat_catalina_base }}/webapps-disabled/{{ item }}"
     removes: "{{ tomcat_catalina_base }}/webapps/{{ item }}"
   with_items:
