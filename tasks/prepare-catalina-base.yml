@@ -43,7 +43,7 @@
 
 - name: create CATALINA_BASE/lib directory
   file:
-    path: "{{ tomcat_catalina_base }}/lib/ext"
+    path: "{{ tomcat_catalina_base }}/lib"
     state: directory
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
