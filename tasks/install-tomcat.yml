@@ -27,7 +27,8 @@
   unarchive:
     src: "{{ tomcat_download_path }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
     dest: "{{ tomcat_system_home }}"
-    mode: "u=rwx,go=rx"
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
     copy: no
   when: tomcat_force_update
 
