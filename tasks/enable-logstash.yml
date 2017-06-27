@@ -4,7 +4,7 @@
 
 - name: create logstash directory
   file:
-    path: "{{ tomcat_catalina_home }}/lib/logstash/"
+    path: "{{ tomcat_catalina_home }}/lib/logstash"
     state: directory
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
