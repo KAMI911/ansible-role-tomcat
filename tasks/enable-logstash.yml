@@ -1,0 +1,26 @@
+#
+# Enable Logstash logging for Tomcat
+#
+
+- name: create logstash directory
+  file:
+    path: "{{ tomcat_catalina_home }}/shared/lib/logstash/"
+    state: directory
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: 0750
+
+- name: download Logstash logging bundle
+  get_url:
+    url: "http://ooo.itc.hu/ansible/logstash-bundle-1.tar.gz"
+    dest: "{{ tomcat_download_path }}/logstash-bundle-1.tar.gz"
+  when: tomcat_force_update
+
+- name: extract Logstash logging bundle
+  unarchive:
+    src: "{{ tomcat_download_path }}/logstash-bundle-1.tar.gz"
+    dest: "{{ tomcat_system_home }}/shared/lib/logstash/"
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    copy: no
+  when: tomcat_force_update
