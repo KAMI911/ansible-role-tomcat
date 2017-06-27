@@ -19,7 +19,7 @@
 - name: extract Logstash logging bundle
   unarchive:
     src: "{{ tomcat_download_path }}/logstash-bundle-1.tar.gz"
-    dest: "{{ tomcat_system_home }}/lib/logstash/"
+    dest: "{{ tomcat_system_home }}/lib/logstash"
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
     copy: no
