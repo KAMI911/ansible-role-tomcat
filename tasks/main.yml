@@ -25,3 +25,7 @@
 - name: add custom error pages
   include: custom-errorpages-tomcat.yml
   when: tomcat_use_custom_error_pages
+
+- name: enable logstash
+  include: enable-logstash.yml
+  when: tomcat_enable_logstash

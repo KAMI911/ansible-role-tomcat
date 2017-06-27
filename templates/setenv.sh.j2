@@ -35,6 +35,8 @@ CATALINA_OPTS="${CATALINA_OPTS} -Dprocessname=${PROCESS_NAME}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
 
+{% if tomcat_enable_logstash == true %}
 if [ -r "$CATALINA_BASE/shared/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
-  CLASSPATH=$CLASSPATH:$CATALINA_BASE/shared/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/shared/lib/logstash/json-simple-1.1.1.jar:$CATALINA_BASE/shared/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/shared/lib/logstash/commons-pool2-2.4.2.jar
+  CLASSPATH=$CLASSPATH:$CATALINA_BASE/shared/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/shared/lib/logstash/json-simple-1.1.jar:$CATALINA_BASE/shared/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/shared/lib/logstash/commons-pool2-2.4.2.jar
 fi
+{% endif %}

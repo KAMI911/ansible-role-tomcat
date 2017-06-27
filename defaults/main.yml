@@ -66,3 +66,5 @@ tomcat_use_custom_error_pages: true
 tomcat_custom_error_pages_url: https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/
 
 tomcat_use_huge_pages: true
+
+tomcat_enable_logstash: true
