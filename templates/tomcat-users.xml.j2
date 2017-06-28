@@ -37,7 +37,18 @@
 {% for item in tomcat_manager_roles %}
   <role rolename="{{ item }}"/>
 {% endfor %}
+
+{% if tomcat_manager_hash_password == false %}
 {% for item in tomcat_manager_users %}
   <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}"/>
 {% endfor %}
+{% endif %}
+{% if tomcat_manager_hash_password != false %}
+{% for item in tomcat_manager_users %}
+  <user username="{{ item.user }}" password="{{ item.pass|password_hash('sha512') }}" roles="{{ item.roles }}"/>
+{% endfor %}
+{% endif %}
+
+
+
 </tomcat-users>
