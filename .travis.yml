@@ -16,10 +16,11 @@ install:
   - pip install ansible
   # Check ansible version
   - ansible --version
+  - pip install lxml
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../' >ansible.cfg
   # Install extra XML module
-  - ansible-galaxy install cmprescott.xml
+  - ansible-galaxy install -f cmprescott.xml
 
 script:
   # Basic role syntax check
