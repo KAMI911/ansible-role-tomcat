@@ -14,7 +14,7 @@
   get_url:
     url: "http://ooo.itc.hu/ansible/logstash-bundle-1.tar.gz"
     dest: "{{ tomcat_download_path }}/logstash-bundle-1.tar.gz"
-  when: tomcat_force_update
+  when: tomcat_offline_install == False
 
 - name: extract Logstash logging bundle
   unarchive:
@@ -23,4 +23,13 @@
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
     copy: no
-  when: tomcat_force_update
+  when: tomcat_force_update and tomcat_offline_install == False
+
+- name: extract Logstash logging bundle
+  unarchive:
+    src: "logstash-bundle-1.tar.gz"
+    dest: "{{ tomcat_catalina_home }}/lib/logstash"
+    owner: "{{ tomcat_root_user }}"
+    group: "{{ tomcat_system_group }}"
+    copy: yes
+  when: tomcat_force_update and tomcat_offline_install != False

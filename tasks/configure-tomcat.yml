@@ -35,7 +35,7 @@
 - name: generate Tomcat init script
   template:
     src: tomcat.j2
-    dest: "/etc/{{ tomcat_process_name }}"
+    dest: "/etc/init.d/{{ tomcat_process_name }}"
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0750
