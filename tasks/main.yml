@@ -2,6 +2,10 @@
 # Installs Tomcat, following best practices of separating CATALINA_BASE directory from CATALINA_HOME
 #
 ---
+
+- { include: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
+- { include: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
+
 - name: install Tomcat
   include: install-tomcat.yml
 
@@ -12,9 +16,6 @@
 
 - name: prepare Catalina base
   include: prepare-catalina-base.yml
-
-- { include: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
-- { include: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
 
 - name: configure Tomcat for customisation on start-up
   include: configure-tomcat.yml
