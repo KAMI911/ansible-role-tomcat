@@ -2,12 +2,11 @@
 # Installs Tomcat, following best practices of separating CATALINA_BASE directory from CATALINA_HOME
 #
 ---
-
-- { include: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
-- { include: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
+- { include_tasks: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
+- { include_tasks: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
 
 - name: install Tomcat
-  include: install-tomcat.yml
+  include_tasks: install-tomcat.yml
 
 #- name: remove bat files on non-Windows systems
 #  include: removebat-nonwindows.yml
@@ -15,18 +14,18 @@
 #  when: "ansible_os_family != 'Windows'"
 
 - name: prepare Catalina base
-  include: prepare-catalina-base.yml
+  include_tasks: prepare-catalina-base.yml
 
 - name: configure Tomcat for customisation on start-up
-  include: configure-tomcat.yml
+  include_tasks: configure-tomcat.yml
 
 - name: hardening Tomcat
-  include: hardening-tomcat.yml
+  include_tasks: hardening-tomcat.yml
 
 - name: add custom error pages
-  include: custom-errorpages-tomcat.yml
+  include_tasks: custom-errorpages-tomcat.yml
   when: tomcat_use_custom_error_pages
 
 - name: enable logstash
-  include: enable-logstash.yml
+  include_tasks: enable-logstash.yml
   when: tomcat_enable_logstash
