@@ -1,4 +1,4 @@
-# Ansible Role: Installs Apache Tomcat Java Application server
+# Ansible Role: Installs Apache Tomcat Java Application server (optionally with Hugepages)
 
 Installs Apache Tomcat Java Application server
 
@@ -35,6 +35,14 @@ Since the process address space are virtual, the CPU and the operating system ha
 [Debian Wiki: Hugepages](https://wiki.debian.org/Hugepages)
 
 When you enable it use [KAMI911:hugepages](https://galaxy.ansible.com/KAMI911/hugepages/) to configure Huge Pages in Linux.
+
+    tomcat_file_encoding: UTF-8
+
+Tomcat file encoding parameter: UTF-8
+
+    tomcat_page_encoding: UTF-8
+
+Tomcat page encoding parameter: UTF-8
 
 ## Dependencies
 
