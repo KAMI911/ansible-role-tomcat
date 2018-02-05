@@ -1,5 +1,8 @@
 
 JAVA_HOME={{ java_home }}
+{% if java_version >= 9 %}
+JRE_HOME={{ java_home }}
+{% endif %}
 
 JAVA_MIN_HEAP={{ tomcat_java_heap_min }}
 JAVA_MAX_HEAP={{ tomcat_java_heap_max }}
@@ -25,7 +28,12 @@ CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:Parall
 {% if tomcat_use_huge_pages %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages"
 {% endif %}
+{% if java_version < 9 %}
 CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:"${CATALINA_BASE}/logs/gc_$(date +%Y-%m-%d_%H%M).log" -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=256M -XX:-OmitStackTraceInFastThrow -XX:+PrintTenuringDistribution -XX:+PrintFlagsFinal"
+{% else %}
+CATALINA_OPTS="${CATALINA_OPTS} -Xlog:gc:"${CATALINA_BASE}/logs/gc_$(date +%Y-%m-%d_%H%M).log" -XX:+PrintGCDetails -XX:-OmitStackTraceInFastThrow -XX:+PrintFlagsFinal"
+{% endif %}
+
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps"
 {% if java_version <= 7 %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:PermSize=${JAVA_MIN_PERMSIZE}m -XX:MaxPermSize=${JAVA_MAX_PERMSIZE}m"
