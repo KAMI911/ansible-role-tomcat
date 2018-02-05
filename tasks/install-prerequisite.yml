@@ -1,0 +1,8 @@
+---
+# task file for tomcat
+
+- name: Install OpenJDK
+  yum:
+    name: java-1.8.0-openjdk-headless
+    state: present
+  when: tomcat_manage_java_pkg
