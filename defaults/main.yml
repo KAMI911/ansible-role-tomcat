@@ -2,6 +2,8 @@
 # Default variables for the Tomcat role
 #
 
+tomcat_manage_java_pkg: false
+
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5

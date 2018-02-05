@@ -44,6 +44,10 @@ Tomcat file encoding parameter: UTF-8
 
 Tomcat page encoding parameter: UTF-8
 
+    tomcat_manage_java_pkg: false
+
+Tomcat manage java installation an install OpenJDK or not.
+
 ## Dependencies
 
 None.

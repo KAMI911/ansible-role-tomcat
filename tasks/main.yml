@@ -5,6 +5,9 @@
 - { include_tasks: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: no }
 - { include_tasks: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: no }
 
+- name: install Tomcat prerequisite
+  include_tasks: install-prerequisite.yml
+
 - name: install Tomcat
   include_tasks: install-tomcat.yml
 
