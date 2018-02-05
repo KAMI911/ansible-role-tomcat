@@ -32,6 +32,15 @@
     ensure: present
     value: "UTF-8"
 
+- name: add digest encoding to the server connector
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server/Service/Engine/Realm"
+    attribute: "digest"
+    ensure: present
+    value: "sha-512"
+  when: tomcat_manager_hash_password != false
+
 - name: generate Tomcat init script
   template:
     src: tomcat.j2
