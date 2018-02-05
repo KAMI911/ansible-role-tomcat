@@ -129,13 +129,3 @@
   template:
     src: tomcat-users.xml.j2
     dest: "{{ tomcat_catalina_base }}/conf/tomcat-users.xml"
-
-- name: add UTF-8 encoding to the server connector
-  xml:
-    file: "{{ tomcat_catalina_base }}/conf/server.xml"
-    xpath: "/Server/Service/Engine/Realm"
-    attribute: "digest"
-    ensure: present
-    value: "sha-512"
-  when: tomcat_manager_hash_password != false
-
