@@ -16,8 +16,6 @@
         name: '{{ tomcat_system_user }}'
         group: '{{ tomcat_system_group }}'
         createhome: no
-        home: {{ tomcat_system_home }}
-        shell: "{{ tomcat_user_shell |default(omit) }}"
         state: present
         system: yes
   when: tomcat_manage_user
