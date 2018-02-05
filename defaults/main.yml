@@ -4,6 +4,11 @@
 
 tomcat_manage_java_pkg: false
 
+tomcat_installer_force_download: True
+tomcat_installer_force_overwrite: True
+tomcat_installer_keep: True
+tomcat_installer_local: False # The True means try to copy from Ansible's local files folder
+
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
@@ -13,14 +18,19 @@ tomcat_offline_install: false
 
 # Locations
 tomcat_base_folder: /opt
-tomcat_download_path: /tmp
+
+tomcat_dir_mode: '0770'
+tomcat_file_mode: '0660'
+tomcat_create_symlink: True
+
+tomcat_download_dir: '{{ tomcat_base_folder }}/tmp'
 
 tomcat_process_name: tomcat
 
 tomcat_force_update: false
-tomcat_remove_archive: true
 
 # Tomcat will use this use and group
+tomcat_manage_user: True
 tomcat_system_user: tomcat
 tomcat_system_group: tomcat
 

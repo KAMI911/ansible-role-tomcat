@@ -1,0 +1,87 @@
+---
+# task file for tomcat
+
+- stat: path='{{ tomcat_dir }}/RUNNING.txt'
+  register: tomcat_installed
+
+- block:
+    - name: create tomcat group
+      group:
+        name: '{{ tomcat_system_group }}'
+        system: yes
+        state: present
+
+    - name: create tomcat user
+      user:
+        name: '{{ tomcat_system_user }}'
+        group: '{{ tomcat_system_group }}'
+        createhome: no
+        home: {{ tomcat_system_home }}
+        shell: "{{ tomcat_user_shell |default(omit) }}"
+        state: present
+        system: yes
+  when: tomcat_manage_user
+
+- name: 'create application directory: {{ tomcat_dir }}'
+  file:
+    path: '{{ tomcat_dir }}'
+    owner: '{{ tomcat_user }}'
+    group: '{{ tomcat_group }}'
+    mode: '{{ tomcat_dir_mode }}'
+    recurse: yes
+    state: directory
+
+- name: create download directory
+  file:
+    path: '{{ tomcat_download_dir }}'
+    owner: '{{ tomcat_user }}'
+    group: '{{ tomcat_group }}'
+    mode: '{{ tomcat_dir_mode }}'
+    recurse: yes
+    state: directory
+
+- name: is already downloaded locally
+  local_action:
+    module: stat
+    path: '{{ tomcat_download_file }}'
+  register: tomcat_is_local_download_file
+  when: tomcat_installer_local == True
+
+- name: is already downloaded
+  stat:
+    path: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+  register: tomcat_is_download_file
+
+- name: copy local tomcat tar file
+  copy:
+    src: '{{ tomcat_download_file }}'
+    dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+    mode: 644
+  when: ( tomcat_is_download_file.stat.exists == False or tomcat_installer_force_overwrite == True ) and tomcat_installer_force_download == False and tomcat_installer_local == True
+
+- block:
+  - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
+    local_action:
+      module: get_url
+      url: '{{ tomcat_download_url }}'
+      validate_certs:  '{{ tomcat_download_validate_certs }}'
+      dest: './{{ tomcat_download_file }}'
+      mode: 0644
+    run_once: True
+    when: ( tomcat_is_local_download_file.stat.exists == False or tomcat_installer_force_overwrite == True ) and tomcat_installer_force_download == True and tomcat_installer_local == True
+
+  - name: copy downloaded tomcat tar file
+    copy:
+      src: '{{ tomcat_download_file }}'
+      dest: '{{ tomcat_archive }}'
+      mode: 0644
+    when: (tomcat_is_download_file.stat.exists == False or tomcat_installer_force_overwrite == True) and tomcat_installer_local == True
+  when: tomcat_installer_local == True
+
+- name: 'download tomcat tar file {{ tomcat_download_file }}'
+  get_url:
+    url: '{{ tomcat_download_url }}'
+    dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+    validate_certs:  '{{ tomcat_download_validate_certs }}'
+    mode: 644
+  when: (tomcat_is_download_file.stat.exists == False or tomcat_installer_force_overwrite == True) and tomcat_installer_force_download == True and tomcat_installer_local == False

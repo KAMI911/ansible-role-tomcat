@@ -8,6 +8,9 @@
 - name: install Tomcat prerequisite
   include_tasks: install-prerequisite.yml
 
+- name: download Tomcat installer
+  include_tasks: download.yml
+
 - name: install Tomcat
   include_tasks: install-tomcat.yml
 

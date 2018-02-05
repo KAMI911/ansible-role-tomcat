@@ -2,30 +2,9 @@
 # Install Tomcat
 #
 
-- name: add tomcat user group
-  group: "name={{ tomcat_system_group }} system=yes"
-
-- name: add tomcat user
-  user: "name={{ tomcat_system_user }} group={{ tomcat_system_group }} home={{ tomcat_system_home }} createhome=no system=yes"
-  sudo: True
-
-- name: download Tomcat tarball
-  get_url:
-    url: "{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
-    dest: "{{ tomcat_download_path }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
-  when: tomcat_force_update
-
-- name: make installation directory for Tomcat
-  file:
-    path: "{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}"
-    state: directory
-    owner: "{{ tomcat_root_user }}"
-    group: "{{ tomcat_system_group }}"
-    mode: "u=rwx,g=rx,o="
-
 - name: extract Tomcat archive into installation directory
   unarchive:
-    src: "{{ tomcat_download_path }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
+    src: '{{ tomcat_download_path }}/{{ tomcat_download_file }}'
     dest: "{{ tomcat_system_home }}"
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
@@ -34,14 +13,14 @@
 
 - name: create symlink for 'tomcat' to the installation directory
   file:
-    src: "{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}"
-    dest: "{{ tomcat_catalina_home }}"
+    src: '{{ tomcat_dir }}'
+    dest: '{{ tomcat_catalina_home }}'
     state: link
     mode: "u=rwx,go=rx"
 
 - name: delete Tomcat archive, if requested (default is yes)
   file: path={{ item }} state=absent
   with_items:
-    - "{{ tomcat_download_path }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}.tar.gz"
+    - '{{ tomcat_download_path }}/{{ tomcat_download_file }}'
   ignore_errors: true
-  when: tomcat_remove_archive
+  when: tomcat_installer_keep == False
