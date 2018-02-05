@@ -22,7 +22,7 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/tuning-139912.html#section4.2.5
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
-CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8"
+CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding={{ tomcat_file_encoding }}"
 CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss512k"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85"
 {% if tomcat_use_huge_pages %}

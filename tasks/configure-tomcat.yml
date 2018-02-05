@@ -24,13 +24,13 @@
     group: "{{ tomcat_system_group }}"
     mode: 0640
 
-- name: add UTF-8 encoding to the server connector
+- name: add {{ tomcat_page_encoding }} encoding to the server connector
   xml:
     file: "{{ tomcat_catalina_base }}/conf/server.xml"
     xpath: "/Server/Service/Connector"
     attribute: "URIEncoding"
     ensure: present
-    value: "UTF-8"
+    value: '{{ tomcat_page_encoding }}'
 
 - name: add digest encoding to the server connector
   xml:
