@@ -4,7 +4,7 @@
 
 - name: extract Tomcat archive into installation directory
   unarchive:
-    src: '{{ tomcat_download_path }}/{{ tomcat_download_file }}'
+    src: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
     dest: "{{ tomcat_system_home }}"
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"

@@ -19,13 +19,12 @@ tomcat_offline_install: false
 
 # Locations
 tomcat_base_folder: /opt
-tomcat_download_path: /tmp
+tomcat_download_dir: '{{ tomcat_base_folder }}/tmp'
 
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
 tomcat_create_symlink: True
 
-tomcat_download_dir: '{{ tomcat_base_folder }}/tmp'
 
 tomcat_process_name: tomcat
 
