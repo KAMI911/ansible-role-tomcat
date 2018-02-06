@@ -21,6 +21,6 @@
 - name: delete Tomcat archive, if requested (default is yes)
   file: path={{ item }} state=absent
   with_items:
-    - '{{ tomcat_download_path }}/{{ tomcat_download_file }}'
+    - '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
   ignore_errors: true
   when: tomcat_installer_keep == False
