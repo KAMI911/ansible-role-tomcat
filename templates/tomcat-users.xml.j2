@@ -35,9 +35,9 @@
   them. You will also need to set the passwords to something appropriate.
 -->
 {% for item in tomcat_manager_roles %}
-  <role rolename="{{ item.name }}" description="{{ item.description | default: ''}}" />
+  <role rolename="{{ item.name }}" description="{{ item.description | default('') }}" />
 {% endfor %}
 {% for item in tomcat_manager_users %}
-  <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}" fullName="{{ item.fullname | default: '' }}" />
+  <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}" fullName="{{ item.fullname | default('') }}" />
 {% endfor %}
 </tomcat-users>
