@@ -2,12 +2,13 @@
 # Default variables for the Tomcat role
 #
 
-tomcat_manage_java_pkg: false
+tomcat_manage_java_pkg: False
 
 tomcat_installer_force_download: True
 tomcat_installer_force_overwrite: True
 tomcat_installer_keep: True
 tomcat_installer_local: False # The True means try to copy from Ansible's local files folder
+tomcat_download_validate_certs: False
 
 # Downloadable Tomcat version
 tomcat_majorversion: 8
