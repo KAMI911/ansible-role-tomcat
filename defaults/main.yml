@@ -48,8 +48,8 @@ tomcat_manager_users:
   roles: admin-gui,manager-gui
 
 tomcat_manager_roles:
-- admin-gui
-- manager-gui
+- name: admin-gui
+- name: manager-gui
 
 java_home: /usr/java/jdk1.8.0_131
 java_version: 8
