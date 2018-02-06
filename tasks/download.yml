@@ -23,8 +23,8 @@
 - name: 'create application directory: {{ tomcat_dir }}'
   file:
     path: '{{ tomcat_dir }}'
-    owner: '{{ tomcat_user }}'
-    group: '{{ tomcat_group }}'
+    owner: '{{ tomcat_system_user }}'
+    group: '{{ tomcat_system_group }}'
     mode: '{{ tomcat_dir_mode }}'
     recurse: yes
     state: directory
@@ -32,8 +32,8 @@
 - name: create download directory
   file:
     path: '{{ tomcat_download_dir }}'
-    owner: '{{ tomcat_user }}'
-    group: '{{ tomcat_group }}'
+    owner: '{{ tomcat_system_user }}'
+    group: '{{ tomcat_system_group }}'
     mode: '{{ tomcat_dir_mode }}'
     recurse: yes
     state: directory
