@@ -71,7 +71,7 @@
   - name: copy downloaded tomcat tar file
     copy:
       src: '{{ tomcat_download_file }}'
-      dest: '{{ tomcat_archive }}'
+      dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
       mode: 0644
     when: (tomcat_is_download_file.stat.exists == False or tomcat_installer_force_overwrite == True) and tomcat_installer_local == True
   when: tomcat_installer_local == True
