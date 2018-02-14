@@ -44,6 +44,10 @@ Tomcat file encoding parameter: UTF-8
 
 Tomcat page encoding parameter: UTF-8
 
+    tomcat_use_secure_flag: True
+
+Set this attribute to True if you wish to have calls to request.isSecure() to return true for requests received by this Connector. You would want this on an SSL Connector or a non SSL connector that is receiving data from a SSL accelerator, like a crypto card, a SSL appliance or even a webserver. The default value is False.
+
     tomcat_manage_java_pkg: False
 
 Tomcat manage java installation an install OpenJDK or not.
