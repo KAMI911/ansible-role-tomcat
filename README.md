@@ -26,7 +26,7 @@ Tomcat minor version.
 
 Tomcat micro version.
 
-    tomcat_use_huge_pages: true
+    tomcat_use_huge_pages: True
 
 Use Huge Pages (Java calls it: UseLargePages) for enhance performance of Java applications. When a process uses some memory, the CPU is marking the RAM as used by that process. For efficiency, the CPU allocate RAM by chunks of 4K bytes (it's the default value on many platforms). Those chunks are named pages. Those pages can be swapped to disk, etc.
 
@@ -44,7 +44,7 @@ Tomcat file encoding parameter: UTF-8
 
 Tomcat page encoding parameter: UTF-8
 
-    tomcat_manage_java_pkg: false
+    tomcat_manage_java_pkg: False
 
 Tomcat manage java installation an install OpenJDK or not.
 
