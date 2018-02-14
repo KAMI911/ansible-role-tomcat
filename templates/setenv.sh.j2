@@ -24,7 +24,13 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding={{ tomcat_file_encoding }}"
 CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss512k"
-CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85"
+{% if tomcat_java_gc == 'CMSGC' %}
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseConcMarkSweepGC {{ tomcat_java_gc_cms }}"
+{% elif tomcat_java_gc == 'G1GC' %}
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC {{ tomcat_java_gc_g1 }}"
+{% else %}
+CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
+{% endif %}
 {% if tomcat_use_huge_pages %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages"
 {% endif %}

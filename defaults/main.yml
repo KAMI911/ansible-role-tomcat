@@ -53,6 +53,12 @@ tomcat_manager_roles:
 java_home: /usr/java/jdk1.8.0_131
 java_version: 8
 
+tomcat_java_gc: CMSGC # G1GC or CMSGC or other
+
+tomcat_java_gc_cms: -XX:+CMSClassUnloadingEnabled
+tomcat_java_gc_g1: -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85
+tomcat_java_gc_other:
+
 # Memory sizes in megabytes (m)
 tomcat_java_heap_min: 4096
 tomcat_java_heap_max: 4096
