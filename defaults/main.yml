@@ -86,4 +86,9 @@ tomcat_enable_logstash: True
 
 tomcat_file_encoding: UTF-8
 tomcat_page_encoding: UTF-8
+
 tomcat_use_secure_flag: True
+
+tomcat_session_timeout: 30
+tomcat_session_http_only: True
+tomcat_session_secure: True
