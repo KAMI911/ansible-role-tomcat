@@ -15,7 +15,7 @@ tomcat_majorversion: 8
 tomcat_minorversion: 5
 tomcat_patchversion: 15
 
-tomcat_offline_install: false
+tomcat_offline_install: False
 
 # Locations
 tomcat_base_folder: /opt
@@ -27,7 +27,7 @@ tomcat_create_symlink: True
 
 tomcat_process_name: tomcat
 
-tomcat_force_update: false
+tomcat_force_update: False
 
 # Tomcat will use this use and group
 tomcat_manage_user: True
@@ -40,7 +40,7 @@ tomcat_ejb_port: 8009
 tomcat_https_port: 8443
 
 # Username and password for manager interface
-tomcat_manager_hash_password: true
+tomcat_manager_hash_password: True
 tomcat_manager_users:
 - user: admin
   pass: BNWXsbsn0drzvChhQNUAq1efHGP0
@@ -77,12 +77,12 @@ tomcat_jmx_users:
 
 tomcat_catalina_parameters:
 
-tomcat_use_custom_error_pages: true
+tomcat_use_custom_error_pages: True
 tomcat_custom_error_pages_url: https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/
 
-tomcat_use_huge_pages: true
+tomcat_use_huge_pages: True
 
-tomcat_enable_logstash: true
+tomcat_enable_logstash: True
 
 tomcat_file_encoding: UTF-8
 tomcat_page_encoding: UTF-8
