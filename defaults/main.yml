@@ -25,7 +25,6 @@ tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
 tomcat_create_symlink: True
 
-
 tomcat_process_name: tomcat
 
 tomcat_force_update: false
@@ -87,3 +86,4 @@ tomcat_enable_logstash: true
 
 tomcat_file_encoding: UTF-8
 tomcat_page_encoding: UTF-8
+tomcat_use_secure_flag: True

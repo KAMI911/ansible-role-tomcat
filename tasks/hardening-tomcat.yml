@@ -10,13 +10,23 @@
     ensure: present
     value: " "
 
-- name: hardening | add Secure flag to response header
+- name: hardening | set Secure flag to True in response header
   xml:
     file: "{{ tomcat_catalina_base }}/conf/server.xml"
     xpath: "/Server/Service/Connector"
     attribute: "Secure"
     ensure: present
     value: "true"
+  when: tomcat_use_secure_flag == True
+
+- name: hardening | set Secure flag to Flase in response header
+  xml:
+    file: "{{ tomcat_catalina_base }}/conf/server.xml"
+    xpath: "/Server/Service/Connector"
+    attribute: "Secure"
+    ensure: present
+    value: "false"
+  when: tomcat_use_secure_flag != True
 
 - name: hardening | set Tomcat's shutdown port
   xml:
