@@ -57,18 +57,18 @@
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
-    xpath:  "/javaee:web-app/session-config/session-timeout"
-    ensure: present
-    value: "{{ tomcat_session_timeout }}"
+    xpath:  "/javaee:web-app/session-config"
+    add_children:
+     - session-timeout: "{{ tomcat_session_timeout }}"
 
 - name: hardening | set session http-only flag to True
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
-    xpath:  "/javaee:web-app/session-config/http-only"
-    ensure: present
-    value: "true"
+    xpath:  "/javaee:web-app/session-config"
+    add_children:
+     - http-only: "true"
   when: tomcat_session_http_only == True
 
 - name: hardening | set session http-only flag to False
@@ -77,8 +77,8 @@
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
     xpath:  "/javaee:web-app/session-config/http-only"
-    ensure: present
-    value: "false"
+    add_children:
+     - http-only: "false"
   when: tomcat_session_http_only != True
 
 - name: hardening | set session http-only flag to True
@@ -86,9 +86,9 @@
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
-    xpath:  "/javaee:web-app/session-config/secure"
-    ensure: present
-    value: "true"
+    xpath:  "/javaee:web-app/session-config"
+    add_children:
+     - secure: "true"
   when: tomcat_session_secure == True
 
 - name: hardening | set session http-only flag to False
@@ -96,9 +96,9 @@
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
-    xpath:  "/javaee:web-app/session-config/secure"
-    ensure: present
-    value: "false"
+    xpath:  "/javaee:web-app/session-config"
+    add_children:
+     - secure: "false"
   when: tomcat_session_secure != True
 
 - name: disable unnecessary default applications
