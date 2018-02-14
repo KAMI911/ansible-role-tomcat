@@ -55,16 +55,14 @@
 - name: 'hardening | add session timeout: {{ tomcat_session_timeout }}'
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: "/session-config"
-    attribute: "session-timeout"
+    xpath: "/session-config/session-timeout"
     ensure: present
     value: "{{ tomcat_session_timeout }}"
 
 - name: hardening | set session http-only flag to True
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: "/session-config/cookie-config"
-    attribute: "http-only"
+    xpath: "/session-config/cookie-config/http-only"
     ensure: present
     value: "true"
   when: tomcat_session_http_only == True
@@ -72,8 +70,7 @@
 - name: hardening | set session http-only flag to False
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: "/session-config/cookie-config"
-    attribute: "http-only"
+    xpath: "/session-config/cookie-config/http-only"
     ensure: present
     value: "false"
   when: tomcat_session_http_only != True
@@ -81,8 +78,7 @@
 - name: hardening | set session http-only flag to True
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: "/session-config/cookie-config"
-    attribute: "secure"
+    xpath: "/session-config/cookie-config/secure"
     ensure: present
     value: "true"
   when: tomcat_session_secure == True
@@ -90,8 +86,7 @@
 - name: hardening | set session http-only flag to False
   xml:
     file: "{{ tomcat_catalina_base }}/conf/web.xml"
-    xpath: "/session-config/cookie-config"
-    attribute: "secure"
+    xpath: "/session-config/cookie-config/secure"
     ensure: present
     value: "false"
   when: tomcat_session_secure != True
