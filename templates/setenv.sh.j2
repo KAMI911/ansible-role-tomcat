@@ -47,7 +47,7 @@ CATALINA_OPTS="${CATALINA_OPTS} -XX:PermSize=${JAVA_MIN_PERMSIZE}m -XX:MaxPermSi
 
 CATALINA_OPTS="${CATALINA_OPTS} -Dprocessname=${PROCESS_NAME}"
 
-CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.rmi.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
+CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname={{ tomcat_jmx_host }} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.rmi.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
 
 {% if tomcat_enable_logstash == true %}
 if [ -r "$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
