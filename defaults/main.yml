@@ -68,7 +68,7 @@ tomcat_java_permsize_min: 384
 tomcat_java_permsize_max: 384
 
 # JMX configuration
-tomcat_jmx_host: {{ ansible_default_ipv4.address }}
+tomcat_jmx_host: '{{ ansible_default_ipv4.address }}'
 tomcat_jmx_port: 48080
 tomcat_shutdown_port: 49080
 tomcat_shutdown_command: "SHUTDOWN-Hr7lA6dgGQ"
