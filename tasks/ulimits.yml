@@ -9,4 +9,4 @@
     limit_item: '{{ item.item }}'
     value: '{{ item.value }}'
     dest: '{{ tomcat_limits_file }}'
-   with_items: '{{ tomcat_limits_conf }}'
+  with_items: '{{ tomcat_limits_conf }}'
