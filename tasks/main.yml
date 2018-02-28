@@ -28,6 +28,9 @@
 - name: hardening Tomcat
   include_tasks: hardening-tomcat.yml
 
+- name: setting ulimits for Tomcat
+  include_tasks: ulimits.yml
+
 - name: add custom error pages
   include_tasks: custom-errorpages-tomcat.yml
   when: tomcat_use_custom_error_pages

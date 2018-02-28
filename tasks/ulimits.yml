@@ -1,0 +1,12 @@
+#
+# Setting ulimits
+#
+
+- name: setting application ulimits
+  pam_limits:
+    domain: '{{ item.domain }}'
+    limit_type: '{{ item.type }}'
+    limit_item: '{{ item.item }}'
+    value: '{{ item.value }}'
+    dest: '{{ tomcat_limits_file }}'
+   with_items: '{{ tomcat_limits_conf }}'

@@ -98,3 +98,22 @@ tomcat_use_secure_flag: True
 tomcat_session_timeout: 30
 tomcat_session_http_only: True
 tomcat_session_secure: True
+
+tomcat_limits_file: '/etc/security/limits.d/{{ tomcat_system_user }}'
+tomcat_limits_conf:
+ - domain: '{{ tomcat_system_user }}'
+   type: soft
+   item: nofile
+   value: 14000
+ - domain: '{{ tomcat_system_user }}'
+   type: hard
+   item: nofile
+   value: 16384
+ - domain: '{{ tomcat_system_user }}'
+   type: soft
+   item: nproc
+   value: 7000
+ - domain: '{{ tomcat_system_user }}'
+   type: hard
+   item: nproc
+   value: 8192
