@@ -59,12 +59,14 @@ tomcat_pid() {
 
 start() {
   pid=$(tomcat_pid)
+  current_dir=$(pwd)
   if [ -n "$pid" ]
   then
     echo -e "\e[00;31mTomcat is already running (pid: $pid)\e[00m"
   else
     # Start tomcat
     echo -e "\e[00;32mStarting tomcat\e[00m"
+    cd ${CATALINA_HOME}
     #ulimit -n 100000
     #umask 007
     #/bin/su -p -s /bin/sh $TOMCAT_USER
@@ -75,6 +77,7 @@ start() {
                 echo -e "\e[00;31mTomcat user $TOMCAT_USER does not exists. Starting with $(id)\e[00m"
                 sh $CATALINA_HOME/bin/startup.sh
         fi
+        cd ${current_dir}
         status
   fi
   return 0
