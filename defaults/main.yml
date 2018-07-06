@@ -117,3 +117,12 @@ tomcat_limits_conf:
    type: hard
    item: nproc
    value: 8192
+
+tomcat_system_name: "tomcat_app_sys"
+
+tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}"
+
+# tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_name }}" # This is an optional setting to use tomcat_system_name for this system.
+
+tomcat_catalina_home: "{{ tomcat_system_home }}/tomcat"
+tomcat_catalina_base: "{{ tomcat_catalina_home }}"

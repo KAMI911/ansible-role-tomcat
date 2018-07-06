@@ -60,6 +60,26 @@ Forcing Tomcat to use secure JSESSIONID cookie.
 
 Tomcat manage java installation an install OpenJDK or not.
 
+    tomcat_system_name: "tomcat_app_sys"
+
+Optional: Use this folder name for this tomcat instance.
+
+    tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}"
+
+Folder of Tomcat binaries.
+
+    # tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_name }}" # This is an optional setting to use tomcat_system_name for this system.
+
+Folder of Tomcat binaries using tomcat_system_home variable.
+
+    tomcat_catalina_home: "{{ tomcat_system_home }}/tomcat"
+
+Tomcat Cataline home folder.
+
+    tomcat_catalina_base: "{{ tomcat_catalina_home }}"
+
+Tomcat Catalina base folder.
+
 ## Dependencies
 
 None.
