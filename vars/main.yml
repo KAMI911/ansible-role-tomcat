@@ -4,12 +4,6 @@
 
 tomcat_download_mirror: https://archive.apache.org
 
-tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}"
-
-tomcat_catalina_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}/tomcat"
-tomcat_catalina_base: "{{ tomcat_catalina_home }}"
-
-
 tomcat_dir: '{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}'
 tomcat_root_user: root
 
