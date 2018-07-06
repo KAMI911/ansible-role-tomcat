@@ -25,8 +25,8 @@ install:
 script:
   # Basic role syntax check
   - "ansible-playbook tests/test.yml -i tests/inventory --syntax-check"
-  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --sudo"
-  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --sudo"
+  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --become"
+  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --become"
   #- "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --sudo | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
 
 notifications:
