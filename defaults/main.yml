@@ -34,7 +34,7 @@ tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
 tomcat_create_symlink: True
 
-tomcat_process_name: tomcat
+tomcat_process_name: {{tomcat_system_name}}
 
 tomcat_force_update: False
 
