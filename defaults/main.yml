@@ -28,7 +28,7 @@ tomcat_system_name: "tomcat_app_sys"
 tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_name }}"
 
 tomcat_catalina_home: "{{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}"
-tomcat_catalina_base: "{{ tomcat_catalina_home }}/{{ tomcat_system_name }}"
+tomcat_catalina_base: "{{ tomcat_system_home }}/{{ tomcat_system_name }}"
 
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
