@@ -21,6 +21,15 @@ tomcat_offline_install: False
 tomcat_base_folder: /opt
 tomcat_download_dir: '{{ tomcat_base_folder }}/tmp'
 
+tomcat_system_name: "tomcat_app_sys"
+
+# tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}" # This is an optional setting to use tomcat_system_name for this system.
+
+tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_name }}"
+
+tomcat_catalina_home: "{{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}"
+tomcat_catalina_base: "{{ tomcat_catalina_home }}"
+
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
 tomcat_create_symlink: True
