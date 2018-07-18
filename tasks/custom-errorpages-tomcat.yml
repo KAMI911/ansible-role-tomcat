@@ -28,7 +28,7 @@
 
 - name: "modify 'web.xml' for custom error pages"
   xml:
-    file: "{{ tomcat_catalina_base }}/conf/web.xml"
+    file: "{{ tomcat_catalina_home }}/conf/web.xml"
     namespaces:
       javaee: http://java.sun.com/xml/ns/javaee
     xpath:  /javaee:web-app
@@ -40,7 +40,7 @@
 
 - name: "modify 'web.xml' for custom error pages"
   xml:
-    file: "{{ tomcat_catalina_base }}/conf/web.xml"
+    file: "{{ tomcat_catalina_home }}/conf/web.xml"
     namespaces:
       javaee: http://xmlns.jcp.org/xml/ns/javaee
     xpath:  /javaee:web-app
