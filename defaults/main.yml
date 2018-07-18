@@ -13,7 +13,7 @@ tomcat_download_validate_certs: False
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
-tomcat_patchversion: 15
+tomcat_patchversion: 32
 
 tomcat_offline_install: False
 
