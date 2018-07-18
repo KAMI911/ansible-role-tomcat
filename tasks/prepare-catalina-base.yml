@@ -118,15 +118,15 @@
     dest: "{{ tomcat_catalina_base }}/bin/shutdown.sh"
     state: link
 
-- name: copy "server.xml", using the default recommended settings
-  copy:
-    src: server.xml
-    dest: "{{ tomcat_catalina_base }}/conf/server.xml"
+#- name: copy "server.xml", using the default recommended settings
+#  copy:
+#    src: server.xml
+#    dest: "{{ tomcat_catalina_base }}/conf/server.xml"
 
-- name: copy a "web.xml", using the default recommended settings
-  copy:
-    src: web.xml
-    dest: "{{ tomcat_catalina_base }}/conf/web.xml"
+#- name: copy a "web.xml", using the default recommended settings
+#  copy:
+#    src: web.xml
+#    dest: "{{ tomcat_catalina_base }}/conf/web.xml"
 
 - name: generate "tomcat-users.xml" from template, using the default recommended settings
   template:
