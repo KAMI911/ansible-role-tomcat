@@ -21,20 +21,20 @@ tomcat_offline_install: False
 tomcat_base_folder: /opt
 tomcat_download_dir: '{{ tomcat_base_folder }}/tmp'
 
-tomcat_system_name: "tomcat_app_sys"
+tomcat_system_name: 'tomcat_app_sys'
 
-# tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}" # This is an optional setting to use tomcat_system_name for this system.
+# tomcat_system_home: '{{ tomcat_base_folder }}/{{ tomcat_system_user }}' # This is an optional setting to use tomcat_system_name for this system.
 
-tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_name }}"
+tomcat_system_home: '{{ tomcat_base_folder }}/{{ tomcat_system_name }}'
 
-tomcat_catalina_home: "{{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}"
-tomcat_catalina_base: "{{ tomcat_system_home }}/{{ tomcat_system_name }}"
+tomcat_catalina_home: '{{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}'
+tomcat_catalina_base: '{{ tomcat_system_home }}/{{ tomcat_system_name }}'
 
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
 tomcat_create_symlink: True
 
-tomcat_process_name: {{ tomcat_system_name }}
+tomcat_process_name: '{{ tomcat_system_name }}'
 
 tomcat_force_update: False
 
@@ -80,7 +80,7 @@ tomcat_java_permsize_max: 384
 tomcat_jmx_host: '{{ ansible_default_ipv4.address }}'
 tomcat_jmx_port: 48080
 tomcat_shutdown_port: 49080
-tomcat_shutdown_command: "SHUTDOWN-Hr7lA6dgGQ"
+tomcat_shutdown_command: 'SHUTDOWN-Hr7lA6dgGQ'
 
 tomcat_jmx_users:
 - user: monitoring
@@ -93,7 +93,7 @@ tomcat_jmx_users:
 tomcat_catalina_parameters:
 
 tomcat_use_custom_error_pages: True
-tomcat_custom_error_pages_url: https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/
+tomcat_custom_error_pages_url: 'https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/'
 
 tomcat_use_huge_pages: True
 
