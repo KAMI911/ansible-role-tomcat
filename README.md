@@ -9,7 +9,7 @@ Installs Apache Tomcat Java Application server
 1. [Requirements][Requirements]
 2. [Role Variables][Role Variables]
 3. [Installation][Installation]
-4. [Dependencies[Dependencies]
+4. [Dependencies][Dependencies]
 5. [Example Playbook][Example Playbook]
 6. [Licensing][Licensing]
 7. [Author Information][Author Information]
