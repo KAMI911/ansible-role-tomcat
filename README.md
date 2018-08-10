@@ -1,6 +1,6 @@
 # Ansible Role: Installs Apache Tomcat Java Application server (optionally with Hugepages)
 
-Installs Apache Tomcat Java Application server
+Installs Apache Tomcat Java Application server. Most complete Tomcat installation, supporting, init.d script, application naming, hugepages, hardening, beautiful error pages, sha512 hashed passwords, JMX configuration, multiple Tomcat versions, separated catalina_home and caralina_base.
 
 [![Build Status](https://travis-ci.org/KAMI911/ansible-role-tomcat.svg?branch=master)](https://travis-ci.org/KAMI911/ansible-role-tomcat)
 
