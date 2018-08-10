@@ -96,22 +96,6 @@
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rwx,o="
 
-#- name: create CATALINA_HOME/webapps-disabled directory
-#  file:
-#    path: "{{ tomcat_catalina_home }}/webapps-disabled"
-#    state: directory
-#    owner: "{{ tomcat_root_user }}"
-#    group: "{{ tomcat_system_group }}"
-#    mode: "u=rwx,g=rwx,o="
-
-#- name: create CATALINA_BASE/webapps-disabled directory
-#  file:
-#    path: "{{ tomcat_catalina_base }}/webapps-disabled"
-#    state: directory
-#    owner: "{{ tomcat_root_user }}"
-#    group: "{{ tomcat_system_group }}"
-#    mode: "u=rwx,g=rwx,o="
-
 - name: create CATALINA_BASE/work directory
   file:
     path: "{{ tomcat_catalina_base }}/work"

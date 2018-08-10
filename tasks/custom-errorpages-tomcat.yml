@@ -25,27 +25,3 @@
   with_items:
   - "{{ tomcat_custom_error_pages }}"
   when: tomcat_offline_install != False
-
-#- name: "modify 'web.xml' for custom error pages"
-#  xml:
-#    file: "{{ tomcat_catalina_home }}/conf/web.xml"
-#    namespaces:
-#      javaee: http://java.sun.com/xml/ns/javaee
-#    xpath:  /javaee:web-app
-#    add_children: "{{ item }}"
-#    input_type: xml
-#  with_items:
-#  - "{{ tomcat_custom_error_pages_xml }}"
-#  when: tomcat_majorversion <= 7
-
-#- name: "modify 'web.xml' for custom error pages"
-#  xml:
-#    file: "{{ tomcat_catalina_home }}/conf/web.xml"
-#    namespaces:
-#      javaee: http://xmlns.jcp.org/xml/ns/javaee
-#    xpath:  /javaee:web-app
-#    add_children: "{{ item }}"
-#    input_type: xml
-#  with_items:
-#  - "{{ tomcat_custom_error_pages_xml }}"
-#  when: tomcat_majorversion >= 7
