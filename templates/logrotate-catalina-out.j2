@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+{{ tomcat_catalina_base }}/logs/catalina/catalina.out {
+  su {{ tomcat_system_user }} {{ tomcat_system_group }}
+  daily
+  rotate 730
+  compress
+  delaycompress
+  missingok
+  notifempty
+  compresscmd /usr/bin/xz
+  compressoptions "-9e"
+  compressext .xz
+}

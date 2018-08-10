@@ -4,7 +4,7 @@
 
 - name: error pages | create errorpages directory
   file:
-    path: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/"
+    path: "{{ tomcat_catalina_base }}/webapps/ROOT/errorpages/"
     state: directory
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
@@ -13,7 +13,7 @@
 - name: error pages | download custom erropages for Tomcat
   get_url:
     url: "{{ tomcat_custom_error_pages_url }}/{{ item }}.jsp"
-    dest: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/{{ item }}.jsp"
+    dest: "{{ tomcat_catalina_base }}/webapps/ROOT/errorpages/{{ item }}.jsp"
   with_items:
   - "{{ tomcat_custom_error_pages }}"
   when: tomcat_offline_install == False
@@ -21,31 +21,31 @@
 - name: error pages | copy custom erropages for Tomcat
   copy:
     src: "{{ item }}.jsp"
-    dest: "{{ tomcat_catalina_home }}/webapps/ROOT/errorpages/{{ item }}.jsp"
+    dest: "{{ tomcat_catalina_base }}/webapps/ROOT/errorpages/{{ item }}.jsp"
   with_items:
   - "{{ tomcat_custom_error_pages }}"
   when: tomcat_offline_install != False
 
-- name: "modify 'web.xml' for custom error pages"
-  xml:
-    file: "{{ tomcat_catalina_home }}/conf/web.xml"
-    namespaces:
-      javaee: http://java.sun.com/xml/ns/javaee
-    xpath:  /javaee:web-app
-    add_children: "{{ item }}"
-    input_type: xml
-  with_items:
-  - "{{ tomcat_custom_error_pages_xml }}"
-  when: tomcat_majorversion <= 7
+#- name: "modify 'web.xml' for custom error pages"
+#  xml:
+#    file: "{{ tomcat_catalina_home }}/conf/web.xml"
+#    namespaces:
+#      javaee: http://java.sun.com/xml/ns/javaee
+#    xpath:  /javaee:web-app
+#    add_children: "{{ item }}"
+#    input_type: xml
+#  with_items:
+#  - "{{ tomcat_custom_error_pages_xml }}"
+#  when: tomcat_majorversion <= 7
 
-- name: "modify 'web.xml' for custom error pages"
-  xml:
-    file: "{{ tomcat_catalina_home }}/conf/web.xml"
-    namespaces:
-      javaee: http://xmlns.jcp.org/xml/ns/javaee
-    xpath:  /javaee:web-app
-    add_children: "{{ item }}"
-    input_type: xml
-  with_items:
-  - "{{ tomcat_custom_error_pages_xml }}"
-  when: tomcat_majorversion >= 7
+#- name: "modify 'web.xml' for custom error pages"
+#  xml:
+#    file: "{{ tomcat_catalina_home }}/conf/web.xml"
+#    namespaces:
+#      javaee: http://xmlns.jcp.org/xml/ns/javaee
+#    xpath:  /javaee:web-app
+#    add_children: "{{ item }}"
+#    input_type: xml
+#  with_items:
+#  - "{{ tomcat_custom_error_pages_xml }}"
+#  when: tomcat_majorversion >= 7

@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
+<!-- {{ ansible_managed }} -->
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -38,6 +39,10 @@
   <role rolename="{{ item.name }}" description="{{ item.description | default('') }}" />
 {% endfor %}
 {% for item in tomcat_manager_users %}
-  <user username="{{ item.user }}" password="{{ item.pass }}" roles="{{ item.roles }}" fullName="{{ item.fullname | default('') }}" />
+{% if tomcat_password_hash in ('sha256', 'sha512') %}
+  <user username="{{ item.user }}" password="{{ item.pass | hash( tomcat_password_hash ) }}" roles="{{ item.roles }}" fullName="{{ item.fullname | default('') }}" />
+{% else %}
+  <user username="{{ item.user }}" password="{{ item.pass  }}" roles="{{ item.roles }}" fullName="{{ item.fullname | default('') }}" />
+{% endif %}
 {% endfor %}
 </tomcat-users>

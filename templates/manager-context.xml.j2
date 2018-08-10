@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- {{ ansible_managed }} -->
+<Context antiResourceLocking="false" privileged="true" >
+{% if tomcat_manager_allowed_from != "" %}
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+    allow="{{ tomcat_manager_allowed_from }}" />
+{% endif %}
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>

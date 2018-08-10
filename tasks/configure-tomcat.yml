@@ -24,22 +24,22 @@
     group: "{{ tomcat_system_group }}"
     mode: 0640
 
-- name: add {{ tomcat_page_encoding }} encoding to the server connector
-  xml:
-    file: "{{ tomcat_catalina_home }}/conf/server.xml"
-    xpath: "/Server/Service/Connector"
-    attribute: "URIEncoding"
-    ensure: present
-    value: '{{ tomcat_page_encoding }}'
+#- name: add {{ tomcat_page_encoding }} encoding to the server connector
+#  xml:
+#    file: "{{ tomcat_catalina_home }}/conf/server.xml"
+#    xpath: "/Server/Service/Connector"
+#    attribute: "URIEncoding"
+#    ensure: present
+#    value: '{{ tomcat_page_encoding }}'
 
-- name: add digest encoding to the server connector
-  xml:
-    file: "{{ tomcat_catalina_home }}/conf/server.xml"
-    xpath: "/Server/Service/Engine/Realm"
-    attribute: "digest"
-    ensure: present
-    value: "sha-512"
-  when: tomcat_manager_hash_password != false
+#- name: add digest encoding to the server connector
+#  xml:
+#    file: "{{ tomcat_catalina_home }}/conf/server.xml"
+#    xpath: "/Server/Service/Engine/Realm"
+#    attribute: "digest"
+#    ensure: present
+#    value: "sha-512"
+#  when: tomcat_manager_hash_password != false
 
 - name: generate Tomcat init script
   template:
@@ -48,3 +48,11 @@
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0750
+
+- name: "Prepare daily catalina.out logrotate"
+  template:
+    dest: '/etc/logrotate.d/{{ tomcat_system_name }}-catalina'
+    src: "logrotate-catalina-out.j2"
+    owner: "root"
+    group: "root"
+    mode: "0644"

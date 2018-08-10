@@ -29,6 +29,7 @@ tomcat_system_home: '{{ tomcat_base_folder }}/{{ tomcat_system_name }}'
 
 tomcat_catalina_home: '{{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}'
 tomcat_catalina_base: '{{ tomcat_system_home }}/{{ tomcat_system_name }}'
+tomcat_catalina_out: '{{ tomcat_catalina_base }}/logs/catalina/catalina.out'
 
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
@@ -43,9 +44,8 @@ tomcat_manage_user: True
 tomcat_system_user: tomcat
 tomcat_system_group: tomcat
 
-# Planned feature
 tomcat_http_port: 8080
-tomcat_ejb_port: 8009
+tomcat_ajb_port: 8009
 tomcat_https_port: 8443
 
 # Username and password for manager interface
@@ -107,6 +107,16 @@ tomcat_use_secure_flag: True
 tomcat_session_timeout: 30
 tomcat_session_http_only: True
 tomcat_session_secure: True
+
+tomcat_password_hash: sha512
+
+tomcat_manager_allowed_from: "" # Installation default: "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+tomcat_copy_webapps:
+ - manager
+ - host-manager
+ #- examples
+ #- docs
+ #- ROOT
 
 tomcat_limits_file: '/etc/security/limits.d/{{ tomcat_system_user }}'
 tomcat_limits_conf:

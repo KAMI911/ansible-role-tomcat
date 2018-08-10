@@ -1,4 +1,5 @@
 #!/bin/bash
+# {{ ansible_managed }}
 #
 # /etc/init.d/{{ tomcat_process_name }} -- startup script for the Tomcat servlet engine
 # description: Apache Tomcat init script
@@ -38,10 +39,10 @@ export JRE_HOME="{{ java_home }}"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # CATALINA_HOME is the directory where the Tomcat binary distribution resides
-CATALINA_HOME="{{ tomcat_catalina_home }}"
+export CATALINA_HOME="{{ tomcat_catalina_home }}"
 
 # CATALINA_BASE is the directory for per-instance configuration files and webapps
-CATALINA_BASE={{ tomcat_catalina_base }}
+export CATALINA_BASE={{ tomcat_catalina_base }}
 
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER="{{ tomcat_system_user }}"

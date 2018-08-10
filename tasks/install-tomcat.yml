@@ -6,7 +6,7 @@
   unarchive:
     src: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
     dest: "{{ tomcat_system_home }}"
-    owner: "{{ tomcat_root_user }}"
+    owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     copy: no
   when: tomcat_force_update

@@ -36,13 +36,25 @@
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rx,o="
 
+- name: create CATALINA_BASE/conf/Catalina directory
+  file:
+    path: "{{ tomcat_catalina_base }}/conf/Catalina"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "u=rwx,g=rx,o="
+
 - name: create CATALINA_BASE/logs directory
   file:
-    path: "{{ tomcat_catalina_base }}/logs"
+    path: "{{ tomcat_catalina_base }}/logs/{{ item }}"
     state: directory
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rwx,o="
+  with_items:
+  - catalina
+  - gc
+  - access
 
 - name: create CATALINA_BASE/lib directory
   file:
@@ -84,21 +96,21 @@
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rwx,o="
 
-- name: create CATALINA_HOME/webapps-disabled directory
-  file:
-    path: "{{ tomcat_catalina_home }}/webapps-disabled"
-    state: directory
-    owner: "{{ tomcat_root_user }}"
-    group: "{{ tomcat_system_group }}"
-    mode: "u=rwx,g=rwx,o="
+#- name: create CATALINA_HOME/webapps-disabled directory
+#  file:
+#    path: "{{ tomcat_catalina_home }}/webapps-disabled"
+#    state: directory
+#    owner: "{{ tomcat_root_user }}"
+#    group: "{{ tomcat_system_group }}"
+#    mode: "u=rwx,g=rwx,o="
 
-- name: create CATALINA_BASE/webapps-disabled directory
-  file:
-    path: "{{ tomcat_catalina_base }}/webapps-disabled"
-    state: directory
-    owner: "{{ tomcat_root_user }}"
-    group: "{{ tomcat_system_group }}"
-    mode: "u=rwx,g=rwx,o="
+#- name: create CATALINA_BASE/webapps-disabled directory
+#  file:
+#    path: "{{ tomcat_catalina_base }}/webapps-disabled"
+#    state: directory
+#    owner: "{{ tomcat_root_user }}"
+#    group: "{{ tomcat_system_group }}"
+#    mode: "u=rwx,g=rwx,o="
 
 - name: create CATALINA_BASE/work directory
   file:
@@ -126,17 +138,13 @@
     dest: "{{ tomcat_catalina_base }}/bin/shutdown.sh"
     state: link
 
-#- name: copy "server.xml", using the default recommended settings
-#  copy:
-#    src: server.xml
-#    dest: "{{ tomcat_catalina_base }}/conf/server.xml"
-
-#- name: copy a "web.xml", using the default recommended settings
-#  copy:
-#    src: web.xml
-#    dest: "{{ tomcat_catalina_base }}/conf/web.xml"
-
-- name: generate "tomcat-users.xml" from template, using the default recommended settings
+- name: 'generate \"{{ item }}\" from template, using the default recommended settings'
   template:
-    src: tomcat-users.xml.j2
-    dest: "{{ tomcat_catalina_base }}/conf/tomcat-users.xml"
+    src: '{{ item }}.j2'
+    dest: '{{ tomcat_catalina_base }}/conf/{{ item }}'
+  with_items:
+  - 'context.xml'
+  - 'server.xml'
+  - 'web.xml'
+  - 'logging.properties'
+  - 'tomcat-users.xml'

@@ -5,8 +5,8 @@
     <location>/errorpages/{{ item }}.jsp</location>
   <error-page>
 {% endfor %}
-
   <error-page>
-    <exception-type>java.lang.Throwable</exception-type>
-    <location>/error.jsp</location>
+   <exception-type>java.lang.Throwable</exception-type>
+    <location>/errorpages/500.jsp</location>
   </error-page>
+
