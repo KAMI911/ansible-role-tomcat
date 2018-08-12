@@ -13,7 +13,7 @@
     state: started
     enabled: yes
 
-- name: 'configure firewalld for http port {{ item }}'
+- name: 'configure firewalld for http port {{ tomcat_http_port }}'
   firewalld:
     port: '{{ tomcat_http_port }}/tcp'
     permanent: true
@@ -23,7 +23,7 @@
   with_items:
    - '{{ tomcat_http_source }}'
 
-- name: 'configure firewalld for ajb port {{ item }}'
+- name: 'configure firewalld for ajb port {{ tomcat_ajb_port }}'
   firewalld:
     port: '{{ tomcat_ajb_port }}/tcp'
     permanent: true
@@ -33,7 +33,7 @@
   with_items:
    - '{{ tomcat_ajb_source }}'
 
-- name: 'configure firewalld for https port {{ item }}'
+- name: 'configure firewalld for https port {{ tomcat_https_port }}'
   firewalld:
     port: '{{ tomcat_https_port }}/tcp'
     permanent: true
@@ -43,7 +43,7 @@
   with_items:
    - '{{ tomcat_https_source }}'
 
-- name: 'configure firewalld for jmx port {{ item }}'
+- name: 'configure firewalld for jmx port {{ tomcat_jmx_port }}'
   firewalld:
     port: '{{ tomcat_jmx_port }}/tcp'
     permanent: true
@@ -53,7 +53,7 @@
   with_items:
    - '{{ tomcat_jmx_source }}'
 
-- name: 'configure firewalld for shutdown port {{ item }}'
+- name: 'configure firewalld for shutdown port {{ tomcat_shutdown_port }}'
   firewalld:
     port: '{{ tomcat_shutdown_port }}/tcp'
     permanent: true
