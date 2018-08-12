@@ -10,6 +10,8 @@ tomcat_installer_keep: True
 tomcat_installer_local: False # The True means try to copy from Ansible's local files folder
 tomcat_download_validate_certs: False
 
+tomcat_manage_firewalld: True
+
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
@@ -45,8 +47,17 @@ tomcat_system_user: tomcat
 tomcat_system_group: tomcat
 
 tomcat_http_port: 8080
+tomcat_http_zone: "internal"
+tomcat_http_source: # Tweak this according yout network
+- "0.0.0.0/0"
 tomcat_ajb_port: 8009
+tomcat_ajb_zone: "trusted"
+tomcat_ajb_source: # Tweak this according yout network
+- "0.0.0.0/0"
 tomcat_https_port: 8443
+tomcat_https_zone: "internal"
+tomcat_https_source: # Tweak this according yout network
+- "0.0.0.0/0"
 
 # Username and password for manager interface
 tomcat_manager_hash_password: True
@@ -79,7 +90,13 @@ tomcat_java_permsize_max: 384
 # JMX configuration
 tomcat_jmx_host: '{{ ansible_default_ipv4.address }}'
 tomcat_jmx_port: 48080
+tomcat_jmx_zone_from: "trusted"
+tomcat_jmx_source: # Tweak this according yout network
+- "0.0.0.0/0"
 tomcat_shutdown_port: 49080
+tomcat_shutdown_zone: "trusted"
+tomcat_shutdown_source: # Tweak this according yout network
+- "127.0.0.1/32"
 tomcat_shutdown_command: 'SHUTDOWN-Hr7lA6dgGQ'
 
 tomcat_jmx_users:
@@ -136,3 +153,4 @@ tomcat_limits_conf:
    type: hard
    item: nproc
    value: 8192
+

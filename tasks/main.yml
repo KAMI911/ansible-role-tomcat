@@ -38,3 +38,8 @@
 - name: enable logstash
   include_tasks: enable-logstash.yml
   when: tomcat_enable_logstash
+
+- name: manage firewalld
+  include_tasks: manage_firewalld.yml
+  when: tomcat_manage_firewalld
+

@@ -1,0 +1,65 @@
+#
+# Configure Tomcat firewalld
+#
+
+- name: install firewalld package
+  package:
+    name: firewalld
+    state: present
+
+- name: ensure firewalld is running and enabled on boot
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: 'configure firewalld for http port {{ item }}'
+  firewalld:
+    port: '{{ tomcat_http_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enable
+    zone: {{ tomcat_http_zone }}
+  with_items:
+   - '{{ tomcat_http_source }}'
+
+- name: 'configure firewalld for ajb port {{ item }}'
+  firewalld:
+    port: '{{ tomcat_ajb_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enable
+    zone: {{ tomcat_ajb_zone }}
+  with_items:
+   - '{{ tomcat_ajb_source }}'
+
+- name: 'configure firewalld for https port {{ item }}'
+  firewalld:
+    port: '{{ tomcat_https_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enable
+    zone: {{ tomcat_https_zone }}
+  with_items:
+   - '{{ tomcat_https_source }}'
+
+- name: 'configure firewalld for jmx port {{ item }}'
+  firewalld:
+    port: '{{ tomcat_jmx_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enable
+    zone: {{ tomcat_jmx_zone }}
+  with_items:
+   - '{{ tomcat_jmx_source }}'
+
+v- name: 'configure firewalld for shutdown port {{ item }}'
+  firewalld:
+    port: '{{ tomcat_shutdown_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enable
+    zone: {{ tomcat_shutdown_zone }}
+  with_items:
+   - '{{ tomcat_https_source }}'
+
