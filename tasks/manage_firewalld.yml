@@ -53,7 +53,7 @@
   with_items:
    - '{{ tomcat_jmx_source }}'
 
-v- name: 'configure firewalld for shutdown port {{ item }}'
+- name: 'configure firewalld for shutdown port {{ item }}'
   firewalld:
     port: '{{ tomcat_shutdown_port }}/tcp'
     permanent: true
