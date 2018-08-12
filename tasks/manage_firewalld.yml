@@ -18,7 +18,7 @@
     port: '{{ tomcat_http_port }}/tcp'
     permanent: true
     immediate: true
-    state: enable
+    state: enabled
     zone: {{ tomcat_http_zone }}
   with_items:
    - '{{ tomcat_http_source }}'
@@ -28,7 +28,7 @@
     port: '{{ tomcat_ajb_port }}/tcp'
     permanent: true
     immediate: true
-    state: enable
+    state: enabled
     zone: {{ tomcat_ajb_zone }}
   with_items:
    - '{{ tomcat_ajb_source }}'
@@ -38,7 +38,7 @@
     port: '{{ tomcat_https_port }}/tcp'
     permanent: true
     immediate: true
-    state: enable
+    state: enabled
     zone: {{ tomcat_https_zone }}
   with_items:
    - '{{ tomcat_https_source }}'
@@ -48,7 +48,7 @@
     port: '{{ tomcat_jmx_port }}/tcp'
     permanent: true
     immediate: true
-    state: enable
+    state: enabled
     zone: {{ tomcat_jmx_zone }}
   with_items:
    - '{{ tomcat_jmx_source }}'
@@ -58,7 +58,7 @@
     port: '{{ tomcat_shutdown_port }}/tcp'
     permanent: true
     immediate: true
-    state: enable
+    state: enabled
     zone: {{ tomcat_shutdown_zone }}
   with_items:
    - '{{ tomcat_https_source }}'
