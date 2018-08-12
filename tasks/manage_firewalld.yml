@@ -19,7 +19,7 @@
     permanent: true
     immediate: true
     state: enabled
-    zone: {{ tomcat_http_zone }}
+    zone: '{{ tomcat_http_zone }}'
   with_items:
    - '{{ tomcat_http_source }}'
 
@@ -29,7 +29,7 @@
     permanent: true
     immediate: true
     state: enabled
-    zone: {{ tomcat_ajb_zone }}
+    zone: '{{ tomcat_ajb_zone }}'
   with_items:
    - '{{ tomcat_ajb_source }}'
 
@@ -39,7 +39,7 @@
     permanent: true
     immediate: true
     state: enabled
-    zone: {{ tomcat_https_zone }}
+    zone: '{{ tomcat_https_zone }}'
   with_items:
    - '{{ tomcat_https_source }}'
 
@@ -49,7 +49,7 @@
     permanent: true
     immediate: true
     state: enabled
-    zone: {{ tomcat_jmx_zone }}
+    zone: '{{ tomcat_jmx_zone }}'
   with_items:
    - '{{ tomcat_jmx_source }}'
 
@@ -59,7 +59,7 @@
     permanent: true
     immediate: true
     state: enabled
-    zone: {{ tomcat_shutdown_zone }}
+    zone: '{{ tomcat_shutdown_zone }}'
   with_items:
    - '{{ tomcat_https_source }}'
 
