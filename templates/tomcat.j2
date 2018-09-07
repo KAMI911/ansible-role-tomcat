@@ -42,7 +42,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export CATALINA_HOME="{{ tomcat_catalina_home }}"
 
 # CATALINA_BASE is the directory for per-instance configuration files and webapps
-export CATALINA_BASE={{ tomcat_catalina_base }}
+export CATALINA_BASE="{{ tomcat_catalina_base }}"
 
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER="{{ tomcat_system_user }}"
