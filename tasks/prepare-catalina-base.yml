@@ -1,16 +1,23 @@
 #
 # Prepare Catalina base directory
 #
-# If you are running multiple instances of Tomcat on a single host you should set CATALINA_BASE to be equal to the .../tomcat_instance1 or .../tomcat_instance2 directory as appropriate for each instance and the CATALINA_HOME environment variable to the common Tomcat installation whose files will be shared between the two instances.
-# The CATALINA_BASE environment is optional if you are running a single Tomcat instance on the host and will default to CATALINA_HOME in that case. If you are running multiple instances as you are it should be provided.
-# https://stackoverflow.com/questions/3090398/tomcat-catalina-base-and-catalina-home-variables#8584730
+# If you are running multiple instances of Tomcat on a single host you should
+# set CATALINA_BASE to be equal to the
+# .../tomcat_instance1 or .../tomcat_instance2 directory as appropriate for
+# each instance and the CATALINA_HOME environment variable to the common Tomcat
+# installation whose files will be shared between the two instances.
+# The CATALINA_BASE environment is optional if you are running a single Tomcat
+# instance on the host and will default to CATALINA_HOME in that case. If you
+# are running multiple instances as you are it should be provided.
+# https://stackoverflow.com/questions/3090398/
+# tomcat-catalina-base-and-catalina-home-variables#8584730
 
 - name: create CATALINA_BASE directory
   file:
-      path: "{{ tomcat_catalina_base }}"
-      state: directory
-      owner: "{{ tomcat_system_user }}"
-      group: "{{ tomcat_system_group }}"
+    path: "{{ tomcat_catalina_base }}"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
 
 - name: create heapdumps directory
   file:
@@ -122,7 +129,8 @@
     dest: "{{ tomcat_catalina_base }}/bin/shutdown.sh"
     state: link
 
-- name: 'generate \"{{ item }}\" from template, using the default recommended settings'
+- name: 'generate \"{{ item }}\" from template, using\
+         the default recommended settings'
   template:
     src: '{{ item }}.j2'
     dest: '{{ tomcat_catalina_base }}/conf/{{ item }}'
