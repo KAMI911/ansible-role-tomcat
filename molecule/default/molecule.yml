@@ -1,0 +1,50 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: tomcat-centos6-10-jdk
+    image: centos
+    image_version: 6.8
+    groups:
+      - jdk
+
+  - name: tomcat-centos6-10-server-jre
+    image: centos
+    image_version: 6.8
+    groups:
+      - server-jre
+
+  - name: tomcat-centos7-10-jdk
+    image: milcom/centos7-systemd
+    image_version: latest
+    privileged: true
+    groups:
+      - jdk
+
+  - name: tomcat-centos7-10-server-jre
+    image: milcom/centos7-systemd
+    image_version: latest
+    privileged: true
+    groups:
+      - server-jre
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    group_vars:
+      jdk:
+        java_type: 'jdk'
+      server-jre:
+        java_type: 'serverjre'
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

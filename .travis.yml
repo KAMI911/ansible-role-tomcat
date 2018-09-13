@@ -5,29 +5,23 @@ python: "2.7"
 # Use the new container infrastructure
 sudo: true
 
-# Install ansible
-addons:
-  apt:
-    packages:
-    - python-pip
+services:
+  - docker
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
 
 install:
-  # Install ansible
-  - pip install ansible
-  # Check ansible version
-  - ansible --version
-  - pip install lxml
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
-  # Install extra XML module
-  - ansible-galaxy install -f cmprescott.xml
+  - pip install ansible==2.4.3.0
+  - pip install ansible-lint>=3.4.20
+  - pip install docker
+  - pip install molecule==2.17.0
+  - pip install docker-py
 
 script:
-  # Basic role syntax check
-  - "ansible-playbook tests/test.yml -i tests/inventory --syntax-check"
-  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --become"
-  - "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --become"
-  #- "ansible-playbook -D -i tests/inventory tests/test.yml --connection=local --sudo | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+
