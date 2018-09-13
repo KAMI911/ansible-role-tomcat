@@ -23,7 +23,7 @@
     dest: "{{ tomcat_catalina_home }}/lib/logstash"
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
-    copy: no
+    copy: false
   when: tomcat_force_update and tomcat_offline_install == False
 
 - name: extract Logstash logging bundle
@@ -32,5 +32,5 @@
     dest: "{{ tomcat_catalina_home }}/lib/logstash"
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
-    copy: yes
+    copy: true
   when: tomcat_force_update and tomcat_offline_install != False

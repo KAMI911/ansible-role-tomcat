@@ -12,7 +12,7 @@
   service:
     name: firewalld
     state: started
-    enabled: yes
+    enabled: true
 
 - name: 'configure firewalld for http port {{ tomcat_http_port }}'
   firewalld:
@@ -22,7 +22,7 @@
     state: enabled
     zone: '{{ tomcat_http_zone }}'
   with_items:
-   - '{{ tomcat_http_source }}'
+    - '{{ tomcat_http_source }}'
 
 - name: 'configure firewalld for ajb port {{ tomcat_ajb_port }}'
   firewalld:
@@ -32,7 +32,7 @@
     state: enabled
     zone: '{{ tomcat_ajb_zone }}'
   with_items:
-   - '{{ tomcat_ajb_source }}'
+    - '{{ tomcat_ajb_source }}'
 
 - name: 'configure firewalld for https port {{ tomcat_https_port }}'
   firewalld:
@@ -42,7 +42,7 @@
     state: enabled
     zone: '{{ tomcat_https_zone }}'
   with_items:
-   - '{{ tomcat_https_source }}'
+    - '{{ tomcat_https_source }}'
 
 - name: 'configure firewalld for jmx port {{ tomcat_jmx_port }}'
   firewalld:
@@ -52,7 +52,7 @@
     state: enabled
     zone: '{{ tomcat_jmx_zone }}'
   with_items:
-   - '{{ tomcat_jmx_source }}'
+    - '{{ tomcat_jmx_source }}'
 
 - name: 'configure firewalld for shutdown port {{ tomcat_shutdown_port }}'
   firewalld:
@@ -62,5 +62,4 @@
     state: enabled
     zone: '{{ tomcat_shutdown_zone }}'
   with_items:
-   - '{{ tomcat_https_source }}'
-
+    - '{{ tomcat_https_source }}'

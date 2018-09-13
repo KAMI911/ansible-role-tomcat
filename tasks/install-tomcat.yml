@@ -9,7 +9,7 @@
     dest: "{{ tomcat_system_home }}"
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
-    copy: no
+    copy: false
   when: tomcat_force_update
 
 - name: create symlink for 'tomcat' to the installation directory

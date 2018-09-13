@@ -1,3 +1,4 @@
+---
 #
 # Variables for the Tomcat role
 #
@@ -12,17 +13,17 @@ tomcat_download_file: '{{ tomcat_name }}.tar.gz'
 tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}'
 
 tomcat_custom_error_pages:
-- 400
-- 401
-- 403
-- 404
-- 405
-- 406
-- 408
-- 413
-- 414
-- 417
-- 500
-- 502
-- 503
-- 504
+  - 400
+  - 401
+  - 403
+  - 404
+  - 405
+  - 406
+  - 408
+  - 413
+  - 414
+  - 417
+  - 500
+  - 502
+  - 503
+  - 504

@@ -1,23 +1,24 @@
+---
 #
 # Default variables for the Tomcat role
 #
 
-tomcat_manage_java_pkg: False
+tomcat_manage_java_pkg: false
 
-tomcat_installer_force_download: True
-tomcat_installer_force_overwrite: True
-tomcat_installer_keep: True
-tomcat_installer_local: False # The True means try to copy from Ansible's local files folder
-tomcat_download_validate_certs: False
+tomcat_installer_force_download: true
+tomcat_installer_force_overwrite: true
+tomcat_installer_keep: true
+tomcat_installer_local: false  # The true means try to copy from Ansible's local files folder
+tomcat_download_validate_certs: false
 
-tomcat_manage_firewalld: True
+tomcat_manage_firewalld: true
 
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
 tomcat_patchversion: 32
 
-tomcat_offline_install: False
+tomcat_offline_install: false
 
 # Locations
 tomcat_base_folder: /opt
@@ -35,32 +36,32 @@ tomcat_catalina_out: '{{ tomcat_catalina_base }}/logs/catalina/catalina.out'
 
 tomcat_dir_mode: '0770'
 tomcat_file_mode: '0660'
-tomcat_create_symlink: True
+tomcat_create_symlink: true
 
 tomcat_process_name: '{{ tomcat_system_name }}'
 
-tomcat_force_update: False
+tomcat_force_update: false
 
 # Tomcat will use this use and group
-tomcat_manage_user: True
+tomcat_manage_user: true
 tomcat_system_user: tomcat
 tomcat_system_group: tomcat
 
 tomcat_http_port: 8080
 tomcat_http_zone: "internal"
-tomcat_http_source: # Tweak this according yout network
+tomcat_http_source:  # Tweak this according yout network
 - "0.0.0.0/0"
 tomcat_ajb_port: 8009
 tomcat_ajb_zone: "trusted"
-tomcat_ajb_source: # Tweak this according yout network
+tomcat_ajb_source:  # Tweak this according yout network
 - "0.0.0.0/0"
 tomcat_https_port: 8443
 tomcat_https_zone: "internal"
-tomcat_https_source: # Tweak this according yout network
+tomcat_https_source:  # Tweak this according yout network
 - "0.0.0.0/0"
 
 # Username and password for manager interface
-tomcat_manager_hash_password: True
+tomcat_manager_hash_password: true
 tomcat_manager_users:
 - user: admin
   pass: BNWXsbsn0drzvChhQNUAq1efHGP0
@@ -73,7 +74,7 @@ tomcat_manager_roles:
 java_home: /usr/java/jdk1.8.0_181
 java_version: 8
 
-tomcat_java_gc: CMSGC # G1GC or CMSGC or other
+tomcat_java_gc: CMSGC  # G1GC or CMSGC or other
 
 tomcat_java_gc_cms: -XX:+CMSClassUnloadingEnabled
 tomcat_java_gc_g1: -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85
@@ -91,66 +92,65 @@ tomcat_java_permsize_max: 384
 tomcat_jmx_host: '{{ ansible_default_ipv4.address }}'
 tomcat_jmx_port: 48080
 tomcat_jmx_zone: "trusted"
-tomcat_jmx_source: # Tweak this according yout network
-- "0.0.0.0/0"
+tomcat_jmx_source:  # Tweak this according yout network
+  - "0.0.0.0/0"
 tomcat_shutdown_port: 49080
 tomcat_shutdown_zone: "trusted"
-tomcat_shutdown_source: # Tweak this according yout network
-- "127.0.0.1/32"
+tomcat_shutdown_source:  # Tweak this according yout network
+  - "127.0.0.1/32"
 tomcat_shutdown_command: 'SHUTDOWN-Hr7lA6dgGQ'
 
 tomcat_jmx_users:
-- user: monitoring
-  pass: IAGeqqIFpLEiSxWpIhnASaDI31ds
-  type: readonly
-- user: administrator
-  pass: fYHKXKa68MKQcaq9S8BUEFP8dSN7
-  type: readwrite
+  - user: monitoring
+    pass: IAGeqqIFpLEiSxWpIhnASaDI31ds
+    type: readonly
+  - user: administrator
+    pass: fYHKXKa68MKQcaq9S8BUEFP8dSN7
+    type: readwrite
 
 tomcat_catalina_parameters:
 
-tomcat_use_custom_error_pages: True
+tomcat_use_custom_error_pages: true
 tomcat_custom_error_pages_url: 'https://raw.githubusercontent.com/KAMI911/errorpages/master/compiled/legacy/'
 
-tomcat_use_huge_pages: True
+tomcat_use_huge_pages: true
 
-tomcat_enable_logstash: True
+tomcat_enable_logstash: true
 
 tomcat_file_encoding: UTF-8
 tomcat_page_encoding: UTF-8
 
-tomcat_use_secure_flag: True
+tomcat_use_secure_flag: true
 
 tomcat_session_timeout: 30
-tomcat_session_http_only: True
-tomcat_session_secure: True
+tomcat_session_http_only: true
+tomcat_session_secure: true
 
 tomcat_password_hash: sha512
 
-tomcat_manager_allowed_from: "" # Installation default: "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
+tomcat_manager_allowed_from: ""  # Installation default: "127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1"
 tomcat_copy_webapps:
- - manager
- - host-manager
- #- examples
- #- docs
- #- ROOT
+  - manager
+  - host-manager
+# - examples
+# - docs
+# - ROOT
 
 tomcat_limits_file: '/etc/security/limits.d/{{ tomcat_system_user }}'
 tomcat_limits_conf:
- - domain: '{{ tomcat_system_user }}'
-   type: soft
-   item: nofile
-   value: 14000
- - domain: '{{ tomcat_system_user }}'
-   type: hard
-   item: nofile
-   value: 16384
- - domain: '{{ tomcat_system_user }}'
-   type: soft
-   item: nproc
-   value: 7000
- - domain: '{{ tomcat_system_user }}'
-   type: hard
-   item: nproc
-   value: 8192
-
+  - domain: '{{ tomcat_system_user }}'
+    type: soft
+    item: nofile
+    value: 14000
+  - domain: '{{ tomcat_system_user }}'
+    type: hard
+    item: nofile
+    value: 16384
+  - domain: '{{ tomcat_system_user }}'
+    type: soft
+    item: nproc
+    value: 7000
+  - domain: '{{ tomcat_system_user }}'
+    type: hard
+    item: nproc
+    value: 8192

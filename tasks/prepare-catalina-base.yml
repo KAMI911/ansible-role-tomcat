@@ -56,9 +56,9 @@
     group: "{{ tomcat_system_group }}"
     mode: "u=rwx,g=rwx,o="
   with_items:
-  - catalina
-  - gc
-  - access
+    - catalina
+    - gc
+    - access
 
 - name: create CATALINA_BASE/lib directory
   file:
@@ -132,8 +132,8 @@
     src: '{{ item }}.j2'
     dest: '{{ tomcat_catalina_base }}/conf/{{ item }}'
   with_items:
-  - 'context.xml'
-  - 'server.xml'
-  - 'web.xml'
-  - 'logging.properties'
-  - 'tomcat-users.xml'
+    - 'context.xml'
+    - 'server.xml'
+    - 'web.xml'
+    - 'logging.properties'
+    - 'tomcat-users.xml'

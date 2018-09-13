@@ -7,10 +7,10 @@
   shell: "ls -1 {{ tomcat_catalina_base }}/bin/*.bat"
   register: batch_files
 
-#- name: list of batch files
-#  debug:
-#    msg: "The script's stdout was: {{ batch_files.stdout_lines }}."
+# - name: list of batch files
+#   debug:
+#     msg: "The script's stdout was: {{ batch_files.stdout_lines }}."
 
-#- name: remove batch files
-#  file: path="{{ item }}" state=absent
-#  with_items: batch_files.stdout_lines
+# - name: remove batch files
+#   file: path="{{ item }}" state=absent
+#   with_items: batch_files.stdout_lines
