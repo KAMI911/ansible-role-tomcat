@@ -76,10 +76,10 @@
       when: (tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_local == true
   when: tomcat_installer_local == true
 
-  - name: 'download tomcat tar file {{ tomcat_download_file }}'
-    get_url:
-      url: '{{ tomcat_download_url }}'
-      dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
-      validate_certs: '{{ tomcat_download_validate_certs }}'
-      mode: 644
-    when: (tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_force_download == true and tomcat_installer_local == false
+- name: 'download tomcat tar file {{ tomcat_download_file }}'
+  get_url:
+    url: '{{ tomcat_download_url }}'
+    dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+    validate_certs: '{{ tomcat_download_validate_certs }}'
+    mode: 644
+  when: (tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_force_download == true and tomcat_installer_local == false
