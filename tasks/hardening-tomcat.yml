@@ -1,7 +1,8 @@
+---
 #
 # Hardening Tomcat
 #
----
+
 - name: copy recommended default applications
   command: "cp -r --preserve=mode,ownership,timestamps\
   {{ tomcat_catalina_home }}/webapps/{{ item }}/\

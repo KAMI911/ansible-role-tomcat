@@ -1,6 +1,8 @@
+---
 #
 # Remove bat files on non-Windows systems
 #
+
 - name: create list of batch files
   shell: "ls -1 {{ tomcat_catalina_base }}/bin/*.bat"
   register: batch_files
