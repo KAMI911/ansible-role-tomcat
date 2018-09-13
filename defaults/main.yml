@@ -50,26 +50,26 @@ tomcat_system_group: tomcat
 tomcat_http_port: 8080
 tomcat_http_zone: "internal"
 tomcat_http_source:  # Tweak this according yout network
-- "0.0.0.0/0"
+  - "0.0.0.0/0"
 tomcat_ajb_port: 8009
 tomcat_ajb_zone: "trusted"
 tomcat_ajb_source:  # Tweak this according yout network
-- "0.0.0.0/0"
+  - "0.0.0.0/0"
 tomcat_https_port: 8443
 tomcat_https_zone: "internal"
 tomcat_https_source:  # Tweak this according yout network
-- "0.0.0.0/0"
+  - "0.0.0.0/0"
 
 # Username and password for manager interface
 tomcat_manager_hash_password: true
 tomcat_manager_users:
-- user: admin
-  pass: BNWXsbsn0drzvChhQNUAq1efHGP0
-  roles: admin-gui,manager-gui
+  - user: admin
+    pass: BNWXsbsn0drzvChhQNUAq1efHGP0
+    roles: admin-gui,manager-gui
 
 tomcat_manager_roles:
-- name: admin-gui
-- name: manager-gui
+  - name: admin-gui
+  - name: manager-gui
 
 java_home: /usr/java/jdk1.8.0_181
 java_version: 8
