@@ -10,7 +10,8 @@ services:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
+  - sudo apt-get install -o Dpkg::Options::="--force-confold"\
+    --force-yes -y docker-ce
 
 install:
   - pip install ansible==2.4.3.0
@@ -24,4 +25,3 @@ script:
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-
