@@ -89,7 +89,7 @@ tomcat_java_permsize_min: 384
 tomcat_java_permsize_max: 384
 
 # JMX configuration
-tomcat_jmx_host: '{{ ansible_default_ipv4.address }}'
+tomcat_jmx_host: '{{ ansible_default_ipv4.address | default('127.0.0.1') }}'
 tomcat_jmx_port: 48080
 tomcat_jmx_zone: "trusted"
 tomcat_jmx_source:  # Tweak this according yout network
