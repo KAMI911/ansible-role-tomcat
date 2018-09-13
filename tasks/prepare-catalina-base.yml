@@ -113,18 +113,21 @@
     src: "{{ tomcat_catalina_home }}/bin/catalina.sh"
     dest: "{{ tomcat_catalina_base }}/bin/catalina.sh"
     state: link
+    force: true
 
 - name: symlink startup script
   file:
     src: "{{ tomcat_catalina_home }}/bin/startup.sh"
     dest: "{{ tomcat_catalina_base }}/bin/startup.sh"
     state: link
+    force: true
 
 - name: symlink shutdown script
   file:
     src: "{{ tomcat_catalina_home }}/bin/shutdown.sh"
     dest: "{{ tomcat_catalina_base }}/bin/shutdown.sh"
     state: link
+    force: true
 
 - name: 'generate \"{{ item }}\" from template, using\
          the default recommended settings'
