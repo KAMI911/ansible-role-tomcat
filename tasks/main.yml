@@ -43,4 +43,4 @@
 
 - name: manage firewalld
   include_tasks: manage_firewalld.yml
-  when: tomcat_manage_firewalld == true and ansible_distribution == 'CentOS' and ansible_distribution_major_version|int >= 7
+  when: tomcat_manage_firewalld == true

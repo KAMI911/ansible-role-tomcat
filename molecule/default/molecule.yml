@@ -11,12 +11,14 @@ platforms:
     image_version: 6.8
     groups:
       - jdk
+      - centos6
 
   - name: tomcat-centos6-10-server-jre
     image: centos
     image_version: 6.8
     groups:
       - server-jre
+      - centos6
 
   - name: tomcat-centos7-10-jdk
     image: milcom/centos7-systemd
@@ -24,6 +26,7 @@ platforms:
     privileged: true
     groups:
       - jdk
+      - centos7
 
   - name: tomcat-centos7-10-server-jre
     image: milcom/centos7-systemd
@@ -31,6 +34,7 @@ platforms:
     privileged: true
     groups:
       - server-jre
+      - centos7
 
 provisioner:
   name: ansible
@@ -42,6 +46,10 @@ provisioner:
         java_type: 'jdk'
       server-jre:
         java_type: 'serverjre'
+      centos6:
+        tomcat_manage_firewalld: false
+      centos7:
+        tomcat_manage_firewalld: true
 scenario:
   name: default
 verifier:
