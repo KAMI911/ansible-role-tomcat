@@ -28,7 +28,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
-  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true )
+  when: ( tomcat_installed.stat.exists == false or tomcat_force_update == true )
 
 - name: create download directory
   file:
@@ -38,6 +38,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
+  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true )
 
 - name: is already downloaded locally
   local_action:
@@ -74,7 +75,7 @@
         src: '{{ tomcat_download_file }}'
         dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
         mode: 0644
-      when: (tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_local == true
+      when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_local == true
   when: tomcat_installer_local == true
 
 - name: 'download tomcat tar file {{ tomcat_download_file }}'
