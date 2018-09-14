@@ -129,8 +129,7 @@
     state: link
     force: true
 
-- name: 'generate \"{{ item }}\" from template, using\
-         the default recommended settings'
+- name: 'generate configuartion from template, using the default recommended settings'
   template:
     src: '{{ item }}.j2'
     dest: '{{ tomcat_catalina_base }}/conf/{{ item }}'
