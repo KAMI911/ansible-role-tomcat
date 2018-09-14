@@ -13,6 +13,7 @@
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0750
+  when: (logstash_installed.stat.exists == false or tomcat_force_update == true)
 
 - name: download Logstash logging bundle
   get_url:
@@ -27,7 +28,7 @@
     owner: "{{ tomcat_root_user }}"
     group: "{{ tomcat_system_group }}"
     copy: false
-  when: (logstash_installed.stat.exists == false or tomcat_installed.stat.exists == false or tomcat_force_update == true) and tomcat_offline_install == false
+  when: (logstash_installed.stat.exists == false or tomcat_force_update == true) and tomcat_offline_install == false
 
 - name: extract Logstash logging bundle
   unarchive:

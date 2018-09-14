@@ -28,6 +28,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
+  when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true )
 
 - name: create download directory
   file:
