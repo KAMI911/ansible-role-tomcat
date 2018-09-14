@@ -28,7 +28,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
-  when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true )
+  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true )
 
 - name: create download directory
   file:
@@ -56,7 +56,7 @@
     src: '{{ tomcat_download_file }}'
     dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
     mode: 644
-  when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true ) and tomcat_installer_force_download == false and tomcat_installer_local == true
+  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true ) and tomcat_installer_force_download == false and tomcat_installer_local == true
 
 - block:
     - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
