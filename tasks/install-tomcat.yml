@@ -3,6 +3,10 @@
 # Install Tomcat
 #
 
+- name: check if Tomcat is installed.
+  stat: path='{{ tomcat_dir }}/LICENSE'
+  register: tomcat_installed
+
 - name: extract Tomcat archive into installation directory
   unarchive:
     src: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
@@ -10,7 +14,8 @@
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     copy: false
-  when: tomcat_force_update
+    creates: "'{{ tomcat_dir }}/bin/catalina.sh"
+  when: tomcat_installed.stat.exists == false or tomcat_force_update == true
 
 - name: create symlink for 'tomcat' to the installation directory
   file:

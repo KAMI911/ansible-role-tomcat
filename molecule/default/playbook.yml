@@ -6,6 +6,6 @@
     tomcat_installer_force_overwrite: true
     tomcat_installer_keep: true
     tomcat_installer_local: true
-    tomcat_force_update: true
+    tomcat_force_update: false
   roles:
     - role: ansible-role-tomcat
