@@ -132,6 +132,19 @@ Please continue reading in the [contributing chapter](CONTRIBUTING.md).
 
 https://github.com/KAMI911/ansible-role-tomcat
 
+Add a new remote `upstream` with this repository as value.
+
+```
+git remote add upstream https://github.com/KAMI911/ansible-role-tomcat.git
+```
+
+You can pull updates to your fork's master branch:
+
+```
+git fetch --all
+git pull upstream HEAD
+```
+
 ## Donation
 
 If you find this useful, please consider a donation:
