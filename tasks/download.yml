@@ -30,16 +30,6 @@
     state: directory
   when: ( tomcat_installed.stat.exists == false or tomcat_force_update == true )
 
-- name: create download directory
-  file:
-    path: '{{ tomcat_download_dir }}'
-    owner: '{{ tomcat_system_user }}'
-    group: '{{ tomcat_system_group }}'
-    mode: '{{ tomcat_dir_mode }}'
-    recurse: true
-    state: directory
-  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true )
-
 - name: is already downloaded locally
   local_action:
     module: stat
@@ -52,12 +42,15 @@
     path: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
   register: tomcat_is_download_file
 
-- name: copy local tomcat tar file
-  copy:
-    src: '{{ tomcat_download_file }}'
-    dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
-    mode: 644
-  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true ) and tomcat_installer_force_download == false and tomcat_installer_local == true
+- name: create download directory
+  file:
+    path: '{{ tomcat_download_dir }}'
+    owner: '{{ tomcat_system_user }}'
+    group: '{{ tomcat_system_group }}'
+    mode: '{{ tomcat_dir_mode }}'
+    recurse: true
+    state: directory
+  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true or tomcat_is_download_file.stat.exist == false )
 
 - block:
     - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
