@@ -61,14 +61,14 @@
         dest: './{{ tomcat_download_file }}'
         mode: 0644
       run_once: true
-      when: ( tomcat_is_local_download_file.stat.exists == false or tomcat_installer_force_overwrite == true ) and tomcat_installer_force_download == true and tomcat_installer_local == true
+      when: ( tomcat_is_local_download_file.stat.exists == false or tomcat_installer_force_overwrite == true ) or tomcat_installer_force_download == true
 
     - name: copy downloaded tomcat tar file
       copy:
         src: '{{ tomcat_download_file }}'
         dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
         mode: 0644
-      when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_local == true
+      when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true)
   when: tomcat_installer_local == true
 
 - name: 'download tomcat tar file {{ tomcat_download_file }}'
