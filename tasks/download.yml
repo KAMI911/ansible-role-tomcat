@@ -50,7 +50,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
-  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true or tomcat_is_download_file.stat.exist == false )
+  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true or tomcat_is_download_file.stat.exists == false )
 
 - block:
     - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
