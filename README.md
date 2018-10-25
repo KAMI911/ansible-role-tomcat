@@ -113,7 +113,7 @@ the MIT / BSD, you will find a copy of this license in the
 
 ## Author Information
 
-This role was created in 2016-2017 by Kálmán Szalai - KAMI
+This role was created in 2016-2018 by Kálmán Szalai - KAMI
 
 ## Support
 
@@ -162,3 +162,4 @@ If you find this useful, please consider a donation:
 [Support]: #support
 [Contributing]: #contributing
 [Donation]: #donation
+
