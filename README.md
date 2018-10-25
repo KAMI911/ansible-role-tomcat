@@ -7,8 +7,8 @@ Installs Apache Tomcat Java Application server. Most complete Tomcat installatio
 ## Table of Contents
 
 1. [Requirements][Requirements]
-2. [Role Variables][Role Variables]
-3. [Installation][Installation]
+2. [Installation][Installation]
+3. [Role Variables][Role Variables]
 4. [Dependencies][Dependencies]
 5. [Example Playbook][Example Playbook]
 6. [Licensing][Licensing]
@@ -153,8 +153,8 @@ If you find this useful, please consider a donation:
 
 <!-- TOC URLs -->
 [Requirements]: #requirements
-[Role Variables]: #role_variables
 [Installation]: #installation
+[Role Variables]: #role_variables
 [Dependencies]: #dependencies
 [Example Playbook]: #example_playbook
 [Licensing]: #licensing
