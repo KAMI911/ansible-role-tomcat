@@ -40,3 +40,11 @@
     owner: "root"
     group: "root"
     mode: "0644"
+
+- name: "Prepare daily log, txt, current logrotate cron.d task"
+  template:
+    dest: '/etc/cron.d/{{ tomcat_system_name }}-logs'
+    src: "tomcat-logs.j2"
+    owner: "root"
+    group: "root"
+    mode: "0644"
