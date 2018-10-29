@@ -41,6 +41,11 @@
     group: "root"
     mode: "0644"
 
+- name: "Check cron.d folder"
+  stat:
+    path: /etc/cron.d
+  register: cron_d_dir
+
 - name: "Prepare daily log, txt, current logrotate cron.d task"
   template:
     dest: '/etc/cron.d/{{ tomcat_system_name }}-logs'
@@ -48,3 +53,4 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  when: cron_d_dir.stat.exists
