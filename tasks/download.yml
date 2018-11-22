@@ -1,7 +1,8 @@
 ---
 # task file for tomcat
 
-- stat: path='{{ tomcat_dir }}/RUNNING.txt'
+- name: check if Tomcat is installed.
+  stat: path='{{ tomcat_dir }}/LICENSE'
   register: tomcat_installed
 
 - block:

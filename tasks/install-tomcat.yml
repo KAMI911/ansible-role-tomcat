@@ -3,10 +3,6 @@
 # Install Tomcat
 #
 
-- name: check if Tomcat is installed.
-  stat: path='{{ tomcat_dir }}/LICENSE'
-  register: tomcat_installed
-
 - name: extract Tomcat archive into installation directory
   unarchive:
     src: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
