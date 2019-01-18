@@ -79,6 +79,10 @@ Tomcat manage java installation an install OpenJDK or not.
 
 Optional: Use this folder name for this tomcat instance.
 
+    tomcat_service_enabled: true
+
+Enable or disable tomcat service on system startup.
+
     tomcat_system_home: "{{ tomcat_base_folder }}/{{ tomcat_system_user }}"
 
 Folder of Tomcat binaries.

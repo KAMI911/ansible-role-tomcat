@@ -12,6 +12,8 @@
     copy: false
     creates: "'{{ tomcat_dir }}/bin/catalina.sh"
   when: tomcat_installed.stat.exists == false or tomcat_force_update == true
+  notify:
+    - restart wildfly services
 
 - name: create symlink for 'tomcat' to the installation directory
   file:

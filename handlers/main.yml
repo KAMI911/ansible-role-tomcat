@@ -1,0 +1,7 @@
+
+- name: restart tomcat
+  service:
+    name: '{{ tomcat_system_name }}'
+    state: restarted
+    enabled: '{{ tomcat_service_enabled }}'
+  listen: 'restart tomcat services'
