@@ -1,4 +1,4 @@
-
+---
 - name: restart tomcat
   service:
     name: '{{ tomcat_system_name }}'
