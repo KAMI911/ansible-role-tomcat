@@ -47,13 +47,35 @@
     - '{{ tomcat_https_source }}'
   when: not tomcat_manage_firewalld_use_zone
 
+- name: 'configure firewalld for jmx port {{ tomcat_jmx_port }}'
+  firewalld:
+    port: '{{ tomcat_jmx_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enabled
+    source: '{{ item }}'
+  with_items:
+    - '{{ tomcat_jmx_source }}'
+  when: not tomcat_manage_firewalld_use_zone
+
+- name: 'configure firewalld for shutdown port {{ tomcat_shutdown_port }}'
+  firewalld:
+    port: '{{ tomcat_shutdown_port }}/tcp'
+    permanent: true
+    immediate: true
+    state: enabled
+    source: '{{ item }}'
+  with_items:
+    - '{{ tomcat_shutdown_source }}'
+  when: not tomcat_manage_firewalld_use_zone
+
 - name: 'configure firewalld for http port {{ tomcat_http_port }}'
   firewalld:
     port: '{{ tomcat_http_port }}/tcp'
     permanent: true
     immediate: true
     state: enabled
-    zone: '{{ item }}'
+    zone: '{{ tomcat_http_zone }}'
   when: tomcat_manage_firewalld_use_zone
 
 - name: 'configure firewalld for ajb port {{ tomcat_ajb_port }}'
@@ -81,8 +103,7 @@
     immediate: true
     state: enabled
     zone: '{{ tomcat_jmx_zone }}'
-  with_items:
-    - '{{ tomcat_jmx_source }}'
+  when: tomcat_manage_firewalld_use_zone
 
 - name: 'configure firewalld for shutdown port {{ tomcat_shutdown_port }}'
   firewalld:
@@ -91,5 +112,4 @@
     immediate: true
     state: enabled
     zone: '{{ tomcat_shutdown_zone }}'
-  with_items:
-    - '{{ tomcat_https_source }}'
+  when: tomcat_manage_firewalld_use_zone
