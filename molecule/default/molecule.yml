@@ -6,22 +6,6 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: tomcat-ubuntu-bionic-10-jdk
-    image: solita/ubuntu-systemd
-    image_version: bionic
-    privileged: true
-    groups:
-      - jdk
-      - ubuntu
-
-  - name: tomcat-ubuntu-bionic-10-server-jre
-    image: ubuntu-bionic
-    image_version: bionic
-    privileged: true
-    groups:
-      - server-jre
-      - ubuntu
-
   - name: tomcat-centos6-10-jdk
     image: centos
     image_version: 6.8
