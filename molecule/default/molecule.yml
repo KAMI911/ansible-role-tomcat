@@ -36,6 +36,24 @@ platforms:
       - server-jre
       - centos7
 
+  - name: tomcat-centos7-10-jdk-firewalld-source
+    image: milcom/centos7-systemd
+    image_version: latest
+    privileged: true
+    groups:
+      - jdk
+      - centos7
+      - firewalld_source
+
+  - name: tomcat-centos7-10-server-jre-firewalld-source
+    image: milcom/centos7-systemd
+    image_version: latest
+    privileged: true
+    groups:
+      - server-jre
+      - centos7
+      - firewalld_source
+
 provisioner:
   name: ansible
   lint:
@@ -50,6 +68,8 @@ provisioner:
         tomcat_manage_firewalld: false
       centos7:
         tomcat_manage_firewalld: true
+      firewalld_source:
+        tomcat_manage_firewalld_use_zone: false
 scenario:
   name: default
 verifier:
