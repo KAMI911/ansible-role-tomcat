@@ -20,7 +20,7 @@ install:
   - pip install docker-py
 
 script:
-  - molecule test
+  - travis_wait 60 molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
