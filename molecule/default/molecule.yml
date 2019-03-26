@@ -6,6 +6,22 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: tomcat-ubuntu-bionic-10-jdk
+    image: solita/ubuntu-systemd
+    image_version: bionic
+    privileged: true
+    groups:
+      - jdk
+      - ubuntu
+
+  - name: tomcat-ubuntu-bionic-10-server-jre
+    image: ubuntu-bionic
+    image_version: bionic
+    privileged: true
+    groups:
+      - server-jre
+      - ubuntu
+
   - name: tomcat-centos6-10-jdk
     image: centos
     image_version: 6.8
@@ -70,6 +86,8 @@ provisioner:
         tomcat_manage_firewalld: true
       firewalld_source:
         tomcat_manage_firewalld_use_zone: false
+      ubuntu:
+        tomcat_manage_firewalld: false
 scenario:
   name: default
 verifier:
