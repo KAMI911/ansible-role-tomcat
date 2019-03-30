@@ -107,6 +107,10 @@ Role manages the firewalld settings of required ports.
 
 Tomcat firewalld uses zones (default) or use source addresses.
 
+    tomcat_java_version: 11
+
+Configure Tomcat to use the specified version version of Java.
+
 ## Dependencies
 
 None.

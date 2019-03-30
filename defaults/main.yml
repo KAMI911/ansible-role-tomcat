@@ -75,7 +75,7 @@ tomcat_manager_roles:
   - name: manager-gui
 
 java_home: /usr/java/jdk1.8.0_181
-java_version: 8
+tomcat_java_version: 11
 
 tomcat_java_gc: CMSGC  # G1GC or CMSGC or other
 

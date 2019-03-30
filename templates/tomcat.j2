@@ -31,7 +31,7 @@ JVM_TMP="/tmp/tomcat-$NAME-tmp"
 
 #Location of JAVA_HOME (bin files)
 export JAVA_HOME="{{ java_home }}"
-{% if java_version >= 9 %}
+{% if tomcat_java_version >= 9 %}
 export JRE_HOME="{{ java_home }}"
 {% endif %}
 
