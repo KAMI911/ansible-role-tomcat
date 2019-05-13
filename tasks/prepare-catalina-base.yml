@@ -50,11 +50,19 @@
 
 - name: create CATALINA_BASE/logs directory
   file:
+    path: "{{ tomcat_catalina_base }}/logs/"
+    state: directory
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: "{{ tomcat_catalina_logs_directory_mode }}"
+
+- name: create CATALINA_BASE/logs subdirectories
+  file:
     path: "{{ tomcat_catalina_base }}/logs/{{ item }}"
     state: directory
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
-    mode: "u=rwx,g=rwx,o="
+    mode: "{{ tomcat_catalina_logs_directory_mode }}"
   with_items:
     - catalina
     - gc

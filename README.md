@@ -107,6 +107,10 @@ Role manages the firewalld settings of required ports.
 
 Tomcat firewalld uses zones (default) or use source addresses.
 
+    tomcat_catalina_logs_directory_mode: "u=rwx,g=rwx,o="
+
+Tomcat catalina logs directory mode.
+
     tomcat_java_version: 11
 
 Configure Tomcat to use the specified version version of Java.
