@@ -53,7 +53,7 @@
                Server=" "
                URIEncoding="{{ tomcat_page_encoding }}"
                Secure="{% if tomcat_session_secure == True %}true{% else %}false{% endif %}"
-               compressableMimeType="{{ tomcat_http_compression_mime_types }}text/html,text/xml,text/css,text/javascript, application/x-javascript,application/javascript"
+               compressableMimeType="{{ tomcat_http_compression_mime_types }}"
                compression="{% if tomcat_http_compression == True %}on{% else %}off{% endif %}"
                compressionMinSize="{{ tomcat_http_compression_min_size }}"
                noCompressionUserAgents="{{ tomcat_http_compression_nocompress_user_agent }}"/>
