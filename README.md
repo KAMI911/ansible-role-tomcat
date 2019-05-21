@@ -94,7 +94,7 @@ Tomcat page encoding parameter: UTF-8
 
     tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
 
-Pttaern string of Tomcat access log. Tomcat [Access Logging](https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging):
+Pattern string of Tomcat access log. Tomcat [Access Logging](https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging):
 
 Values for the pattern attribute are made up of literal text strings, combined with pattern identifiers prefixed by the "%" character to cause replacement by the corresponding variable value from the current request and response. The following pattern codes are supported:
 
