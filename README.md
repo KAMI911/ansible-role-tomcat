@@ -51,6 +51,39 @@ Since the process address space are virtual, the CPU and the operating system ha
 
 When you enable it use [KAMI911:hugepages](https://galaxy.ansible.com/KAMI911/hugepages/) to configure Huge Pages in Linux.
 
+    tomcat_http_port: 8080
+
+Tomcat listening http connection port.
+
+    tomcat_http_zone: "internal"
+
+Tomcat listening http connection port firewall zone.
+
+    tomcat_http_source:  # Tweak this according yout network
+    - "0.0.0.0/0"
+
+Tomcat listening http connection port firewall source networks.
+
+    tomcat_http_connection_timeout: 20000
+
+Tomcat listening http connection port connection timeout.
+
+    tomcat_http_compression_mime_types: "text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript"
+
+Tomcat http connection compressed MIME-types.
+
+    tomcat_http_compression: true
+
+Tomcat http connection compressed content enable/disable.
+
+    tomcat_http_compression_min_size: 256
+
+Tomcat http connection min compressed file size.
+
+    tomcat_http_compression_nocompress_user_agent: ""
+
+Tomcat http connection must be uncompressed for these browser user agents.
+
     tomcat_file_encoding: UTF-8
 
 Tomcat file encoding parameter: UTF-8
