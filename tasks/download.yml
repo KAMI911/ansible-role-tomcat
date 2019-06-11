@@ -42,7 +42,6 @@
   stat:
     path: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
   register: tomcat_is_download_file
-  when: not tomcat_installer_local
 
 - name: create download directory
   file:
