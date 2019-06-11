@@ -11,7 +11,7 @@
     group: "{{ tomcat_system_group }}"
     copy: false
     creates: "'{{ tomcat_dir }}/bin/catalina.sh"
-  when: tomcat_installed.stat.exists False or tomcat_force_update True
+  when: not tomcat_installed.stat.exists or tomcat_force_update
   notify:
     - restart tomcat services
 
@@ -27,4 +27,4 @@
   with_items:
     - '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
   ignore_errors: true
-  when: tomcat_installer_keep False
+  when: not tomcat_installer_keep
