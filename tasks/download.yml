@@ -70,7 +70,7 @@
         src: '{{ tomcat_download_file }}'
         dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
         mode: 0644
-      when: (not tomcat_is_download_file.stat.exists or tomcat_installer_force_overwrite)
+      when: not tomcat_is_local_download_file.stat.exists or tomcat_installer_force_overwrite
   when: tomcat_installer_local
 
 - name: 'download tomcat tar file {{ tomcat_download_file }}'
