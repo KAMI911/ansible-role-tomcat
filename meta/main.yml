@@ -2,7 +2,10 @@
 galaxy_info:
   role_name: tomcat
   author: Kálmán Szalai - KAMI
-  description: Most complete Tomcat installation, supporting, init.d script, application naming, hugepages, hardening, beautiful error pages, sha512 hashed passwords, JMX configuration, multiple Tomcat versions, separated catalina_home and caralina_base.
+  description: Most complete Tomcat installation, supporting init.d script,\
+     application naming, hugepages, hardening, beautiful error pages,\
+     sha512 hashed passwords, JMX configuration, multiple Tomcat versions,\
+     separated catalina_home and caralina_base.
   license: MIT
   min_ansible_version: 1.9
 
