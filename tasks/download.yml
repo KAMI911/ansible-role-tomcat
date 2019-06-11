@@ -32,8 +32,7 @@
   when: ( tomcat_installed.stat.exists False or tomcat_force_update True )
 
 - name: is already downloaded locally
-  local_action:
-    module: stat
+  stat:
     path: '{{ tomcat_download_file }}'
   register: tomcat_is_local_download_file
   when: tomcat_installer_local True
@@ -41,6 +40,7 @@
 - name: is already downloaded
   stat:
     path: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+  delegate_to: localhost
   register: tomcat_is_download_file
 
 - name: create download directory
@@ -55,12 +55,12 @@
 
 - block:
     - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
-      local_action:
-        module: get_url
+      get_url:
         url: '{{ tomcat_download_url }}'
         validate_certs: '{{ tomcat_download_validate_certs }}'
         dest: './{{ tomcat_download_file }}'
         mode: 0644
+      delegate_to: localhost
       run_once: true
       when: ( tomcat_is_local_download_file.stat.exists False or tomcat_installer_force_overwrite True ) or tomcat_installer_force_download True
 
