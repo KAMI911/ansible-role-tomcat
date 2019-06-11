@@ -43,4 +43,4 @@
 
 - name: manage firewalld
   include_tasks: manage_firewalld.yml
-  when: tomcat_manage_firewalld == true
+  when: tomcat_manage_firewalld True

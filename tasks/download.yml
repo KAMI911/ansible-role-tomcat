@@ -29,14 +29,14 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
-  when: ( tomcat_installed.stat.exists == false or tomcat_force_update == true )
+  when: ( tomcat_installed.stat.exists False or tomcat_force_update True )
 
 - name: is already downloaded locally
   local_action:
     module: stat
     path: '{{ tomcat_download_file }}'
   register: tomcat_is_local_download_file
-  when: tomcat_installer_local == true
+  when: tomcat_installer_local True
 
 - name: is already downloaded
   stat:
@@ -51,7 +51,7 @@
     mode: '{{ tomcat_dir_mode }}'
     recurse: true
     state: directory
-  when: ( tomcat_installed.stat.exists == false or tomcat_installer_force_overwrite == true or tomcat_is_download_file.stat.exists == false )
+  when: ( tomcat_installed.stat.exists False or tomcat_installer_force_overwrite True or tomcat_is_download_file.stat.exists False )
 
 - block:
     - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
@@ -62,15 +62,15 @@
         dest: './{{ tomcat_download_file }}'
         mode: 0644
       run_once: true
-      when: ( tomcat_is_local_download_file.stat.exists == false or tomcat_installer_force_overwrite == true ) or tomcat_installer_force_download == true
+      when: ( tomcat_is_local_download_file.stat.exists False or tomcat_installer_force_overwrite True ) or tomcat_installer_force_download True
 
     - name: copy downloaded tomcat tar file
       copy:
         src: '{{ tomcat_download_file }}'
         dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
         mode: 0644
-      when: ( tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true)
-  when: tomcat_installer_local == true
+      when: ( tomcat_is_download_file.stat.exists False or tomcat_installer_force_overwrite True)
+  when: tomcat_installer_local True
 
 - name: 'download tomcat tar file {{ tomcat_download_file }}'
   get_url:
@@ -78,4 +78,4 @@
     dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
     validate_certs: '{{ tomcat_download_validate_certs }}'
     mode: 644
-  when: (tomcat_is_download_file.stat.exists == false or tomcat_installer_force_overwrite == true) and tomcat_installer_force_download == true and tomcat_installer_local == false
+  when: (tomcat_is_download_file.stat.exists False or tomcat_installer_force_overwrite True) and tomcat_installer_force_download True and tomcat_installer_local False
