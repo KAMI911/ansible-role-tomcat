@@ -37,7 +37,7 @@ handlers = 1catalina.org.apache.juli.AsyncFileHandler,     \
 4host-manager.org.apache.juli.AsyncFileHandler.format=%1$tF %1$tT %4$-7s %5$s %n
 
 java.util.logging.ConsoleHandler.level = {{ tomcat_juli_logging_level }}
-java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
+java.util.logging.ConsoleHandler.formatter = org.apache.juli.OneLineFormatter
 java.util.logging.SimpleFormatter.format=%1$tF %1$tT %4$-7s %5$s %n
 
 ############################################################
