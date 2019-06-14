@@ -136,6 +136,7 @@ tomcat_page_encoding: UTF-8
 tomcat_use_secure_flag: true
 
 tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
+tomcat_juli_logging_level: "FINE"
 
 tomcat_session_timeout: 30
 tomcat_session_http_only: true
