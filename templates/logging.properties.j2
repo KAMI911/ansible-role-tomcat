@@ -1,5 +1,9 @@
 # {{ ansible_managed }}
-handlers = 2localhost.org.apache.juli.AsyncFileHandler, 3manager.org.apache.juli.AsyncFileHandler, 4host-manager.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler
+handlers = 1catalina.org.apache.juli.AsyncFileHandler,     \
+           2localhost.org.apache.juli.AsyncFileHandler,    \
+           3manager.org.apache.juli.AsyncFileHandler,      \
+           4host-manager.org.apache.juli.AsyncFileHandler, \
+           java.util.logging.ConsoleHandler
 
 .handlers = java.util.logging.ConsoleHandler
 
