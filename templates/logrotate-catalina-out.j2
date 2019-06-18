@@ -3,6 +3,7 @@
   su {{ tomcat_system_user }} {{ tomcat_system_group }}
   daily
   rotate 730
+  copytruncate
   compress
   delaycompress
   missingok
