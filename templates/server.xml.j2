@@ -129,6 +129,21 @@
       <!-- Use the LockOutRealm to prevent attempts to guess user passwords
            via a brute-force attack -->
       <Realm className="org.apache.catalina.realm.LockOutRealm">
+{% if tomcat_ldap_enable == True %}
+        <Realm className="org.apache.catalina.realm.JNDIRealm" debug="{{ tomcat_ldap_debug_level }}"
+          connectionURL="{{ tomcat_ldap_url }}"
+          connectionName="{{ tomcat_ldap_user }}"
+          connectionPassword="{{ tomcat_ldap_pastomcat_ldap_pass }}"
+          referrals="{{ tomcat_ldap_user_referrals }}"
+          userBase="{{ tomcat_ldap_user_ou }}"
+          userSearch="{{ tomcat_ldap_user_name }}"
+          userSubtree="{% if tomcat_ldap_user_subtree == true %}true{% else %}false{% endif %}"
+          roleBase="{{ tomcat_ldap_role_ou }}"
+          roleName="{{ tomcat_ldap_role_name }}"
+          roleSubtree="{% if tomcat_ldap_role_subtree == true %}true{% else %}false{% endif %}"
+          roleSearch="{{ tomcat_ldap_role_search }}" >
+        </Realm>
+{% endif %}
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
                resourceName="UserDatabase"{% if tomcat_majorversion < 8 %} digest="sha-512"{% endif %}>
 {% if tomcat_majorversion >= 8 %}

@@ -152,6 +152,23 @@ tomcat_copy_webapps:
 # - docs
 # - ROOT
 
+tomcat_ldap_enable: false
+tomcat_ldap_debug_level: 99
+
+tomcat_ldap_url: 'ldap://ldap.cloud.department.ca:389'
+tomcat_ldap_user: 'technicaluser@cloud.department.ca'
+tomcat_ldap_pass: 'password'
+
+tomcat_ldap_user_ou: 'ou=Users,dc=cloud,dc=department,dc=ca'
+tomcat_ldap_user_name: "(sAMAccountName={0})"
+tomcat_ldap_user_referrals: 'follow'
+tomcat_ldap_user_subtree: true
+
+tomcat_ldap_role_ou: 'ou=TomcatAdmin,ou=Groups,dc=cloud,dc=department,dc=ca'
+tomcat_ldap_role_name: 'name'
+tomcat_ldap_role_subtree: true
+tomcat_ldap_role_search: '(member={0})'
+
 tomcat_limits_file: '/etc/security/limits.d/{{ tomcat_system_user }}'
 tomcat_limits_conf:
   - domain: '{{ tomcat_system_user }}'

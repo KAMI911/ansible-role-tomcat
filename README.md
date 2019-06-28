@@ -214,6 +214,60 @@ Tomcat catalina logs directory mode.
 
 Configure Tomcat to use the specified version version of Java.
 
+Tomcat LDAP authentication configuration:
+
+    tomcat_ldap_enable: false
+
+Enable Tomcat LDAP authentication. Disabled by default.
+
+    tomcat_ldap_debug_level: 99
+
+Tomcat LDAP authentication debug level. Default is 99.
+
+    tomcat_ldap_url: 'ldap://ldap.cloud.department.ca:389'
+
+Tomcat LDAP authentication URL. Do not use the default value. Tweak this value according your settings.
+
+    tomcat_ldap_user: 'technicaluser@cloud.department.ca'
+
+Tomcat LDAP user to reach LDAP server. Do not use the default value. Tweak this value according your settings.
+
+    tomcat_ldap_pass: 'password'
+
+Tomcat LDAP user's password to reach LDAP server. Do not use the default value. Tweak this value according your settings.
+
+    tomcat_ldap_user_ou: 'ou=Users,dc=cloud,dc=department,dc=ca'
+
+Organization Unit of valid users for Tomcat LDAP authentication. Tweak this value according your settings.
+
+    tomcat_ldap_user_name: "(sAMAccountName={0})"
+
+Name of authenticated users for Tomcat LDAP authentication. Default setting is (sAMAccountName={0}) which perfect for Windows Active Directory.
+
+    tomcat_ldap_user_referrals: 'follow'
+
+
+
+    tomcat_ldap_user_subtree: true
+
+Tomcat LDAP user could be on the subtree of Organization Unit.
+
+    tomcat_ldap_role_ou: 'ou=TomcatAdmin,ou=Groups,dc=cloud,dc=department,dc=ca'
+
+Organization Unit of group of users for Tomcat LDAP authentication. Tweak this value according your settings. Create security groups here with the Tomcat role names like "manager-gui".
+
+    tomcat_ldap_role_name: 'name'
+
+User security group name as Tomcat role names like "manager-gui". Default is good if you want to use Tomcat role names.
+
+    tomcat_ldap_role_subtree: true
+
+Tomcat LDAP group could be on the subtree of Organization Unit.
+
+    tomcat_ldap_role_search: '(member={0})'
+
+Every member matching the security group's name could access the server as specified in the role.
+
 ## Dependencies
 
 None.
