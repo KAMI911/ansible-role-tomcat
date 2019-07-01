@@ -55,6 +55,10 @@ When you enable it use [KAMI911:hugepages](https://galaxy.ansible.com/KAMI911/hu
 
 Tomcat listening http connection port.
 
+    tomcat_http_stp: false
+
+Tomcat "Connector" using the shared thread pool for http connections.
+
     tomcat_http_zone: "internal"
 
 Tomcat listening http connection port firewall zone.

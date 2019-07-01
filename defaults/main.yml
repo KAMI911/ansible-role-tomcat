@@ -53,6 +53,7 @@ tomcat_system_user: tomcat
 tomcat_system_group: tomcat
 
 tomcat_http_port: 8080
+tomcat_http_stp: false
 tomcat_http_zone: "internal"
 tomcat_http_source:  # Tweak this according yout network
   - "0.0.0.0/0"
@@ -65,6 +66,7 @@ tomcat_http_compression_min_size: 256
 tomcat_http_compression_nocompress_user_agent: ""
 
 tomcat_ajp_port: 8009
+tomcat_ajp_stp: false
 tomcat_ajp_zone: "trusted"
 tomcat_ajp_source:  # Tweak this according yout network
   - "0.0.0.0/0"
