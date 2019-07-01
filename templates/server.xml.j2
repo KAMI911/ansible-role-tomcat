@@ -104,8 +104,8 @@
     </Connector>
     -->
 
-    <!-- Define an AJP 1.3 Connector on port {{ tomcat_ajb_port }} -->
-    <Connector port="{{ tomcat_ajb_port }}" protocol="AJP/1.3" redirectPort="{{ tomcat_https_port }}" />
+    <!-- Define an AJP 1.3 Connector on port {{ tomcat_ajp_port }} -->
+    <Connector port="{{ tomcat_ajp_port }}" protocol="AJP/1.3" redirectPort="{{ tomcat_https_port }}" />
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes

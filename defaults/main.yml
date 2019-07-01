@@ -64,9 +64,9 @@ tomcat_http_compression: true
 tomcat_http_compression_min_size: 256
 tomcat_http_compression_nocompress_user_agent: ""
 
-tomcat_ajb_port: 8009
-tomcat_ajb_zone: "trusted"
-tomcat_ajb_source:  # Tweak this according yout network
+tomcat_ajp_port: 8009
+tomcat_ajp_zone: "trusted"
+tomcat_ajp_source:  # Tweak this according yout network
   - "0.0.0.0/0"
 tomcat_https_port: 8443
 tomcat_https_zone: "internal"

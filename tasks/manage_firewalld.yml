@@ -25,15 +25,15 @@
     - '{{ tomcat_http_source }}'
   when: not tomcat_manage_firewalld_use_zone
 
-- name: 'configure firewalld for ajb port {{ tomcat_ajb_port }}'
+- name: 'configure firewalld for ajp port {{ tomcat_ajp_port }}'
   firewalld:
-    port: '{{ tomcat_ajb_port }}/tcp'
+    port: '{{ tomcat_ajp_port }}/tcp'
     permanent: true
     immediate: true
     state: enabled
     source: '{{ item }}'
   with_items:
-    - '{{ tomcat_ajb_source }}'
+    - '{{ tomcat_ajp_source }}'
   when: not tomcat_manage_firewalld_use_zone
 
 - name: 'configure firewalld for https port {{ tomcat_https_port }}'
@@ -78,13 +78,13 @@
     zone: '{{ tomcat_http_zone }}'
   when: tomcat_manage_firewalld_use_zone
 
-- name: 'configure firewalld for ajb port {{ tomcat_ajb_port }}'
+- name: 'configure firewalld for ajp port {{ tomcat_ajp_port }}'
   firewalld:
-    port: '{{ tomcat_ajb_port }}/tcp'
+    port: '{{ tomcat_ajp_port }}/tcp'
     permanent: true
     immediate: true
     state: enabled
-    zone: '{{ tomcat_ajb_zone }}'
+    zone: '{{ tomcat_ajp_zone }}'
   when: tomcat_manage_firewalld_use_zone
 
 - name: 'configure firewalld for https port {{ tomcat_https_port }}'
