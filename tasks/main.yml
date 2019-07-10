@@ -4,8 +4,7 @@
 # CATALINA_BASE directory from CATALINA_HOME
 #
 
-- { include_tasks: xmlx-package-Debian.yml, when: "ansible_os_family == 'Debian'", static: false }
-- { include_tasks: xmlx-package-RedHat.yml, when: "ansible_os_family == 'RedHat'", static: false }
+- { include_tasks: "xmlx-package-{{ ansible_os_family }}.yml", when: "ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'" }
 
 - name: install Tomcat prerequisite
   include_tasks: install-prerequisite.yml
