@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=Tomcat {{ tomcat_process_name }} Java Application Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile=!!!!PID
+ExecStart=/etc/init.d/{{ tomcat_process_name }} start
+ExecReload=/etc/init.d/{{ tomcat_process_name }} reload
+ExecStop=/etc/init.d/{{ tomcat_process_name }} stop
+
+[Install]
+WantedBy=multi-user.target

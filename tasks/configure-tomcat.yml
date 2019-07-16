@@ -33,6 +33,14 @@
     group: "{{ tomcat_system_group }}"
     mode: 0750
 
+- name: generate Tomcat systemd script
+  template:
+    src: tomcat-systemd.j2
+    dest: "/etc/systemd/system/{{ tomcat_process_name }}.service"
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: 0750
+
 - name: "Prepare daily catalina.out logrotate"
   template:
     dest: '/etc/logrotate.d/{{ tomcat_system_name }}-catalina'
