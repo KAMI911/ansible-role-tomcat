@@ -280,7 +280,7 @@ Enable Tomcat debug port.
 
 Specify Tomcat debug port.
 
-    tomcat_debug_sever: {{ ansible_hostname }} # or 127.0.0.1
+    tomcat_debug_sever: '{{ ansible_hostname }}' # or 127.0.0.1
 
 Permit connection from all location of from local connection only.
 
