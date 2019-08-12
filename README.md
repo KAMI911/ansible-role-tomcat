@@ -272,6 +272,22 @@ Tomcat LDAP group could be on the subtree of Organization Unit.
 
 Every member matching the security group's name could access the server as specified in the role.
 
+    tomcat_debug_enable: false
+
+Enable Tomcat debug port.
+
+    tomcat_debug_port: 8000
+
+Specify Tomcat debug port.
+
+    tomcat_debug_local_only: false
+
+Permit local only connections.
+
+    tomcat_debug_parameter: '-agentlib:jdwp=transport=dt_socket,address={{ "{{ ansible_hostname }}" if not tomcat_debug_local_only else "127.0.0.1" }}:{{ tomcat_debug_port }},server=y,suspend=n'
+
+Specify Tomcat debug parameters.
+
 ## Dependencies
 
 None.

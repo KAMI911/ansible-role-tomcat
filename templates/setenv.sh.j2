@@ -51,6 +51,10 @@ CATALINA_OPTS="${CATALINA_OPTS} -Dprocessname=${PROCESS_NAME}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname={{ tomcat_jmx_host }} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.rmi.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
 
+{% if tomcat_debug_enable %}
+CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_debug_parameter }}"
+{% endif %}
+
 {% if tomcat_enable_logstash == true %}
 if [ -r "$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
   CLASSPATH=$CLASSPATH:$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/lib/logstash/json-simple-1.1.jar:$CATALINA_BASE/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/lib/logstash/commons-pool2-2.4.2.jar
