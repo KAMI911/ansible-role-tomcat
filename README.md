@@ -280,11 +280,11 @@ Enable Tomcat debug port.
 
 Specify Tomcat debug port.
 
-    tomcat_debug_local_only: false
+    tomcat_debug_sever: {{ ansible_hostname }} # or 127.0.0.1
 
-Permit local only connections.
+Permit connection from all location of from local connection only.
 
-    tomcat_debug_parameter: '-agentlib:jdwp=transport=dt_socket,address={{ "{{ ansible_hostname }}" if not tomcat_debug_local_only else "127.0.0.1" }}:{{ tomcat_debug_port }},server=y,suspend=n'
+    tomcat_debug_parameter: '-agentlib:jdwp=transport=dt_socket,address={{ tomcat_debug_sever }}:{{ tomcat_debug_port }},server=y,suspend=n'
 
 Specify Tomcat debug parameters.
 
