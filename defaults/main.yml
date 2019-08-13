@@ -125,7 +125,7 @@ tomcat_jmx_users:
 
 tomcat_debug_enable: false
 tomcat_debug_port: 8000
-tomcat_debug_sever: '{{ ansible_hostname }}'  # or 127.0.0.1
+tomcat_debug_sever: '*'  # or 127.0.0.1
 tomcat_debug_parameter: '-agentlib:jdwp=transport=dt_socket,address={{ tomcat_debug_sever }}:{{ tomcat_debug_port }},server=y,suspend=n'
 
 tomcat_catalina_parameters:
