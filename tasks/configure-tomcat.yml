@@ -40,7 +40,7 @@
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0750
-  when: not (ansible_os_family == 'RedHat' and {{ ansible_distribution_major_version|int }}  <= '6')
+  when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int <= '6')
 
 - name: "Prepare daily catalina.out logrotate"
   template:
