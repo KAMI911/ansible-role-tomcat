@@ -300,7 +300,7 @@ None.
 
 ## Licensing
 
-The lactransformer application and documantations are licensed under the terms of
+The Tomcat Ansible Role application and documantations are licensed under the terms of
 the MIT / BSD, you will find a copy of this license in the
 [LICENSE](LICENSE) file included in the source package.
 

@@ -13,11 +13,7 @@ before_install:
   - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
 
 install:
-  - pip install ansible==2.4.3.0
-  - pip install ansible-lint>=3.4.20
-  - pip install docker
-  - pip install molecule==2.17.0
-  - pip install docker-py
+  - pip install 'molecule[docker]'
 
 script:
   - travis_wait 60 molecule test

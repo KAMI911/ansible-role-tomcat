@@ -1,4 +1,12 @@
 ---
+- name: install init packages for CentOS 7
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: install initscripts package for CentOS 7
+      raw: yum install -y initscripts
+      become: true
+      changed_when: false
 - name: Converge
   hosts: all
   vars:
