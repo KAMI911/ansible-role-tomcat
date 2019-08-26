@@ -20,7 +20,6 @@
     src: '{{ tomcat_dir }}'
     dest: '{{ tomcat_catalina_home }}'
     state: link
-    mode: "u=rwx,go=rx"
 
 - name: delete Tomcat archive, if requested (default is yes)
   file: path={{ item }} state=absent
