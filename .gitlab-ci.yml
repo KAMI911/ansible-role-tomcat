@@ -13,4 +13,4 @@ before_script:
 test:
   stage: test
     script:
-      - molecule test
+    - molecule test
