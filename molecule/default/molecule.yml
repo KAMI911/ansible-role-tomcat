@@ -6,20 +6,20 @@ driver:
 lint:
   name: yamllint
 platforms:
-#  - name: tomcat-centos6-10-jdk
-#    image: centos
-#    image_version: centos6
-#    groups:
-#      - jdk
-#      - centos6
-#
-#  - name: tomcat-centos6-10-server-jre
-#    image: centos
-#    image_version: centos6
-#    groups:
-#      - server-jre
-#      - centos6
-#
+  #  - name: tomcat-centos6-10-jdk
+  #    image: centos
+  #    image_version: centos6
+  #    groups:
+  #      - jdk
+  #      - centos6
+  #
+  #  - name: tomcat-centos6-10-server-jre
+  #    image: centos
+  #    image_version: centos6
+  #    groups:
+  #      - server-jre
+  #      - centos6
+  #
   - name: tomcat-centos7-10-jdk
     image: milcom/centos7-systemd
     privileged: true
