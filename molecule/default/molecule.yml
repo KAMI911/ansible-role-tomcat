@@ -7,15 +7,13 @@ lint:
   name: yamllint
 platforms:
   - name: tomcat-centos6-10-jdk
-    image: centos
-    image_version: 6.8
+    image: centos6
     groups:
       - jdk
       - centos6
 
   - name: tomcat-centos6-10-server-jre
-    image: centos
-    image_version: 6.8
+    image: centos6
     groups:
       - server-jre
       - centos6
