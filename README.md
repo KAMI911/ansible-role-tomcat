@@ -157,6 +157,14 @@ The shorthand pattern pattern="common" corresponds to the Common Log Format defi
 
 The shorthand pattern pattern="combined" appends the values of the Referer and User-Agent headers, each in double quotes, to the common pattern.
 
+    tomcat_juli_logging_format: "%1$tY.%1$tm.%1$td %1$tT.%1$tL %4$-4s %5$s [%2$s]%6$s%n"
+
+Logging format for general Tomcat logs.
+
+    tomcat_juli_logging_handler: "AsyncFileHandler" # TODO: Tomcat 6-7 uses only FileHandler
+
+Use AsyncFileHandler for never Tomcat 8-9.
+
     tomcat_juli_logging_level: "FINE"
 
 Set [1catalina|2localhost|3manager|4host-manager].org.apache.juli.AsyncFileHandler.level and java.util.logging.ConsoleHandler.level to this loglevel. Possible values are:

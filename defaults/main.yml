@@ -142,9 +142,12 @@ tomcat_page_encoding: UTF-8
 
 tomcat_use_secure_flag: true
 
-tomcat_access_log_pattern: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %{User-Agent}i %{Referer}i %b %D"
+tomcat_access_log_pattern: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D %{User-Agent}i %{Referer}i"
 # Without user agent and referer: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D"
+
+tomcat_juli_logging_format: "%1$tY.%1$tm.%1$td %1$tT.%1$tL %4$-4s %5$s [%2$s]%6$s%n"
 tomcat_juli_logging_level: "FINE"
+tomcat_juli_logging_handler: "AsyncFileHandler"  # TODO: Tomcat 6-7 uses only FileHandler
 
 tomcat_session_timeout: 30
 tomcat_session_http_only: true
