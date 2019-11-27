@@ -144,7 +144,6 @@ tomcat_use_secure_flag: true
 
 tomcat_access_log_pattern: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %{User-Agent}i %{Referer}i %b %D"
 # Without user agent and referer: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D"
-
 tomcat_juli_logging_level: "FINE"
 
 tomcat_session_timeout: 30
