@@ -10,6 +10,7 @@ tomcat_installer_force_overwrite: true
 tomcat_installer_keep: true
 tomcat_installer_local: false  # The true means try to copy from Ansible's local files folder
 tomcat_download_validate_certs: false
+tomcat_force_update: false
 
 tomcat_manage_firewalld: true
 tomcat_manage_firewalld_use_zone: true
@@ -44,8 +45,6 @@ tomcat_create_symlink: true
 tomcat_catalina_logs_directory_mode: "u=rwx,g=rwx,o="
 
 tomcat_process_name: '{{ tomcat_system_name }}'
-
-tomcat_force_update: false
 
 # Tomcat will use this use and group
 tomcat_manage_user: true
