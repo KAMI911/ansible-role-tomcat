@@ -29,6 +29,38 @@ None.
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
+### Installation releted options
+
+    tomcat_manage_java_pkg: False
+
+Tomcat manage java installation an install OpenJDK or not.
+
+    tomcat_installer_force_download: true
+
+Always download the installation file. If already downloaded try to redownload it.
+
+    tomcat_installer_force_overwrite: true
+
+Always overwrite the installation file on the target machine.
+
+    tomcat_installer_keep: true
+
+Do not delete the installer after the successful installation.
+
+    tomcat_installer_local: false
+
+Download installation installation file to the Ansible host machine (not to the target machine) diredctly. Ansible will download and copy he installation file from the Ansible host machine.
+
+    tomcat_download_validate_certs: false
+
+Validate cert doring the external installation file download.
+
+    tomcat_force_update: false
+
+Force update when same version is already installed. Old version is always updated.
+
+### Version related options
+
     tomcat_majorversion: 8
 
 Tomcat major version.
@@ -41,6 +73,12 @@ Tomcat minor version.
 
 Tomcat micro version.
 
+    tomcat_java_version: 11
+
+Configure Tomcat to use the specified version version of Java.
+
+### Hugapeges usage related options
+
     tomcat_use_huge_pages: True
 
 Use Huge Pages (Java calls it: UseLargePages) for enhance performance of Java applications. When a process uses some memory, the CPU is marking the RAM as used by that process. For efficiency, the CPU allocate RAM by chunks of 4K bytes (it's the default value on many platforms). Those chunks are named pages. Those pages can be swapped to disk, etc.
@@ -50,6 +88,16 @@ Since the process address space are virtual, the CPU and the operating system ha
 [Debian Wiki: Hugepages](https://wiki.debian.org/Hugepages)
 
 When you enable it use [KAMI911:hugepages](https://galaxy.ansible.com/KAMI911/hugepages/) to configure Huge Pages in Linux.
+
+### Port, connection, and firewall related options
+
+    tomcat_manage_firewalld: true
+
+Role manages the firewalld settings of required ports.
+
+    tomcat_manage_firewalld_use_zone: true
+
+Tomcat firewalld uses zones (default) or use source addresses.
 
     tomcat_http_port: 8080
 
@@ -88,6 +136,8 @@ Tomcat http connection min compressed file size.
 
 Tomcat http connection must be uncompressed for these browser user agents.
 
+### Encoding related options
+
     tomcat_file_encoding: UTF-8
 
 Tomcat file encoding parameter: UTF-8
@@ -95,6 +145,12 @@ Tomcat file encoding parameter: UTF-8
     tomcat_page_encoding: UTF-8
 
 Tomcat page encoding parameter: UTF-8
+
+### Logging related options
+
+    tomcat_catalina_logs_directory_mode: "u=rwx,g=rwx,o="
+
+Tomcat catalina logs directory mode.
 
     tomcat_access_log_pattern: "%h %l %u %t &quot;%r&quot; %s %b"
 
@@ -170,6 +226,8 @@ Use AsyncFileHandler for never Tomcat 8-9.
 Set [1catalina|2localhost|3manager|4host-manager].org.apache.juli.AsyncFileHandler.level and java.util.logging.ConsoleHandler.level to this loglevel. Possible values are:
   SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST or ALL. Default is FINE.
 
+### Tomcat hardening related options
+
     tomcat_use_secure_flag: True
 
 Set this attribute to True if you wish to have calls to request.isSecure() to return true for requests received by this Connector. You would want this on an SSL Connector or a non SSL connector that is receiving data from a SSL accelerator, like a crypto card, a SSL appliance or even a webserver. The default value is False.
@@ -182,9 +240,7 @@ Forcing Tomcat to use JSESSIONID cookie over only http.
 
 Forcing Tomcat to use secure JSESSIONID cookie.
 
-    tomcat_manage_java_pkg: False
-
-Tomcat manage java installation an install OpenJDK or not.
+### Naming, folders, service related options
 
     tomcat_system_name: "tomcat_app_sys"
 
@@ -210,23 +266,7 @@ Tomcat Cataline home folder.
 
 Tomcat Catalina base folder.
 
-    tomcat_manage_firewalld: true
-
-Role manages the firewalld settings of required ports.
-
-    tomcat_manage_firewalld_use_zone: true
-
-Tomcat firewalld uses zones (default) or use source addresses.
-
-    tomcat_catalina_logs_directory_mode: "u=rwx,g=rwx,o="
-
-Tomcat catalina logs directory mode.
-
-    tomcat_java_version: 11
-
-Configure Tomcat to use the specified version version of Java.
-
-Tomcat LDAP authentication configuration:
+### Tomcat LDAP authentication configuration related options
 
     tomcat_ldap_enable: false
 
@@ -258,7 +298,11 @@ Name of authenticated users for Tomcat LDAP authentication. Default setting is (
 
     tomcat_ldap_user_referrals: 'follow'
 
-
+Referrals allow a directory tree to be partitioned and distributed between multiple LDAP servers, which means that LDAP servers may not store the entire
+DIT while still being capable of containing references to other LDAP servers that offer requested information instead. So, when you browse a directory,
+an LDAP server can refer you to another server by returning referrals. A referral is an entry with the referral objectClass, which contains at least one
+attribute named ref having an LDAP URL of the referred entry on another LDAP server as its value.
+https://www.ldapadministrator.com/resources/english/help/la20121/ch05s05.html
 
     tomcat_ldap_user_subtree: true
 
@@ -279,6 +323,8 @@ Tomcat LDAP group could be on the subtree of Organization Unit.
     tomcat_ldap_role_search: '(member={0})'
 
 Every member matching the security group's name could access the server as specified in the role.
+
+### Debug port related options
 
     tomcat_debug_enable: false
 
