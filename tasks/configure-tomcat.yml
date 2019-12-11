@@ -39,7 +39,7 @@
     dest: "/etc/systemd/system/{{ tomcat_process_name }}.service"
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
-    mode: 0750
+    mode: 0644
   when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int <= '6')
 
 - name: "Prepare daily catalina.out logrotate"
