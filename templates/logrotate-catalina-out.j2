@@ -8,7 +8,7 @@
   delaycompress
   missingok
   notifempty
-  compresscmd /usr/bin/xz
-  compressoptions "-9e"
-  compressext .xz
+  compresscmd {{ tomcat_log_compress_command }}
+  compressoptions "{{ tomcat_log_compress_options }}"
+  compressext {{ tomcat_log_compress_extension }}
 }

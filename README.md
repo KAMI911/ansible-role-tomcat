@@ -342,6 +342,22 @@ Permit connection from all location of from local connection only.
 
 Specify Tomcat debug parameters.
 
+### Tomcat log compression options
+
+    tomcat_log_compress_command: '/usr/bin/xz'
+
+Location is the compressor program. Default is xz so the dafault value is '/usr/bin/xz'.
+You can also use for example: '/usr/bin/gzip'.
+
+    tomcat_log_compress_options: '-9e'
+
+Options for compression program. For xz the default is '-9e' that means maximum compression.
+For gzip íou can use for example: '-9'.
+
+    tomcat_log_compress_extension: '.xz'
+
+File extension for logrotate specification. xz is '.xz', and gzip is 'gz'.
+
 ## Dependencies
 
 None.
