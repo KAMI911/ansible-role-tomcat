@@ -376,7 +376,7 @@ the MIT / BSD, you will find a copy of this license in the
 
 ## Author Information
 
-This role was created in 2016-2018 by Kálmán Szalai - KAMI
+This role was created in 2016-2020 by Kálmán Szalai - KAMI
 
 ## Support
 
