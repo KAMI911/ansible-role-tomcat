@@ -146,7 +146,7 @@ tomcat_access_log_pattern: "%{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarde
 # Without user agent and referer: "%{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D"
 # RFC5425 compatible: "<134>1 {yyyy-MM-dd'T'HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D %{Referer}i %{User-Agent}i"
 
-tomcat_juli_logging_format: "%1$tY.%1$tm.%1$td %1$tT.%1$tL %4$-4s %5$s [%2$s]%6$s%n"
+tomcat_juli_logging_format: "%1$tY.%1$tm.%1$tdT%1$tT.%1$tL%1$tXXX %4$-4s %5$s [%2$s]%6$s%n"
 tomcat_juli_logging_level: "FINE"
 tomcat_juli_logging_handler: "AsyncFileHandler"  # TODO: Tomcat 6-7 uses only FileHandler
 

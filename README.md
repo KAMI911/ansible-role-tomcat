@@ -213,9 +213,17 @@ The shorthand pattern pattern="common" corresponds to the Common Log Format defi
 
 The shorthand pattern pattern="combined" appends the values of the Referer and User-Agent headers, each in double quotes, to the common pattern.
 
-    tomcat_juli_logging_format: "%1$tY.%1$tm.%1$td %1$tT.%1$tL %4$-4s %5$s [%2$s]%6$s%n"
+    tomcat_juli_logging_format: "%1$tY.%1$tm.%1$tdT%1$tT.%1$tL%1$tXXX %4$-4s %5$s [%2$s]%6$s%n"
 
 Logging format for general Tomcat logs.
+
+The timestamp format is described here:
+https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#dt
+https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+
+Format is described here:
+https://docs.oracle.com/javase/7/docs/api/java/util/logging/SimpleFormatter.html#format(java.util.logging.LogRecord)
+
 
     tomcat_juli_logging_handler: "AsyncFileHandler" # TODO: Tomcat 6-7 uses only FileHandler
 
