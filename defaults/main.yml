@@ -200,6 +200,7 @@ tomcat_limits_conf:
     item: nproc
     value: 8192
 
+tomcat_log_rotate_minsize: 20K
 tomcat_log_compress_command: '/usr/bin/xz'
 tomcat_log_compress_options: '-9e'
 tomcat_log_compress_extension: '.xz'
