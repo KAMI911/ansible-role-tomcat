@@ -117,6 +117,7 @@ tomcat_shutdown_source:  # Tweak this according yout network
   - "127.0.0.1/32"
 tomcat_shutdown_command: 'SHUTDOWN-Hr7lA6dgGQ'
 
+tomcat_jmx_authenticate: true
 tomcat_jmx_users:
   - user: monitoring
     pass: IAGeqqIFpLEiSxWpIhnASaDI31ds
