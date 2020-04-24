@@ -12,6 +12,8 @@ JAVA_MIN_PERMSIZE={{ tomcat_java_permsize_min }}
 JAVA_MAX_PERMSIZE={{ tomcat_java_permsize_max }}
 {% endif %}
 
+JAVA_THREAD_STACK_SIZE={{ tomcat_java_thread_stack_size }}
+
 CATALINA_OUT="{{ tomcat_catalina_out }}"
 
 {% if tomcat_catalina_parameters != '' %}
@@ -25,7 +27,7 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
 CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding={{ tomcat_file_encoding }}"
-CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss512k"
+CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss${JAVA_THREAD_STACK_SIZE}k"
 {% if tomcat_java_gc == 'CMSGC' %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseConcMarkSweepGC {{ tomcat_java_gc_cms }}"
 {% elif tomcat_java_gc == 'G1GC' %}
