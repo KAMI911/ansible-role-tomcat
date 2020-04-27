@@ -146,6 +146,29 @@ Tomcat file encoding parameter: UTF-8
 
 Tomcat page encoding parameter: UTF-8
 
+### Memory configuration related options
+
+    tomcat_java_heap_min: 4096
+
+Java minimum Heap size. Memory sizes in megabytes (m).
+
+    tomcat_java_heap_max: 4096
+
+Java maximum Heap size. Memory sizes in megabytes (m).
+
+    tomcat_java_permsize_min: 384
+
+Java minumum permanent generation size. Memory sizes in megabytes (m). Only for Java 7 or older.
+
+    tomcat_java_permsize_max: 384
+
+Java minumum permanent generation size. Memory sizes in megabytes (m). Only for Java 7 or older.
+
+    tomcat_java_thread_stack_size: 512
+
+Java thread stack size in kilobytes (k)
+
+
 ### Logging related options
 
     tomcat_catalina_logs_directory_mode: "u=rwx,g=rwx,o="
