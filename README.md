@@ -297,6 +297,22 @@ Tomcat Cataline home folder.
 
 Tomcat Catalina base folder.
 
+### Tomcat JMX access configuration
+
+    tomcat_jmx_authenticate: true
+
+Enable or disable JMX authentication.
+
+    tomcat_jmx_users:
+    - user: monitoring
+        pass: IAGeqqIFpLEiSxWpIhnASaDI31ds
+        type: readonly
+    - user: administrator
+        pass: fYHKXKa68MKQcaq9S8BUEFP8dSN7
+        type: readwrite
+
+Define JMX users with name role and password.
+
 ### Tomcat LDAP authentication configuration related options
 
     tomcat_ldap_enable: false
