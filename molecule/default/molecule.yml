@@ -4,37 +4,56 @@ dependency:
 driver:
   name: docker
 platforms:
-  #  - name: tomcat-centos6-10-jdk
-  #    image: centos
-  #    image_version: centos6
-  #    groups:
-  #      - jdk
-  #      - centos6
-  #
-  #  - name: tomcat-centos6-10-server-jre
-  #    image: centos
-  #    image_version: centos6
-  #    groups:
-  #      - server-jre
-  #      - centos6
-  #
-  - name: tomcat-centos7-10-jdk
-    image: milcom/centos7-systemd
+  - name: java-centos6-11-jdk
+    image: geerlingguy/docker-centos6-ansible
+    image_version: latest
+    groups:
+      - jdk
+      - centos6
+
+  - name: java-centos7-11-jdk
+    image: geerlingguy/docker-centos7-ansible
+    image_version: latest
     privileged: true
     groups:
       - jdk
       - centos7
 
-  - name: tomcat-centos7-10-server-jre
-    image: milcom/centos7-systemd
+  - name: java-centos8-11-jdk
+    image: geerlingguy/docker-centos8-ansible
     image_version: latest
     privileged: true
     groups:
-      - server-jre
+      - jdk
+      - python3
+      - centos8
+
+  - name: java-centos6-11-jdk-no-firewall
+    image: geerlingguy/docker-centos6-ansible
+    image_version: latest
+    groups:
+      - jdk
+      - centos6
+
+  - name: java-centos7-11-jdk-firewall
+    image: geerlingguy/docker-centos7-ansible
+    image_version: latest
+    privileged: true
+    groups:
+      - jdk
       - centos7
 
-  - name: tomcat-centos7-10-jdk-firewalld-source
-    image: milcom/centos7-systemd
+  - name: java-centos8-11-jdk-firewall
+    image: geerlingguy/docker-centos8-ansible
+    image_version: latest
+    privileged: true
+    groups:
+      - jdk
+      - python3
+      - centos8
+
+  - name: java-centos7-11-jdk-firewall-with-source
+    image: geerlingguy/docker-centos7-ansible
     image_version: latest
     privileged: true
     groups:
@@ -42,13 +61,14 @@ platforms:
       - centos7
       - firewalld_source
 
-  - name: tomcat-centos7-10-server-jre-firewalld-source
-    image: milcom/centos7-systemd
+  - name: java-centos8-11-jdk-firewall-with-source
+    image: geerlingguy/docker-centos8-ansible
     image_version: latest
     privileged: true
     groups:
-      - server-jre
-      - centos7
+      - jdk
+      - python3
+      - centos8
       - firewalld_source
 
 provisioner:
@@ -71,10 +91,14 @@ provisioner:
         tomcat_manage_firewalld: false
       centos7:
         tomcat_manage_firewalld: true
+      centos8:
+        tomcat_manage_firewalld: true
       firewalld_source:
         tomcat_manage_firewalld_use_zone: false
       ubuntu:
         tomcat_manage_firewalld: false
+      python3:
+        ansible_python_interpreter: '/usr/bin/env python3'
 scenario:
   name: default
 verifier:
