@@ -4,4 +4,4 @@
 #
 
 - name: install Python XML library
-  yum: name=python-lxml state=present
+  package: name='{{ redhat_lxml_package | default("python3-lxml") }}' state=present
