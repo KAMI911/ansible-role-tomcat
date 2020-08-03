@@ -39,9 +39,9 @@ CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages"
 {% endif %}
 {% if tomcat_java_version < 9 %}
-CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintReferenceGC -XX:+PrintStringDeduplicationStatistics"
+CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
 {% else %}
-CATALINA_OPTS="${CATALINA_OPTS} -Xlog:gc*=debug,heap*=debug,safepoint=debug,-Xlog:age*=debug,ref*=debug,stringdedup*=debug,gc+heap=trace:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log':time,uptime,time,level,tags:filecount=200,filesize=1G"
+CATALINA_OPTS="${CATALINA_OPTS} -Xlog:gc*=debug,heap*=debug,safepoint=debug,age*=debug,stringdedup*=debug,gc+heap=trace:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log':time,uptime,time,level,tags:filecount=200,filesize=1G"
 {% endif %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+OmitStackTraceInFastThrow -XX:+PrintFlagsFinal"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps"
