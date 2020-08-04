@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
 MAILTO=root
 
-53 01 * * * {{ tomcat_system_user }} find {{ tomcat_catalina_base }}/logs \( -name \*.current -or -name \*.log -or -name \*.txt \) -type f -mtime +2 -print0 | xargs -0 -t -r {{ tomcat_log_compress_command }} {{ tomcat_log_compress_options }}
+53 01 * * * {{ tomcat_system_user }} find {{ tomcat_catalina_base }}/logs \( -name \*.current -or -name \*.log -or -name \*.txt -or -name gc_\*.log.\? \) -type f -mtime +2 -print0 | xargs -0 -t -r {{ tomcat_log_compress_command }} {{ tomcat_log_compress_options }}
