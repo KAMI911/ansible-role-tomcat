@@ -26,7 +26,8 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/tuning-139912.html#section4.2.5
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
-CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding={{ tomcat_file_encoding }}"
+CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true -Dfile.encoding={{ tomcat_file_encoding }}{% if tomcat_locale_language | length > 0 %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country | length > 0 %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region | length > 0 %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant | length > 0 %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
+
 CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss${JAVA_THREAD_STACK_SIZE}k"
 {% if tomcat_java_gc == 'CMSGC' %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseConcMarkSweepGC {{ tomcat_java_gc_cms }}"
