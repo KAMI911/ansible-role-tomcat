@@ -1,6 +1,6 @@
 ---
 language: python
-python: "3.6"
+python: "3.8"
 
 # Use the new container infrastructure
 sudo: true
@@ -8,12 +8,19 @@ sudo: true
 services:
   - docker
 
+env:
+  - MOLECULE_NO_LOG="false"
+
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
+  - sudo apt-get update
+  - sudo apt-get purge docker-ce -y
+  - sudo apt-get autoremove -y
+  - curl -fsSL https://raw.githubusercontent.com/darkwizard242/devopsubuntu1804/v1.0/packer-build/mods/10-docker.sh | sudo bash -s -- install
+  - sudo usermod -aG docker $USER
+  - curl -fsSL https://raw.githubusercontent.com/darkwizard242/devopsubuntu1804/v1.0/packer-build/mods/10-docker.sh | sudo bash -s -- restart
 
 install:
-  - pip install 'molecule[docker]'
+  - pip3 install ansible ansible-lint docker 'molecule[docker]'
 
 script:
   - travis_wait 60 molecule test
