@@ -146,6 +146,29 @@ Tomcat file encoding parameter: UTF-8
 
 Tomcat page encoding parameter: UTF-8
 
+### Locale related options
+
+Locales identify a specific language and geographic region.
+
+More information about Java's locale settings are available here:
+https://www.oracle.com/technical-resources/articles/javase/locale.html
+
+    tomcat_locale_language: en
+
+Language codes are defined by ISO 639, an international standard that assigns two- and three-letter codes to most languages of the world. Locale uses the two-letter codes to identify the target language.
+
+    tomcat_locale_country: EN
+
+Country codes are defined by ISO 3166, another international standard. It defines two- and three-letter abbreviations for each country or major region in the world. In contrast to the language codes, country codes are set uppercase.
+
+    tomcat_locale_region:
+
+Country codes and regions are defined by ISO 3166, another international standard.
+
+    tomcat_locale_variant:
+
+Operating system (OS), browser, and other software vendors can use the code to provide additional functionality or customization that isn't possible with just a language and country designation. For example, a software company may need to indicate a locale for a specific operating system, so its developers may create an es_ES_MAC or an es_ES_WIN locale for the Macintosh or Windows platforms for customers in Spain.
+
 ### Memory configuration related options
 
     tomcat_java_heap_min: 4096
