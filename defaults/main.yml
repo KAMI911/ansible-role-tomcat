@@ -105,6 +105,8 @@ tomcat_java_permsize_max: 384
 # Java thread stack size in kilobytes (k)
 tomcat_java_thread_stack_size: 512
 
+tomcat_native_library_enable: false
+
 # JMX configuration
 tomcat_jmx_host: '{{ ansible_default_ipv4.address | default("127.0.0.1") }}'
 tomcat_jmx_port: 48080

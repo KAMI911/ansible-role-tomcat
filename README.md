@@ -191,6 +191,13 @@ Java minumum permanent generation size. Memory sizes in megabytes (m). Only for 
 
 Java thread stack size in kilobytes (k)
 
+### Native library related options
+
+    tomcat_native_library_enable: false
+
+Try to use Tomcat Native Library.  The Apache Tomcat Native Library is an optional component for use with Apache Tomcat that allows Tomcat to use certain native resources for performance, compatibility, etc.
+
+More information: https://tomcat.apache.org/native-doc/
 
 ### Logging related options
 
