@@ -12,7 +12,7 @@ platforms:
       - centos6
 
   - name: java-centos7-11-jdk
-    image: geerlingguy/docker-centos7-ansible
+    image: milcom/centos7-systemd
     image_version: latest
     privileged: true
     groups:
@@ -36,7 +36,7 @@ platforms:
       - centos6
 
   - name: java-centos7-11-jdk-firewall
-    image: geerlingguy/docker-centos7-ansible
+    image: milcom/centos7-systemd
     image_version: latest
     privileged: true
     groups:
@@ -53,7 +53,7 @@ platforms:
       - centos8
 
   - name: java-centos7-11-jdk-firewall-with-source
-    image: geerlingguy/docker-centos7-ansible
+    image: milcom/centos7-systemd
     image_version: latest
     privileged: true
     groups:
