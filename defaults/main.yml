@@ -156,6 +156,8 @@ tomcat_access_log_pattern: "%{yyyy-MM-dd}tT%{HH:mm:ss.SSSXXX}t %v %h (%{X-Forwar
 # Also with encoding:      "%{yyyy-MM-dd}tT%{HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D %{Referer}i %{Accept-Encoding}i %{User-Agent}i"
 # Without user agent and referer: "%{yyyy-MM-dd}tT%{HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D"
 # RFC5425 compatible: "<134>1 %{yyyy-MM-dd}tT%{HH:mm:ss.SSSXXX}t %v %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D %{Referer}i %{User-Agent}i"
+tomcat_access_log_filename: '{{ tomcat_system_name }}_access'
+tomcat_access_log_extension: '.log'
 
 tomcat_juli_logging_format: "%1$tY.%1$tm.%1$tdT%1$tT.%1$tL%1$tz %4$-4s %5$s [%2$s]%6$s%n"
 tomcat_juli_logging_level: "FINE"

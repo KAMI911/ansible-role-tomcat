@@ -205,6 +205,14 @@ More information: https://tomcat.apache.org/native-doc/
 
 Tomcat catalina logs directory mode.
 
+    tomcat_access_log_filename: '{{ tomcat_system_name }}_access'
+
+Set Tomcat's access log default filename.
+
+    tomcat_access_log_extension: '.log'
+
+Set Tomcat's access log default file extension.
+
     tomcat_access_log_pattern: "%{yyyy-MM-dd hh:mm:ss.SSS}t %h (%{X-Forwarded-For}i) %A:%p %I %u &quot;%r&quot; %s %b %D %{User-Agent}i %{Referer}i"
 
 Pattern string of Tomcat access log. Tomcat [Access Logging](https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging):

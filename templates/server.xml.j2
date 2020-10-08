@@ -155,7 +155,7 @@
         -->
 
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs/access"
-               prefix="localhost_access_log" suffix=".txt"
+               prefix="{{ tomcat_access_log_filename }}" suffix="{{ tomcat_access_log_extension }}" renameOnRotate="true"
                pattern="{{ tomcat_access_log_pattern }}" />
 
       </Host>
