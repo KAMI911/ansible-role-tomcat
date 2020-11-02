@@ -3,14 +3,12 @@
 # Variables for the Tomcat role
 #
 
-tomcat_download_mirror: https://archive.apache.org
 
 tomcat_dir: '{{ tomcat_system_home }}/apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}'
 tomcat_root_user: root
 
 tomcat_name: apache-tomcat-{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}
 tomcat_download_file: '{{ tomcat_name }}.tar.gz'
-tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}'
 
 tomcat_custom_error_pages:
   - 400
