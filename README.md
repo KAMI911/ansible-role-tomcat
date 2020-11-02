@@ -77,7 +77,7 @@ Tomcat micro version.
 
 Configure Tomcat to use the specified version version of Java.
 
-### Hugapeges usage related options
+### Hugepages usage related options
 
     tomcat_use_huge_pages: True
 
