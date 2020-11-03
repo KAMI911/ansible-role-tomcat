@@ -77,7 +77,7 @@ Tomcat micro version.
 
 Configure Tomcat to use the specified version version of Java.
 
-### Hugapeges usage related options
+### Hugepages usage related options
 
     tomcat_use_huge_pages: True
 
@@ -111,7 +111,7 @@ Tomcat "Connector" using the shared thread pool for http connections.
 
 Tomcat listening http connection port firewall zone.
 
-    tomcat_http_source:  # Tweak this according yout network
+    tomcat_http_source:  # Tweak this according your network
     - "0.0.0.0/0"
 
 Tomcat listening http connection port firewall source networks.
