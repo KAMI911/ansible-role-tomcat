@@ -11,6 +11,8 @@ tomcat_installer_keep: true
 tomcat_installer_local: false  # The true means try to copy from Ansible's local files folder
 tomcat_download_validate_certs: false
 tomcat_force_update: false
+tomcat_download_mirror: https://archive.apache.org
+tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}'
 
 tomcat_manage_firewalld: true
 tomcat_manage_firewalld_use_zone: true
