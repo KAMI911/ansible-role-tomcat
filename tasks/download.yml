@@ -14,7 +14,7 @@
 
     - name: create application user
       user:
-        name: '{{ __app_user_group }}'
+        name: '{{ __app_system_user }}'
         group: '{{ __app_system_group }}'
         createhome: false
         state: present
@@ -24,7 +24,7 @@
 - name: 'create application directory: {{ __app_dir }}'
   file:
     path: '{{ __app_dir }}'
-    owner: '{{ __app_user_group }}'
+    owner: '{{ __app_system_user }}'
     group: '{{ __app_system_group }}'
     mode: '{{ __app_dir_mode }}'
     recurse: true
@@ -46,7 +46,7 @@
 - name: create download directory
   file:
     path: '{{ __app_download_dir }}'
-    owner: '{{ __app_user_group }}'
+    owner: '{{ __app_system_user }}'
     group: '{{ __app_system_group }}'
     mode: '{{ __app_dir_mode }}'
     recurse: true

@@ -1,7 +1,7 @@
 ---
 # Include Tomcat vars
 
-__app_user_group: '{{ tomcat_system_user }}'
+__app_system_user: '{{ tomcat_system_user }}'
 __app_system_group: '{{ tomcat_system_group }}'
 __app_installer_force_overwrite: '{{ tomcat_installer_force_overwrite }}'
 __app_dir_mode: '{{ tomcat_dir_mode }}'
