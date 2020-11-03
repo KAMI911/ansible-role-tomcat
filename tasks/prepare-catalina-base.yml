@@ -141,6 +141,7 @@
   template:
     src: '{{ item }}.j2'
     dest: '{{ tomcat_catalina_base }}/conf/{{ item }}'
+    mode: '0640'
   with_items:
     - 'context.xml'
     - 'server.xml'
