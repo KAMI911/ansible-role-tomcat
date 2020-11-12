@@ -39,6 +39,14 @@ Tomcat manage java installation an install OpenJDK or not.
 
 Always download the installation file. If already downloaded try to redownload it.
 
+    tomcat_download_mirror: https://archive.apache.org
+
+The mirror to download the installation file.
+
+    tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}' 
+
+The full URL to the installation file.
+
     tomcat_installer_force_overwrite: true
 
 Always overwrite the installation file on the target machine.
@@ -77,7 +85,7 @@ Tomcat micro version.
 
 Configure Tomcat to use the specified version version of Java.
 
-### Hugapeges usage related options
+### Hugepages usage related options
 
     tomcat_use_huge_pages: True
 
@@ -111,7 +119,7 @@ Tomcat "Connector" using the shared thread pool for http connections.
 
 Tomcat listening http connection port firewall zone.
 
-    tomcat_http_source:  # Tweak this according yout network
+    tomcat_http_source:  # Tweak this according your network
     - "0.0.0.0/0"
 
 Tomcat listening http connection port firewall source networks.

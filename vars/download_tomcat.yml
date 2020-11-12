@@ -1,0 +1,17 @@
+---
+# Include Tomcat vars
+
+__app_system_user: '{{ tomcat_system_user }}'
+__app_system_group: '{{ tomcat_system_group }}'
+__app_installer_force_overwrite: '{{ tomcat_installer_force_overwrite }}'
+__app_dir_mode: '{{ tomcat_dir_mode }}'
+__app_manage_user: '{{ tomcat_manage_user }}'
+__app_dir: '{{ tomcat_dir }}'
+__app_force_update: '{{ tomcat_force_update }}'
+__app_installer_force_download: '{{ tomcat_installer_force_download }}'
+__app_installer_local: '{{ tomcat_installer_local }}'
+__app_download_url: '{{ tomcat_download_url }}'
+__app_download_validate_certs: '{{ tomcat_download_validate_certs }}'
+__app_download_file: '{{ tomcat_download_file }}'
+__app_download_dir: '{{ tomcat_download_dir }}'
+__app_check_file: 'LICENSE'

@@ -15,6 +15,7 @@
   get_url:
     url: "{{ tomcat_custom_error_pages_url }}/{{ item }}.jsp"
     dest: "{{ tomcat_catalina_base }}/webapps/ROOT/errorpages/{{ item }}.jsp"
+    mode: '0664'
   with_items:
     - "{{ tomcat_custom_error_pages }}"
   when: tomcat_offline_install
@@ -23,6 +24,7 @@
   copy:
     src: "{{ item }}.jsp"
     dest: "{{ tomcat_catalina_base }}/webapps/ROOT/errorpages/{{ item }}.jsp"
+    mode: '0664'
   with_items:
     - "{{ tomcat_custom_error_pages }}"
   when: not tomcat_offline_install

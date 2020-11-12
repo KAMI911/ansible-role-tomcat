@@ -1,81 +1,81 @@
 ---
-# task file for tomcat
+# task file for application download
 
-- name: check if Tomcat is installed.
-  stat: path='{{ tomcat_dir }}/LICENSE'
-  register: tomcat_installed
+- name: check if application is installed.
+  stat: path='{{ __app_dir }}/{{ __app_check_file }}'
+  register: __app_installed
 
 - block:
-    - name: create tomcat group
+    - name: create application group
       group:
-        name: '{{ tomcat_system_group }}'
+        name: '{{ __app_system_group }}'
         system: true
         state: present
 
-    - name: create tomcat user
+    - name: create application user
       user:
-        name: '{{ tomcat_system_user }}'
-        group: '{{ tomcat_system_group }}'
+        name: '{{ __app_system_user }}'
+        group: '{{ __app_system_group }}'
         createhome: false
         state: present
         system: true
-  when: tomcat_manage_user
+  when: __app_manage_user
 
-- name: 'create application directory: {{ tomcat_dir }}'
+- name: 'create application directory: {{ __app_dir }}'
   file:
-    path: '{{ tomcat_dir }}'
-    owner: '{{ tomcat_system_user }}'
-    group: '{{ tomcat_system_group }}'
-    mode: '{{ tomcat_dir_mode }}'
+    path: '{{ __app_dir }}'
+    owner: '{{ __app_system_user }}'
+    group: '{{ __app_system_group }}'
+    mode: '{{ __app_dir_mode }}'
     recurse: true
     state: directory
-  when: (not tomcat_installed.stat.exists or tomcat_force_update)
+  when: (not __app_installed.stat.exists or __app_force_update)
 
 - name: is already downloaded locally
   stat:
-    path: '{{ tomcat_download_file }}'
+    path: '{{ __app_download_file }}'
   delegate_to: localhost
-  register: tomcat_is_local_download_file
-  when: tomcat_installer_local
+  register: __applicaton_is_local_download_file
+  when: __app_installer_local
 
 - name: is already downloaded
   stat:
-    path: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
-  register: tomcat_is_download_file
+    path: '{{ __app_download_dir }}/{{ __app_download_file }}'
+  register: __app_is_download_file
 
 - name: create download directory
   file:
-    path: '{{ tomcat_download_dir }}'
-    owner: '{{ tomcat_system_user }}'
-    group: '{{ tomcat_system_group }}'
-    mode: '{{ tomcat_dir_mode }}'
+    path: '{{ __app_download_dir }}'
+    owner: '{{ __app_system_user }}'
+    group: '{{ __app_system_group }}'
+    mode: '{{ __app_dir_mode }}'
     recurse: true
     state: directory
-  when: (not tomcat_installed.stat.exists or tomcat_installer_force_overwrite or not tomcat_is_download_file.stat.exists)
+  when: (not __app_installed.stat.exists or __app_installer_force_overwrite or not __app_is_download_file.stat.exists)
 
 - block:
-    - name: 'downloading tomcat {{ tomcat_download_file }} to local machine'
+    - name: 'downloading application {{ __app_download_file }} to local machine'
       get_url:
-        url: '{{ tomcat_download_url }}'
-        validate_certs: '{{ tomcat_download_validate_certs }}'
-        dest: './{{ tomcat_download_file }}'
+        url: '{{ __app_download_url }}'
+        validate_certs: '{{ __app_download_validate_certs }}'
+        dest: '{{ __app_download_file }}'
         mode: 0644
       delegate_to: localhost
       run_once: true
-      when: (not tomcat_is_local_download_file.stat.exists or tomcat_installer_force_overwrite) or tomcat_installer_force_download
+      when: (not __applicaton_is_local_download_file.stat.exists or __app_installer_force_overwrite) or __app_installer_force_download
 
-    - name: copy downloaded tomcat tar file
+    - name: copy downloaded application tar file
       copy:
-        src: '{{ tomcat_download_file }}'
-        dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
+        src: '{{ __app_download_file }}'
+        dest: '{{ __app_download_dir }}/{{ __app_download_file }}'
         mode: 0644
-      when: tomcat_installer_force_overwrite or not tomcat_is_download_file.stat.exists
-  when: tomcat_installer_local
+      when: __app_installer_force_overwrite or not __app_is_download_file.stat.exists
+  when: __app_installer_local
 
-- name: 'download tomcat tar file {{ tomcat_download_file }}'
+- name: 'download application tar file {{ __app_download_file }}'
   get_url:
-    url: '{{ tomcat_download_url }}'
-    dest: '{{ tomcat_download_dir }}/{{ tomcat_download_file }}'
-    validate_certs: '{{ tomcat_download_validate_certs }}'
+    url: '{{ __app_download_url }}'
+    dest: '{{ __app_download_dir }}/{{ __app_download_file }}'
+    validate_certs: '{{ __app_download_validate_certs }}'
     mode: 0644
-  when: (not tomcat_is_download_file.stat.exists or tomcat_installer_force_overwrite) and tomcat_installer_force_download and not tomcat_installer_local
+  when: (not __app_is_download_file.stat.exists or __app_installer_force_overwrite) and __app_installer_force_download and not __app_installer_local
