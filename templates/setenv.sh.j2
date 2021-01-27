@@ -42,7 +42,7 @@ CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC {{ tomcat_java_gc_g1 }}"
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
 {% endif %}
 {% if tomcat_use_huge_pages == true %}
-CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages"
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages -XX:+UseLargePagesInMetaspace -XX:LargePageSizeInBytes=2M"
 {% endif %}
 {% if tomcat_java_version < 9 %}
 CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
