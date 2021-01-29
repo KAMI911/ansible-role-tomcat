@@ -33,7 +33,10 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
 
-CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xmn2g -Xss${JAVA_THREAD_STACK_SIZE}k"
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+UnlockExperimentalVMOptions"
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled"
+
+CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xss${JAVA_THREAD_STACK_SIZE}k"
 {% if tomcat_java_gc == 'CMSGC' %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseConcMarkSweepGC {{ tomcat_java_gc_cms }}"
 {% elif tomcat_java_gc == 'G1GC' %}
@@ -45,7 +48,7 @@ CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages -XX:+UseLargePagesInMetaspace -XX:LargePageSizeInBytes=2M"
 {% endif %}
 {% if tomcat_java_version < 9 %}
-CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
+CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
 {% else %}
 CATALINA_OPTS="${CATALINA_OPTS} -Xlog:gc*=debug,heap*=debug,safepoint=debug,age*=debug,stringdedup*=debug,gc+heap=trace:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log':time,uptime,time,level,tags:filecount=200,filesize=1G"
 {% endif %}

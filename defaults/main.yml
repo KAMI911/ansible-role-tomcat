@@ -92,9 +92,9 @@ tomcat_java_version: 11
 
 tomcat_java_gc: CMSGC  # G1GC or CMSGC or other
 
-tomcat_java_gc_cms: -XX:+CMSClassUnloadingEnabled
-tomcat_java_gc_g1: -XX:MaxGCPauseMillis=500 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=85
-tomcat_java_gc_other:
+tomcat_java_gc_cms: -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=8 -XX:+CMSCompactWhenClearAllSoftRefs -XX:CMSInitiatingOccupancyFraction=85 -XX:+CMSScavengeBeforeRemark -XX:+CMSClassUnloadingEnabled
+tomcat_java_gc_g1: -XX:MaxGCPauseMillis=100 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=60 -XX:G1NewSizePercent=20 -XX:G1HeapRegionSize=6
+tomcat_java_gc_other: 
 
 # Memory sizes in megabytes (m)
 tomcat_java_heap_min: 4096
@@ -217,5 +217,5 @@ tomcat_limits_conf:
 
 tomcat_log_rotate_minsize: 20K
 tomcat_log_compress_command: '/usr/bin/xz'
-tomcat_log_compress_options: '-9e'
+tomcat_log_compress_options: '-3'
 tomcat_log_compress_extension: '.xz'
