@@ -61,7 +61,7 @@ tomcat_http_source:  # Tweak this according yout network
 
 tomcat_http_connection_timeout: 20000
 
-tomcat_http_compression_mime_types: "text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,text/plain"
+tomcat_http_compression_mime_types: 'text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,text/plain'
 tomcat_http_compression: true
 tomcat_http_compression_min_size: 256
 tomcat_http_compression_nocompress_user_agent: ""

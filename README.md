@@ -128,7 +128,7 @@ Tomcat listening http connection port firewall source networks.
 
 Tomcat listening http connection port connection timeout.
 
-    tomcat_http_compression_mime_types: "text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript"
+    tomcat_http_compression_mime_types: 'text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,text/plain'
 
 Tomcat http connection compressed MIME-types.
 
@@ -450,9 +450,9 @@ both the size and timestamp of a log file are considered.
 Location is the compressor program. Default is xz so the dafault value is '/usr/bin/xz'.
 You can also use for example: '/usr/bin/gzip'.
 
-    tomcat_log_compress_options: '-9e'
+    tomcat_log_compress_options: '-3'
 
-Options for compression program. For xz the default is '-9e' that means maximum compression.
+Options for compression program. For xz the default is '-3' that means well-balanced compression.
 For gzip íou can use for example: '-9'.
 
     tomcat_log_compress_extension: '.xz'
