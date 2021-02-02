@@ -2,7 +2,8 @@
 # task file for application download
 
 - name: check if application is installed.
-  stat: path='{{ __app_dir }}/{{ __app_check_file }}'
+  stat:
+    path: '{{ __app_dir }}/{{ __app_check_file }}'
   register: __app_installed
 
 - block:
