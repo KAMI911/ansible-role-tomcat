@@ -59,7 +59,7 @@
       get_url:
         url: '{{ __app_download_url }}'
         validate_certs: '{{ __app_download_validate_certs }}'
-        dest: 'files/{{ __app_download_file }}'
+        dest: './{{ __app_download_file }}'
         mode: 0644
       delegate_to: localhost
       run_once: true
@@ -67,7 +67,7 @@
 
     - name: copy downloaded application tar file
       copy:
-        src: 'files/{{ __app_download_file }}'
+        src: './{{ __app_download_file }}'
         dest: '{{ __app_download_dir }}/{{ __app_download_file }}'
         mode: 0644
       when: __app_installer_force_overwrite or not __app_is_download_file.stat.exists
