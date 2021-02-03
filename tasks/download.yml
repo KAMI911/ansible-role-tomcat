@@ -57,9 +57,9 @@
 - block:
     - name: 'downloading application {{ __app_download_file }} to local machine'
       get_url:
-        url: 'files/{{ __app_download_url }}'
+        url: '{{ __app_download_url }}'
         validate_certs: '{{ __app_download_validate_certs }}'
-        dest: '{{ __app_download_file }}'
+        dest: 'files/{{ __app_download_file }}'
         mode: 0644
       delegate_to: localhost
       run_once: true
