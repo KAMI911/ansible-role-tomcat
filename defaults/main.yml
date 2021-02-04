@@ -115,7 +115,7 @@ tomcat_jmx_port: 8040
 tomcat_jmx_zone: "trusted"
 tomcat_jmx_source:  # Tweak this according yout network
   - "0.0.0.0/0"
-tomcat_shutdown_port: 8020
+tomcat_shutdown_port: 8060
 tomcat_shutdown_zone: "trusted"
 tomcat_shutdown_source:  # Tweak this according yout network
   - "127.0.0.1/32"
