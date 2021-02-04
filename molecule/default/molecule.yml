@@ -92,7 +92,7 @@ provisioner:
       centos7:
         tomcat_manage_firewalld: true
       centos8:
-        tomcat_manage_firewalld: true
+        tomcat_manage_firewalld: false
       firewalld_source:
         tomcat_manage_firewalld_use_zone: false
       ubuntu:
