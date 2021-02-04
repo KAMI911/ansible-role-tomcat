@@ -20,7 +20,7 @@ platforms:
       - centos7
 
   - name: java-centos8-11-jdk
-    image: geerlingguy/docker-centos8-ansible
+    image: kami911/docker-centos8-ansible
     image_version: latest
     privileged: true
     groups:
@@ -44,7 +44,7 @@ platforms:
       - centos7
 
   - name: java-centos8-11-jdk-firewall
-    image: geerlingguy/docker-centos8-ansible
+    image: kami911/docker-centos8-ansible
     image_version: latest
     privileged: true
     groups:
@@ -62,7 +62,7 @@ platforms:
       - firewalld_source
 
   - name: java-centos8-11-jdk-firewall-with-source
-    image: geerlingguy/docker-centos8-ansible
+    image: kami911/docker-centos8-ansible
     image_version: latest
     privileged: true
     groups:
@@ -92,7 +92,7 @@ provisioner:
       centos7:
         tomcat_manage_firewalld: true
       centos8:
-        tomcat_manage_firewalld: false
+        tomcat_manage_firewalld: true
       firewalld_source:
         tomcat_manage_firewalld_use_zone: false
       ubuntu:
