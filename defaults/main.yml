@@ -111,11 +111,11 @@ tomcat_native_library_enable: false
 
 # JMX configuration
 tomcat_jmx_host: '{{ ansible_default_ipv4.address | default("127.0.0.1") }}'
-tomcat_jmx_port: 48080
+tomcat_jmx_port: 8040
 tomcat_jmx_zone: "trusted"
 tomcat_jmx_source:  # Tweak this according yout network
   - "0.0.0.0/0"
-tomcat_shutdown_port: 49080
+tomcat_shutdown_port: 8020
 tomcat_shutdown_zone: "trusted"
 tomcat_shutdown_source:  # Tweak this according yout network
   - "127.0.0.1/32"
