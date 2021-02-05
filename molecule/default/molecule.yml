@@ -22,7 +22,13 @@ platforms:
   - name: java-centos8-11-jdk
     image: kami911/docker-centos8-ansible
     image_version: latest
-    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - jdk
       - python3
@@ -46,7 +52,13 @@ platforms:
   - name: java-centos8-11-jdk-firewall
     image: kami911/docker-centos8-ansible
     image_version: latest
-    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - jdk
       - python3
@@ -64,7 +76,13 @@ platforms:
   - name: java-centos8-11-jdk-firewall-with-source
     image: kami911/docker-centos8-ansible
     image_version: latest
-    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - jdk
       - python3
