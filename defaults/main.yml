@@ -92,7 +92,7 @@ tomcat_java_version: 11
 
 tomcat_java_gc: CMSGC  # G1GC or CMSGC or other
 
-tomcat_java_gc_cms: -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=8 -XX:+CMSCompactWhenClearAllSoftRefs -XX:CMSInitiatingOccupancyFraction=85 -XX:+CMSScavengeBeforeRemark -XX:+CMSClassUnloadingEnabled
+tomcat_java_gc_cms: -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=8 -XX:+CMSCompactWhenClearAllSoftRefs -XX:CMSInitiatingOccupancyFraction=85 -XX:+CMSScavengeBeforeRemark -XX:+CMSClassUnloadingEnabled
 tomcat_java_gc_g1: -XX:MaxGCPauseMillis=100 -XX:ParallelGCThreads=8 -XX:InitiatingHeapOccupancyPercent=60 -XX:G1NewSizePercent=20 -XX:G1HeapRegionSize=6
 tomcat_java_gc_other: 
 
