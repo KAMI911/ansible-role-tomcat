@@ -32,11 +32,14 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
 CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
-
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UnlockExperimentalVMOptions"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled"
+CATALINA_OPTS="${CATALINA_OPTS} -Djava.security.egd=file:///dev/./{{ tomcat_security_random_device }}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -Xms${JAVA_MIN_HEAP}m -Xmx${JAVA_MAX_HEAP}m -Xss${JAVA_THREAD_STACK_SIZE}k"
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+AlwaysPreTouch -XX:-UseBiasedLocking"
+
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+DisableExplicitGC -XX:+ExplicitGCInvokesConcurrent"
 {% if tomcat_java_gc == 'CMSGC' %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseConcMarkSweepGC {{ tomcat_java_gc_cms }}"
 {% elif tomcat_java_gc == 'G1GC' %}

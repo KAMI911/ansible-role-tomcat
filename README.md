@@ -459,6 +459,15 @@ For gzip íou can use for example: '-9'.
 
 File extension for logrotate specification. xz is '.xz', and gzip is 'gz'.
 
+### Tomcat security settings
+
+    tomcat_security_random_device: random
+
+There are two general random devices on Linux: /dev/random and /dev/urandom. The best randomness comes from /dev/random, since it's a blocking device, and will wait until sufficient entropy is available to continue providing output. Assuming your entropy is sufficient, you should see the same quality of randomness from /dev/urandom; however, since it's a non-blocking device, it will continue producing “random” data, even when the entropy pool runs out. This can result in lower quality random data, as repeats of previous data are much more likely. Lots of bad things can happen when the available entropy runs low on a production server, especially when this server performs cryptographic functions.
+If your hardware supoports hardware based random device, then you might use rngd and check randomness with rngtest tool from rng-tools package.
+If your hardware does not supoport hardware based random device, then you might use haveged from haveged package. Both package can lower the Tomcat startup time and crypto related actions' time.
+The dafault setting provides the "-Djava.security.egd=file:///dev/./random" which is the best for crypto settings when you enable rngd or haveged.
+
 ## Dependencies
 
 None.
