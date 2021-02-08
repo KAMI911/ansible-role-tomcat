@@ -6,9 +6,18 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=/etc/init.d/{{ tomcat_process_name }} start
-ExecReload=/etc/init.d/{{ tomcat_process_name }} reload
-ExecStop=/etc/init.d/{{ tomcat_process_name }} stop
+
+Environment=CATALINA_HOME={{ tomcat_catalina_home }}
+Environment=CATALINA_BASE={{ tomcat_catalina_base }}
+
+Environment=TOMCAT_USER="{{ tomcat_system_user }}"
+Environment=TOMCAT_GROUP="{{ tomcat_system_group }}"
+Environment=JAVA_HOME="{{ java_home }}"
+Environment=JRE_HOME="{{ java_home }}"
+
+
+ExecStart={{ tomcat_catalina_base }}/bin/startup.sh
+ExecStop={{ tomcat_catalina_base }}/bin/shutdown.sh
 
 [Install]
 WantedBy=multi-user.target
