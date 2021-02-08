@@ -7,8 +7,8 @@ After=syslog.target network.target
 [Service]
 Type=forking
 
-Environment=CATALINA_HOME={{ tomcat_system_home }}/tomcat{{ tomcat_majorversion }}
-Environment=CATALINA_BASE={{ tomcat_system_home }}/{{ tomcat_system_name }}
+Environment=CATALINA_HOME={{ tomcat_catalina_home }}
+Environment=CATALINA_BASE={{ tomcat_catalina_base }}
 
 Environment=TOMCAT_USER="{{ tomcat_system_user }}"
 Environment=TOMCAT_GROUP="{{ tomcat_system_group }}"
@@ -16,8 +16,8 @@ Environment=JAVA_HOME="{{ java_home }}"
 Environment=JRE_HOME="{{ java_home }}"
 
 
-ExecStart={{ tomcat_system_home }}/{{ tomcat_system_name }}/bin/startup.sh
-ExecStop={{ tomcat_system_home }}/{{ tomcat_system_name }}/bin/shutdown.sh
+ExecStart={{ tomcat_catalina_base }}/bin/startup.sh
+ExecStop={{ tomcat_catalina_base }}/bin/shutdown.sh
 
 [Install]
 WantedBy=multi-user.target
