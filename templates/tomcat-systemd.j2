@@ -15,7 +15,6 @@ Environment=TOMCAT_GROUP="{{ tomcat_system_group }}"
 Environment=JAVA_HOME="{{ java_home }}"
 Environment=JRE_HOME="{{ java_home }}"
 
-
 ExecStart={{ tomcat_catalina_base }}/bin/startup.sh
 ExecStop={{ tomcat_catalina_base }}/bin/shutdown.sh
 
