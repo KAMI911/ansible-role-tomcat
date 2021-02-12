@@ -14,7 +14,7 @@ JAVA_MAX_PERMSIZE={{ tomcat_java_permsize_max }}
 
 JAVA_THREAD_STACK_SIZE={{ tomcat_java_thread_stack_size }}
 
-{% if tomcat_native_library_enable == true %}
+{% if tomcat_native_library_enable is defined and tomcat_native_library_enable is sameas true %}
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CATALINA_HOME/lib:/usr/local/apr/lib"
 export LD_LIBRARY_PATH
 {% endif %}
@@ -31,7 +31,7 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/tuning-139912.html#section4.2.5
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
-CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
+CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding is defined %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language is defined%} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country is defined %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region is defined %} -Duser.region={{ tomcat_locale_region is defined }}{% endif %}{% if tomcat_locale_variant is defined %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UnlockExperimentalVMOptions"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled"
 CATALINA_OPTS="${CATALINA_OPTS} -Djava.security.egd=file:///dev/./{{ tomcat_security_random_device }}"
@@ -47,7 +47,7 @@ CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseG1GC {{ tomcat_java_gc_g1 }}"
 {% else %}
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
 {% endif %}
-{% if tomcat_use_huge_pages == true %}
+{% if tomcat_use_huge_pages is defined and tomcat_use_huge_pages is sameas true %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages -XX:+UseLargePagesInMetaspace -XX:LargePageSizeInBytes=2M"
 {% endif %}
 {% if tomcat_java_version < 9 %}
@@ -63,13 +63,13 @@ CATALINA_OPTS="${CATALINA_OPTS} -XX:PermSize=${JAVA_MIN_PERMSIZE}m -XX:MaxPermSi
 
 CATALINA_OPTS="${CATALINA_OPTS} -Dprocessname=${PROCESS_NAME}"
 
-CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname={{ tomcat_jmx_host }} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.rmi.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate={% if tomcat_jmx_authenticate == True %}true{% else %}false{% endif %} -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
+CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname={{ tomcat_jmx_host }} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.rmi.port={{ tomcat_jmx_port }} -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate={% if tomcat_jmx_authenticate is defined and tomcat_jmx_authenticate is sameas true %}true{% else %}false{% endif %} -Dcom.sun.management.jmxremote.password.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.password -Dcom.sun.management.jmxremote.access.file=${CATALINA_BASE}/conf/{{ tomcat_process_name }}.jmxremote.access"
 
-{% if tomcat_debug_enable == true %}
+{% if tomcat_debug_enable is defined and tomcat_debug_enable is sameas true %}
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_debug_parameter }}"
 {% endif %}
 
-{% if tomcat_enable_logstash == true %}
+{% if tomcat_enable_logstash is defined and tomcat_enable_logstash is sameas true %}
 if [ -r "$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
   CLASSPATH=$CLASSPATH:$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/lib/logstash/json-simple-1.1.jar:$CATALINA_BASE/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/lib/logstash/commons-pool2-2.4.2.jar
 fi
