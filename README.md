@@ -441,6 +441,16 @@ Permit connection from all location of from local connection only.
 
 Specify Tomcat debug parameters.
 
+### Third party profiler related options
+
+    tomcat_profiler_enable: false
+
+Enable Tomcat profiling.
+
+    tomcat_profiler_parameter: '-agentpath:/opt/profiler/libyjpagent.so=port=8200-8220,listen=all,delay=10000'
+
+Specify external parameter of profiler for Tomcat.
+
 ### Tomcat log compression options
 
     tomcat_log_rotate_minsize: 20K

@@ -69,6 +69,10 @@ CATALINA_OPTS="${CATALINA_OPTS} -Djava.rmi.server.hostname={{ tomcat_jmx_host }}
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_debug_parameter }}"
 {% endif %}
 
+{% if tomcat_profiler_enable is defined and tomcat_profiler_enable is sameas true %}
+CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_profiler_parameter }}"
+{% endif %}
+
 {% if tomcat_enable_logstash is defined and tomcat_enable_logstash is sameas true %}
 if [ -r "$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
   CLASSPATH=$CLASSPATH:$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/lib/logstash/json-simple-1.1.jar:$CATALINA_BASE/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/lib/logstash/commons-pool2-2.4.2.jar

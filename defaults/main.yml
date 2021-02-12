@@ -136,6 +136,9 @@ tomcat_debug_port: 8000
 tomcat_debug_sever: '*'  # or 127.0.0.1
 tomcat_debug_parameter: '-agentlib:jdwp=transport=dt_socket,address={{ tomcat_debug_sever }}:{{ tomcat_debug_port }},server=y,suspend=n'
 
+tomcat_profiler_enable: false
+tomcat_profiler_parameter: '-agentpath:/opt/profiler/libyjpagent.so=port=8200-8220,listen=all,delay=10000'
+
 tomcat_catalina_parameters:
 
 tomcat_use_custom_error_pages: true
