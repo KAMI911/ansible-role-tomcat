@@ -31,7 +31,7 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/tuning-139912.html#section4.2.5
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
-CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding is defined %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language is defined%} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country is defined %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region is defined %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant is defined %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
+CATALINA_OPTS="${CATALINA_OPTS} -server -Djava.net.preferIPv4Stack=true{% if tomcat_file_encoding is defined %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language is defined and tomcat_locale_language != '' %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country is defined and tomcat_locale_country != '' %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region is defined and tomcat_locale_region != '' %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant is defined and tomcat_locale_variant != '' %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UnlockExperimentalVMOptions"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled"
 CATALINA_OPTS="${CATALINA_OPTS} -Djava.security.egd=file:///dev/./{{ tomcat_security_random_device }}"
