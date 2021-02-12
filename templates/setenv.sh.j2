@@ -21,7 +21,7 @@ export LD_LIBRARY_PATH
 
 CATALINA_OUT="{{ tomcat_catalina_out }}"
 
-{% if tomcat_catalina_parameters is defined and tomcat_catalina_parameters|length %}
+{% if tomcat_catalina_parameters is defined %}
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_catalina_parameters }}"
 
 {% endif %}
@@ -74,7 +74,7 @@ if [ -r "$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar" ] ; then
   CLASSPATH=$CLASSPATH:$CATALINA_BASE/lib/logstash/logstash-gelf-1.11.1.jar:$CATALINA_BASE/lib/logstash/json-simple-1.1.jar:$CATALINA_BASE/lib/logstash/jedis-2.8.1.jar:$CATALINA_BASE/lib/logstash/commons-pool2-2.4.2.jar
 fi
 {% endif %}
-{% if tomcat_short_system_name is defined and tomcat_short_system_name|length %}
+{% if tomcat_short_system_name is defined %}
 CATALINA_OPTS="${CATALINA_OPTS} -DshortSystemName={{ tomcat_short_system_name|default('TT') }}"
 
 {% endif %}
