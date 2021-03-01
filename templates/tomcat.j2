@@ -44,6 +44,8 @@ export CATALINA_HOME="{{ tomcat_catalina_home }}"
 # CATALINA_BASE is the directory for per-instance configuration files and webapps
 export CATALINA_BASE="{{ tomcat_catalina_base }}"
 
+PROCESS_NAME="{{ tomcat_process_name }}"
+
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER="{{ tomcat_system_user }}"
 export TOMCAT_GROUP="{{ tomcat_system_group }}"
@@ -55,7 +57,7 @@ TOMCAT_USAGE="Usage: $0 {\e[00;32mstart\e[00m|\e[00;31mstop\e[00m|\e[00;31mkill\
 SHUTDOWN_WAIT=30
 
 tomcat_pid() {
-        echo `ps -fe | grep $CATALINA_BASE | grep -v grep | tr -s " "|cut -d" " -f2`
+        echo `ps -fe | grep "$CATALINA_BASE" | grep "Dprocessname=${PROCESS_NAME}" | grep -v grep | tr -s " "|cut -d" " -f2`
 }
 
 start() {
