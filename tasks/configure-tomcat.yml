@@ -42,7 +42,7 @@
     mode: 0644
   when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int <= 6)
 
-- name: "Prepare daily catalina.out logrotate"
+- name: "prepare daily catalina.out logrotate"
   template:
     dest: '/etc/logrotate.d/{{ tomcat_system_name }}-catalina'
     src: "logrotate-catalina-out.j2"
@@ -50,12 +50,12 @@
     group: "root"
     mode: "0644"
 
-- name: "Check cron.d folder"
+- name: "check cron.d folder"
   stat:
     path: /etc/cron.d
   register: cron_d_dir
 
-- name: "Prepare daily log, txt, current logrotate cron.d task"
+- name: "prepare daily log, txt, current logrotate cron.d task"
   template:
     dest: '/etc/cron.d/{{ tomcat_system_name }}-logs'
     src: "tomcat-logs.j2"
@@ -63,3 +63,27 @@
     group: "root"
     mode: "0644"
   when: cron_d_dir.stat.exists
+
+- name: Print return information from the previous task
+  debug:
+    var: tomcat_context_parameter
+
+- name: Print return information from the previous task
+  debug:
+    var: '{{ item }}'
+  with_items: tomcat_context_parameter
+
+- name: Print return information from the previous task
+  debug:
+    var: '{{ item }}'
+  with_items: '{{ tomcat_context_parameter }}'
+
+- name: "create separated context parameter XML configuration files"
+  template:
+    dest: '{{ item.filename }}'
+    src: 'context_parameter.j2'
+    owner: '{{ tomcat_system_user }}'
+    group: '{{ tomcat_system_group }}'
+    mode: 0644
+  with_items: tomcat_context_parameter
+  when: tomcat_context_parameter|length > 0
