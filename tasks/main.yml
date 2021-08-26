@@ -50,6 +50,8 @@
   include_tasks: enable-logstash.yml
   when: tomcat_enable_logstash
 
-- name: manage firewalld
-  include_tasks: manage_firewalld.yml
-  when: tomcat_manage_firewalld
+- include_tasks: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: Debian.yml
+  when: ansible_os_family == 'Debian'
