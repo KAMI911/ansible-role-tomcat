@@ -1,0 +1,5 @@
+---
+
+- name: manage firewalld [RedHat]
+  include_tasks: manage_firewalld.yml
+  when: tomcat_manage_firewalld

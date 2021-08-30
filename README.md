@@ -103,6 +103,10 @@ When you enable it use [KAMI911:hugepages](https://galaxy.ansible.com/KAMI911/hu
 
 Role manages the firewalld settings of required ports.
 
+    tomcat_enable_firewalld: false
+
+Force install and enable firewalld service.
+
     tomcat_manage_firewalld_use_zone: true
 
 Tomcat firewalld uses zones (default) or use source addresses.
