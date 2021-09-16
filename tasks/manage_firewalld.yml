@@ -7,14 +7,14 @@
   package:
     name: firewalld
     state: present
-  when: icinga2_enable_firewalld
+  when: tomcat_enable_firewalld
 
 - name: ensure firewalld is running and enabled on boot
   service:
     name: firewalld
     state: started
     enabled: true
-  when: icinga2_enable_firewalld
+  when: tomcat_enable_firewalld
 
 - name: check firewalld status
   shell: 'echo $(systemctl is-active firewalld)'
