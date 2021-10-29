@@ -21,7 +21,12 @@ tomcat_manage_firewalld_use_zone: true
 # Downloadable Tomcat version
 tomcat_majorversion: 8
 tomcat_minorversion: 5
-tomcat_patchversion: 50
+tomcat_patchversion: 72
+
+# tomcat_majorversion: 10
+# tomcat_minorversion: 0
+# tomcat_patchversion: 12
+
 
 tomcat_offline_install: false
 
