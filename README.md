@@ -203,6 +203,10 @@ Java minumum permanent generation size. Memory sizes in megabytes (m). Only for 
 
 Java thread stack size in kilobytes (k)
 
+#### Additional Java parameters
+
+[Check Java parameters by versions.](https://chriswhocodes.com/vm-options-explorer.html)
+
 ### Native library related options
 
     tomcat_native_library_enable: false
