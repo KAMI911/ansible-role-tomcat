@@ -43,7 +43,7 @@ Always download the installation file. If already downloaded try to redownload i
 
 The mirror to download the installation file.
 
-    tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}' 
+    tomcat_download_url: '{{ tomcat_download_mirror }}/dist/tomcat/tomcat-{{ tomcat_majorversion }}/v{{ tomcat_majorversion }}.{{ tomcat_minorversion }}.{{ tomcat_patchversion }}/bin/{{ tomcat_download_file }}'
 
 The full URL to the installation file.
 
