@@ -40,7 +40,8 @@ JSSE_OPTS="-Djdk.tls.ephemeralDHKeySize=4096"
 JSSE_OPTS="-Djdk.tls.ephemeralDHKeySize=2048"
 {% endif %}
 
-CATALINA_OPTS="${CATALINA_OPTS} {% if tomcat_file_encoding is defined and tomcat_file_encoding %} -Dfile.encoding={{ tomcat_file_encoding }}{% endif %}{% if tomcat_locale_language is defined and tomcat_locale_language %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country is defined and tomcat_locale_country %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region is defined and tomcat_locale_region %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant is defined and tomcat_locale_variant %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
+{% if tomcat_file_encoding is defined and tomcat_file_encoding %}CATALINA_OPTS="${CATALINA_OPTS} -Dfile.encoding={{ tomcat_file_encoding }} -Dsun.jnu.encoding={{ tomcat_file_encoding }}"{% endif %}
+CATALINA_OPTS="${CATALINA_OPTS}{% if tomcat_locale_language is defined and tomcat_locale_language %} -Duser.language={{ tomcat_locale_language }}{% endif %}{% if tomcat_locale_country is defined and tomcat_locale_country %} -Duser.country={{ tomcat_locale_country }}{% endif %}{% if tomcat_locale_region is defined and tomcat_locale_region %} -Duser.region={{ tomcat_locale_region }}{% endif %}{% if tomcat_locale_variant is defined and tomcat_locale_variant %} -Duser.variant={{ tomcat_locale_variant }}{% endif %}"
 
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UnlockExperimentalVMOptions"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled"
