@@ -2,6 +2,7 @@
 {{ tomcat_catalina_base }}/logs/catalina/catalina.out {
   su {{ tomcat_system_user }} {{ tomcat_system_group }}
   daily
+  dateyesterday
   rotate 730
   copytruncate
   compress
@@ -10,7 +11,7 @@
   notifempty
   dateext
   dateformat -%Y%m%d
-  minsize {{ tomcat_log_rotate_minsize }}
+  minsize {{ tomcat_log_rotate_minsize | default('20k') }}
   compresscmd {{ tomcat_log_compress_command }}
   compressoptions "{{ tomcat_log_compress_options }}"
   compressext {{ tomcat_log_compress_extension }}
