@@ -3,6 +3,8 @@
 [Unit]
 Description=Tomcat {{ tomcat_process_name }} Java Application Server
 After=syslog.target network.target
+StartLimitIntervalSec=900
+StartLimitBurst=5
 
 [Service]
 Type=forking
@@ -17,6 +19,9 @@ Environment=JRE_HOME="{{ java_home }}"
 
 ExecStart={{ tomcat_catalina_base }}/bin/startup.sh
 ExecStop={{ tomcat_catalina_base }}/bin/shutdown.sh
+
+Restart=on-failure
+RestartSec=3s
 
 [Install]
 WantedBy=multi-user.target
