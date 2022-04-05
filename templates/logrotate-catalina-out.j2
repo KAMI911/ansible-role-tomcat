@@ -10,8 +10,8 @@
   notifempty
   dateext
   dateformat -%Y%m%d
-  minsize {{ tomcat_log_rotate_minsize | default('20k') }}
-  compresscmd {{ tomcat_log_compress_command }}
-  compressoptions "{{ tomcat_log_compress_options }}"
-  compressext {{ tomcat_log_compress_extension }}
+  minsize {{ tomcat_log_rotate_minsize | default ('20K') }}
+  compresscmd {{ tomcat_log_compress_command | default('/usr/bin/xz') }}
+  compressoptions {{ tomcat_log_compress_options | default('-3 -T4') }}
+  compressext {{ tomcat_log_compress_extension | default('.xz') }}
 }
