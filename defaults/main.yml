@@ -246,7 +246,7 @@ tomcat_context_parameter:
 
 tomcat_log_rotate_minsize: 20K
 tomcat_log_compress_command: '/usr/bin/xz'
-tomcat_log_compress_options: '-3'
+tomcat_log_compress_options: '-3 -T4'
 tomcat_log_compress_extension: '.xz'
 
 tomcat_security_random_device: random
