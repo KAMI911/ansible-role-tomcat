@@ -2,4 +2,6 @@
 MAILTO=root
 HOME={{ tomcat_catalina_base }}/
 
-53 01 * * * {{ tomcat_system_user }} nice -n 10 find {{ tomcat_catalina_base }}/logs/ \( -name \*????-??-??.log -or -name \*log.????-??-?? -or -name \*.current -or -name \*????-??-??.txt -or -name gc[_-]\*.log -or -name gc[_-]\*.log.\? -or -name gc[_-]\*.log.\?? -or -name gc[_-]\*.log.\??? \) ! \( -name \*.xz -or -name \*.gz -or -name \*.zip -or -name \*.tgz \) -mtime +1 -type f -print0 | xargs -0 -t -r {{ tomcat_log_compress_command }} {{ tomcat_log_compress_options }}
+53 01 * * * {{ tomcat_system_user }} nice -n 10 find {{ tomcat_catalina_base }}/logs/ \( -name \*????-??-??.log -or -name \*log.????-??-?? -or -name \*.current -or -name \*????-??-??.txt  \) ! \( -name \*.xz -or -name \*.gz -or -name \*.zip -or -name \*.tgz \) -mtime +1 -type f -print0 | xargs -0 -t -r {{ tomcat_log_compress_command }} {{ tomcat_log_compress_options }}
+
+53 02 * * * {{ tomcat_system_user }} nice -n 10 find {{ tomcat_catalina_base }}/logs/ \( -name gc[_-]\*.log -or -name gc[_-]\*.log.\? -or -name gc[_-]\*.log.\?? -or -name gc[_-]\*.log.\??? \) ! \( -name \*.xz -or -name \*.gz -or -name \*.zip -or -name \*.tgz \) -mtime +1 -type f -print0 | xargs -0 -t -r {{ tomcat_log_compress_command }} -S .`date +%Y%m%d`.xz {{ tomcat_log_compress_options }}
