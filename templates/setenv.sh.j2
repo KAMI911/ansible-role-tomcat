@@ -32,7 +32,7 @@ PROCESS_NAME="{{ tomcat_process_name }}"
 # http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html
 
 CATALINA_OPTS="${CATALINA_OPTS} -showversion -server -Djava.awt.headless=true"
-CATALINA_OPTS="${CATALINA_OPTS} -Djava.net.preferIPv4Stack=true
+CATALINA_OPTS="${CATALINA_OPTS} -Djava.net.preferIPv4Stack=true"
 
 {% if tomcat_java_version >= 11 %}
 JSSE_OPTS="-Djdk.tls.ephemeralDHKeySize=4096"
