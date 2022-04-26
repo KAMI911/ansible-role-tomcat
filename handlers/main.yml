@@ -1,4 +1,10 @@
 ---
+- name: systemd reload
+  become: true
+  systemd:
+    daemon_reload: true
+  listen: 'systemd daemon reload'
+
 - name: restart tomcat
   service:
     name: '{{ tomcat_system_name }}'
