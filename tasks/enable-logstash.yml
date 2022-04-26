@@ -17,8 +17,9 @@
 
 - name: download Logstash logging bundle
   get_url:
-    url: "http://ooo.itc.hu/ansible/logstash-bundle-1.tar.gz"
+    url: "https://ooo.itc.hu/ansible/logstash-bundle-1.tar.gz"
     dest: "{{ tomcat_download_dir }}/logstash-bundle-1.tar.gz"
+    validate_certs: false
   when: not tomcat_offline_install
 
 - name: extract Logstash logging bundle
