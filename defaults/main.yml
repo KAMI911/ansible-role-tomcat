@@ -227,22 +227,22 @@ tomcat_limits_conf:
     value: 8192
 
 tomcat_context_parameter:
-    filename: '{{ tomcat_catalina_base }}/conf/localhost/example.xml'
-    elements:
-     - name: 'ServerIP'
-       value: '192.168.254.254'
-       override: false
-     - name: 'ServerPort'
-       value: '1111'
-       override: false
-    filename: '{{ tomcat_catalina_base }}/conf/localhost/example2.xml'
-    elements:
-     - name: 'ServerIP'
-       value: '192.168.253.253'
-       override: false
-     - name: 'ServerPort'
-       value: '1113'
-       override: false
+    - filename: '{{ tomcat_catalina_base }}/conf/localhost/example.xml'
+      elements:
+       - name: 'ServerIP'
+         value: '192.168.254.254'
+         override: false
+       - name: 'ServerPort'
+         value: '1111'
+         override: false
+    - filename: '{{ tomcat_catalina_base }}/conf/localhost/example2.xml'
+      elements:
+       - name: 'ServerIP'
+         value: '192.168.253.253'
+         override: false
+       - name: 'ServerPort'
+         value: '1113'
+         override: false
 
 tomcat_log_rotate_minsize: 20K
 tomcat_log_compress_command: '/usr/bin/xz'

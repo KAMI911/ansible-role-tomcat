@@ -40,6 +40,8 @@
     owner: "{{ tomcat_system_user }}"
     group: "{{ tomcat_system_group }}"
     mode: 0644
+  notify:
+    - systemd daemon reload
   when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int <= 6)
 
 - name: "prepare daily catalina.out logrotate"
@@ -63,27 +65,3 @@
     group: "root"
     mode: "0644"
   when: cron_d_dir.stat.exists
-
-- name: Print return information from the previous task
-  debug:
-    var: tomcat_context_parameter
-
-- name: Print return information from the previous task
-  debug:
-    var: '{{ item }}'
-  with_items: tomcat_context_parameter
-
-- name: Print return information from the previous task
-  debug:
-    var: '{{ item }}'
-  with_items: '{{ tomcat_context_parameter }}'
-
-- name: "create separated context parameter XML configuration files"
-  template:
-    dest: '{{ item.filename }}'
-    src: 'context_parameter.j2'
-    owner: '{{ tomcat_system_user }}'
-    group: '{{ tomcat_system_group }}'
-    mode: 0644
-  with_items: tomcat_context_parameter
-  when: tomcat_context_parameter|length > 0
