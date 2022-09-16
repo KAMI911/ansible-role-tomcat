@@ -313,6 +313,14 @@ Use AsyncFileHandler for never Tomcat 8-9.
 Set [1catalina|2localhost|3manager|4host-manager].org.apache.juli.AsyncFileHandler.level and java.util.logging.ConsoleHandler.level to this loglevel. Possible values are:
   SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST or ALL. Default is FINE.
 
+    tomcat_java_gc_log: "-Xlog:gc*=debug,heap*=debug,safepoint=debug,age*=debug,stringdedup*=debug,gc+heap=trace:'${CATALINA_BASE}/logs/gc/gc_%t_%p.log':time,uptimenanos,pid,tid,level,tags:filecount=200,filesize=1G"
+
+Set format and location of GC log.
+
+    tomcat_java_gc_log_old: "-Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
+
+Set format and location of GC log for Java versions older than 9.
+
 ### Tomcat hardening related options
 
     tomcat_use_secure_flag: True

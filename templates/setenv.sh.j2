@@ -62,9 +62,9 @@ CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_other }}"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+UseLargePages -XX:+UseLargePagesInMetaspace -XX:LargePageSizeInBytes=2M"
 {% endif %}
 {% if tomcat_java_version < 9 %}
-CATALINA_OPTS="${CATALINA_OPTS} -Xloggc:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log' -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=200 -XX:GCLogFileSize=1G -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintStringDeduplicationStatistics"
+CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_log_old }}"
 {% else %}
-CATALINA_OPTS="${CATALINA_OPTS} -Xlog:gc*=debug,heap*=debug,safepoint=debug,age*=debug,stringdedup*=debug,gc+heap=trace:'${CATALINA_BASE}/logs/gc/gc_$(date +%Y-%m-%d_%H%M).log':time,uptime,time,level,tags:filecount=200,filesize=1G"
+CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_log }}"
 {% endif %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+OmitStackTraceInFastThrow -XX:+PrintFlagsFinal"
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps"
