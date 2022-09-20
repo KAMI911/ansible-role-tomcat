@@ -67,7 +67,7 @@ CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_log_old }}"
 CATALINA_OPTS="${CATALINA_OPTS} {{ tomcat_java_gc_log }}"
 {% endif %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:+OmitStackTraceInFastThrow -XX:+PrintFlagsFinal"
-CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps"
+CATALINA_OPTS="${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${CATALINA_BASE}/heapdumps -XX:ErrorFile=${CATALINA_BASE}/heapdumps/hs_err_pid_%p.log"
 {% if tomcat_java_version <= 7 %}
 CATALINA_OPTS="${CATALINA_OPTS} -XX:PermSize=${JAVA_MIN_PERMSIZE}m -XX:MaxPermSize=${JAVA_MAX_PERMSIZE}m"
 {% endif %}
