@@ -15,5 +15,7 @@
     tomcat_installer_keep: true
     tomcat_installer_local: true
     tomcat_force_update: false
+    tomcat_manage_firewalld: false
+    tomcat_enable_firewalld: false
   roles:
     - role: ansible-role-tomcat

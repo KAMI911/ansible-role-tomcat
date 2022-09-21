@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: tomcat
+  namespace: kami911
   author: Kálmán Szalai - KAMI
   description: Most complete Tomcat installation, supporting init.d script,\
      application naming, hugepages, hardening, beautiful error pages,\
