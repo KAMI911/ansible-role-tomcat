@@ -111,42 +111,52 @@ Force install and enable firewalld service.
 
 Tomcat firewalld uses zones (default) or use source addresses.
 
-    tomcat_http_port: 8080
+A "Connector" represents an endpoint by which requests are received and responses are returned. Documentation at :
+ * Java HTTP Connector: /docs/config/http.html
+ * Java AJP  Connector: /docs/config/ajp.html
+ * APR (HTTP/AJP) Connector: /docs/apr.html
 
-Tomcat listening http connection port.
+Define a non-SSL/TLS HTTP/1.1 Connector
 
-    tomcat_http_stp: false
+All the configuration related to connectors, port, and firewall are collected under variable named tomcat_server:
 
-Tomcat "Connector" using the shared thread pool for http connections.
+    tomcat_server:
+      - port: 8080  # Tomcat listening http connection port.
+        connector:
+          protocol: 'HTTP/1.1'
+          connectionTimeout: 20000
+          redirectPort: 8444
+          Server: ' '
+          URIEncoding: UTF-8
+          Secure: false
+          compressibleMimeType: 'text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,text/plain'  # Tomcat http connection compressed MIME-types.
+          compression: on  # Tomcat http connection compressed content enable/disable.
+          compressionMinSize: 256  # Tomcat http connection min compressed file size.
+          noCompressionUserAgents: ''  # Tomcat http connection must be uncompressed for these browser user agents.
+        source: []  # Tweak this according yout network
+        #  - '192.168.10.0/24'
+        #  - '172.20.10.0/23'
+        executor:  # Specify executor if you want to use this. Do not forget to use it in connector settings via 'executor' key.
+          name: tomcatHTTPThreadPool
+          namePrefix: catalina-exec-http-
+          maxThreads: 300
+          minSpareThreads: 5
+      - port: 8009  # Tomcat listening http connection port.
+        connector:
+          protocol: 'AJP/1.3'
+          redirectPort: 8444
+        source: []  # Tweak this according yout network
+        #  - '0.0.0.0/0'
+        #  - '60.60.60.60/0'
+        executor:    # Specify executor if you want to use this. Do not forget to use it in connector settings via 'executor' key.
+          name: tomcatAJPThreadPool
+          namePrefix: catalina-exec-ajp-
+          maxThreads: 900
+          minSpareThreads: 20
+        # zone: []  # Tomcat listening http connection port firewall zone.
+        #  - 'internal'
 
-    tomcat_http_zone: "internal"
-
-Tomcat listening http connection port firewall zone.
-
-    tomcat_http_source:  # Tweak this according your network
-    - "0.0.0.0/0"
-
-Tomcat listening http connection port firewall source networks.
-
-    tomcat_http_connection_timeout: 20000
-
-Tomcat listening http connection port connection timeout.
-
-    tomcat_http_compression_mime_types: 'text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,text/plain'
-
-Tomcat http connection compressed MIME-types.
-
-    tomcat_http_compression: true
-
-Tomcat http connection compressed content enable/disable.
-
-    tomcat_http_compression_min_size: 256
-
-Tomcat http connection min compressed file size.
-
-    tomcat_http_compression_nocompress_user_agent: ""
-
-Tomcat http connection must be uncompressed for these browser user agents.
+Tomcat "Connector" can use the shared thread pool called executor for http/ajp/https connections.
 
 ### Encoding related options
 

@@ -32,6 +32,8 @@
 
 - name: prepare Catalina base
   include_tasks: prepare-catalina-base.yml
+  tags:
+   - tomcat_server_configuration
 
 - name: configure Tomcat for customisation on start-up
   include_tasks: configure-tomcat.yml

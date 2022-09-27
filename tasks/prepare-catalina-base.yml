@@ -146,7 +146,18 @@
     mode: '0640'
   with_items:
     - 'context.xml'
-    - 'server.xml'
     - 'web.xml'
     - 'logging.properties'
     - 'tomcat-users.xml'
+  tags:
+   - tomcat_server_configuration
+
+- name: 'generate configuartion from template, using the default recommended settings'
+  template:
+    src: 'server.xml.j2'
+    dest: '{{ tomcat_catalina_base }}/conf/server.xml'
+    owner: "{{ tomcat_system_user }}"
+    group: "{{ tomcat_system_group }}"
+    mode: '0640'
+  tags:
+   - tomcat_server_configuration

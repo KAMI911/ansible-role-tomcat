@@ -20,40 +20,27 @@
   shell: 'echo $(systemctl is-active firewalld)'
   register: service_firewalld
 
-- name: 'configure firewalld for http port {{ tomcat_http_port }}'
+- name: 'configure firewalld with rich rules'
   firewalld:
-    rich_rule: 'rule family=ipv4 source address="{{ item }}" port port={{ tomcat_http_port }} protocol=tcp accept'
+    rich_rule: 'rule family=ipv4 source address="{{ item.1 }}" port port={{ item.0.port }} protocol=tcp accept'
     permanent: true
     immediate: true
     state: enabled
-  with_items:
-    - '{{ tomcat_http_source }}'
+  loop: '{{ tomcat_server | subelements("source", skip_missing=true) }}'
   when:
    - not tomcat_manage_firewalld_use_zone
    - service_firewalld.stdout == 'active'
 
-- name: 'configure firewalld for ajp port {{ tomcat_ajp_port }}'
+- name: 'configure firewalld with zones'
   firewalld:
-    rich_rule: 'rule family=ipv4 source address="{{ item }}" port port={{ tomcat_ajp_port }} protocol=tcp accept'
+    port: '{{ item.0.port }}/tcp'
     permanent: true
     immediate: true
     state: enabled
-  with_items:
-    - '{{ tomcat_ajp_source }}'
+    zone: '{{ item.1 }}'
+  loop: "{{ tomcat_server | subelements('zone', skip_missing=true) }}"
   when:
-   - not tomcat_manage_firewalld_use_zone
-   - service_firewalld.stdout == 'active'
-
-- name: 'configure firewalld for https port {{ tomcat_https_port }}'
-  firewalld:
-    rich_rule: 'rule family=ipv4 source address="{{ item }}" port port={{ tomcat_https_port }} protocol=tcp accept'
-    permanent: true
-    immediate: true
-    state: enabled
-  with_items:
-    - '{{ tomcat_https_source }}'
-  when:
-   - not tomcat_manage_firewalld_use_zone
+   - tomcat_manage_firewalld_use_zone
    - service_firewalld.stdout == 'active'
 
 - name: 'configure firewalld for jmx port {{ tomcat_jmx_port }}'
@@ -80,39 +67,6 @@
    - not tomcat_manage_firewalld_use_zone
    - service_firewalld.stdout == 'active'
 
-- name: 'configure firewalld for http port {{ tomcat_http_port }}'
-  firewalld:
-    port: '{{ tomcat_http_port }}/tcp'
-    permanent: true
-    immediate: true
-    state: enabled
-    zone: '{{ tomcat_http_zone }}'
-  when:
-   - tomcat_manage_firewalld_use_zone
-   - service_firewalld.stdout == 'active'
-
-- name: 'configure firewalld for ajp port {{ tomcat_ajp_port }}'
-  firewalld:
-    port: '{{ tomcat_ajp_port }}/tcp'
-    permanent: true
-    immediate: true
-    state: enabled
-    zone: '{{ tomcat_ajp_zone }}'
-  when:
-   - tomcat_manage_firewalld_use_zone
-   - service_firewalld.stdout == 'active'
-
-- name: 'configure firewalld for https port {{ tomcat_https_port }}'
-  firewalld:
-    port: '{{ tomcat_https_port }}/tcp'
-    permanent: true
-    immediate: true
-    state: enabled
-    zone: '{{ tomcat_https_zone }}'
-  when:
-   - tomcat_manage_firewalld_use_zone
-   - service_firewalld.stdout == 'active'
-
 - name: 'configure firewalld for jmx port {{ tomcat_jmx_port }}'
   firewalld:
     port: '{{ tomcat_jmx_port }}/tcp'
@@ -120,7 +74,7 @@
     immediate: true
     state: enabled
     zone: '{{ tomcat_jmx_zone }}'
-  when: 
+  when:
    - tomcat_manage_firewalld_use_zone
    - service_firewalld.stdout == 'active'
 
