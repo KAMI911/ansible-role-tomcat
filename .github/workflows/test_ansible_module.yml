@@ -16,10 +16,7 @@ jobs:
         base:
           - bullseye
         engine-version:
-          - 22.04-dind
-        include:
-          - target: non-experimental
-            engine-version: 19.03-dind
+          - 19.03-dind
     steps:
       - uses: actions/checkout@v2
       - name: Install Ansible module molecule test
