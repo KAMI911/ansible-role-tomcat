@@ -6,14 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-plalist:
+  test-ansible-molecule:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install Ansible module test
+      - name: Install Ansible module molecule test
         run: |
-          apk update && apk add --no-cache openrc docker python3-dev py3-pip gcc git curl build-base autoconf automake py3-cryptography linux-headers musl-dev libffi-dev openssl-dev openssh
+          apt install -y docker python3-dev python3-pip
           docker info
           python3 --version
           pip3 install ansible molecule docker 'molecule[docker]'
