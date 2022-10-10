@@ -37,7 +37,7 @@ provisioner:
     group_vars:
       jdk:
         java_type: 'jdk'
-      server-jre:
+      server_jre:
         java_type: 'serverjre'
       ubuntu14:
         tomcat_manage_firewalld: false
