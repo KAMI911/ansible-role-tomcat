@@ -20,6 +20,11 @@ Environment=JRE_HOME="{{ java_home }}"
 ExecStart={{ tomcat_catalina_base }}/bin/startup.sh
 ExecStop={{ tomcat_catalina_base }}/bin/shutdown.sh
 
+User={{ tomcat_system_user }}
+Group={{ tomcat_system_group }}
+
+OOMScoreAdjust=-1000
+
 Restart=on-failure
 RestartSec=3s
 
