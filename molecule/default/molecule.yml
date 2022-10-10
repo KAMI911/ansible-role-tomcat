@@ -4,13 +4,6 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: java-centos6-11-jdk
-    image: kami911/docker-centos6-ansible
-    image_version: latest
-    groups:
-      - jdk
-      - centos6
-
   - name: java-centos7-11-jdk
     image: milcom/centos7-systemd
     image_version: latest
@@ -18,13 +11,6 @@ platforms:
     groups:
       - jdk
       - centos7
-
-  - name: java-centos6-11-jdk-no-firewall
-    image: kami911/docker-centos6-ansible
-    image_version: latest
-    groups:
-      - jdk
-      - centos6
 
   - name: java-centos7-11-jdk-firewall
     image: milcom/centos7-systemd
