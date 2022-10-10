@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ansible module molecule test
         run: |
-          apt install -y docker python3-dev python3-pip
+          sudo apt install -y docker python3-dev python3-pip
           docker info
           python3 --version
           pip3 install ansible molecule docker 'molecule[docker]'
