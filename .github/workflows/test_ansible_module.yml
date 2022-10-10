@@ -8,12 +8,23 @@ on:
 jobs:
   test-ansible-molecule:
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - non-experimental
+        base:
+          - bullseye
+        engine-version:
+          - 22.04-dind
+        include:
+          - target: non-experimental
+            engine-version: 19.03-dind
     steps:
       - uses: actions/checkout@v2
       - name: Install Ansible module molecule test
         run: |
-          sudo apt install -y docker python3-dev python3-pip
+          sudo apt install -y python3-dev python3-pip
           docker info
           python3 --version
           pip3 install ansible molecule docker 'molecule[docker]'
