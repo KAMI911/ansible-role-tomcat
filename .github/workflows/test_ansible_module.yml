@@ -9,13 +9,15 @@ jobs:
   test-ansible-molecule:
     name: Test Ansible role with Molecule
     runs-on: ubuntu-22.04
-    fail-fast: false
-    target:
-      - non-experimental
-    base:
-     - ubuntu-22.04
-    engine-version:
-     - 19.03-dind
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - non-experimental
+        base:
+          - bullseye
+        engine-version:
+          - 19.03-dind
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
