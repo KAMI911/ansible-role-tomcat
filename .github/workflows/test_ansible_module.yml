@@ -7,23 +7,24 @@ on:
 
 jobs:
   test-ansible-molecule:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        target:
-          - non-experimental
-        base:
-          - bullseye
-        engine-version:
-          - 19.03-dind
+    name: Test Ansible role with Molecule
+    runs-on: ubuntu-22.04
+    fail-fast: false
+    target:
+      - non-experimental
+    base:
+     - ubuntu-22.04
+    engine-version:
+     - 19.03-dind
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Ansible module molecule test
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install Ansible module for molecule test
         run: |
           sudo apt install -y python3-dev python3-pip
           docker info
           python3 --version
           pip3 install ansible 'molecule[docker]'
           ansible --version
-          molecule test
+      - name: Run molecule test
+        run: molecule test
