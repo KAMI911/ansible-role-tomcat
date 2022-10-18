@@ -6,27 +6,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-ansible-molecule:
-    name: Test Ansible role with Molecule
-    runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        target:
-          - non-experimental
-        base:
-          - bullseye
-        engine-version:
-          - 19.03-dind
+  lint:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Install Ansible module for molecule test
-        run: |
-          sudo apt install -y python3-dev python3-pip
-          docker info
-          python3 --version
-          pip3 install ansible 'molecule[docker]'
-          ansible --version
-      - name: Run molecule test
-        run: molecule test
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: buluma/molecule-action@v5.0.1
+        with:
+          command: lint
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        image:
+          - alpine
+          - amazonlinux
+          - debian
+          - centos
+          - fedora
+          - opensuse
+          - ubuntu
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: molecule
+        uses: buluma/molecule-action@v5.0.1
+        with:
+          image: "${{ matrix.image }}"
+          options: parallel
+          scenario: my_specific_scenario
