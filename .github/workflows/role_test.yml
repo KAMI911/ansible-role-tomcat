@@ -4,7 +4,7 @@ name: Role test
   pull_request:
   push:
     branches:
-      - *
+      - "*"
   workflow_dispatch:	
 
 defaults:
