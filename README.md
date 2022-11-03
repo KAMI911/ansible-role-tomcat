@@ -2,7 +2,7 @@
 
 Installs Apache Tomcat Java Application server. Most complete Tomcat installation, supporting, init.d script, application naming, hugepages, hardening, beautiful error pages, sha512 hashed passwords, JMX configuration, multiple Tomcat versions, separated catalina_home and caralina_base.
 
-[![Build Status](https://github.com/KAMI911/ansible-role-tomcat/actions/workflows/test_ansible_module.yml/badge.svg)](https://github.com/KAMI911/ansible-role-tomcat/actions/workflows/test_ansible_module.yml)
+[![Build Status](https://github.com/KAMI911/ansible-role-tomcat/actions/workflows/test_ansible_module.yml/badge.svg)](https://github.com/KAMI911/ansible-role-tomcat/actions/workflows/role_test.yml)
 
 ## Table of Contents
 
