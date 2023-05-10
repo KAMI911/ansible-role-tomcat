@@ -19,7 +19,7 @@
 - name: set variables for download
   include_vars: download_tomcat.yml
   tags:
-  - always
+   - always
 
 - name: download Tomcat installer
   include_tasks: download.yml
