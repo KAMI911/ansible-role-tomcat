@@ -100,9 +100,9 @@
         <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
         -->
 
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs/access"
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs/access" 
                prefix="{{ tomcat_access_log_filename }}" suffix="{{ tomcat_access_log_extension }}" renameOnRotate="true"
-               pattern="{{ tomcat_access_log_pattern }}" />
+               pattern="{{ tomcat_access_log_pattern }}" rotatable="true" fileDateFormat=".yyyyMMdd_HH" />
 
       </Host>
     </Engine>
